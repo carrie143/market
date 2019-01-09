@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.TradeOrderMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.TradeOrder">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="account_id" property="accountId" jdbcType="INTEGER" />
+		<result column="symbol" property="symbol" jdbcType="VARCHAR" />
+		<result column="outer_order_no" property="outerOrderNo"
+			jdbcType="VARCHAR" />
+		<result column="inner_order_no" property="innerOrderNo"
+			jdbcType="VARCHAR" />
+		<result column="broker_id" property="brokerId" jdbcType="DECIMAL" />
+		<result column="number" property="number" jdbcType="DECIMAL" />
+		<result column="number_over" property="numberOver" jdbcType="DECIMAL" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="money_over" property="moneyOver" jdbcType="DECIMAL" />
+		<result column="order_type" property="orderType" jdbcType="CHAR" />
+		<result column="trade_flag" property="tradeFlag" jdbcType="CHAR" />
+		<result column="traded_number" property="tradedNumber"
+			jdbcType="DECIMAL" />
+		<result column="traded_money" property="tradedMoney" jdbcType="DECIMAL" />
+		<result column="fee" property="fee" jdbcType="DECIMAL" />
+
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="request_no" property="requestNo" jdbcType="CHAR" />
+		<result column="send_status" property="sendStatus" jdbcType="CHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="fail_message_code" property="failMessageCode"
+			jdbcType="VARCHAR" />
+		<result column="fail_message_des" property="failMessageDes"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid,broker_id, account_id, symbol, outer_order_no,
+		inner_order_no, number,number_over,
+		price, money,money_over,
+		order_type, trade_flag,
+		traded_number, traded_money,fee,
+		status,request_no,send_status,
+		create_date,
+		update_date,
+		fail_message_code, fail_message_des
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="getProcessingTradeOrder" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where uid = #{uid,jdbcType=INTEGER} and
+		status='WAITING'
+		union all
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where uid = #{uid,jdbcType=INTEGER} and
+		status='PROCESSING'
+	</select>
+
+	<select id="getProcessingTradeOrderSymbol" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where uid = #{uid,jdbcType=INTEGER} and
+		status='WAITING' and symbol =#{symbol}
+		union all
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where uid = #{uid,jdbcType=INTEGER} and
+		status='PROCESSING' and symbol =#{symbol}
+	</select>
+
+	<select id="getHistoryTradeOrder" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where uid = #{uid,jdbcType=INTEGER} and status='CANCEL
+		union all
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where uid = #{uid,jdbcType=INTEGER} and
+		status='SUCCESS
+	</select>
+
+	<select id="getHistoryTradeOrderSymbol" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order where uid = #{uid,jdbcType=INTEGER} and symbol
+		=#{symbol} and
+		status='SUCCESS'
+		union all
+		select
+		<include refid="Base_Column_List" />
+		from trade_order where uid = #{uid,jdbcType=INTEGER} and symbol
+		=#{symbol} and
+		status='CANCEL'
+	</select>
+
+	<select id="getUnSendMatchOrderByStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where status = #{status,jdbcType=CHAR} and send_status
+		= 'WAIT' and update_date &lt; now()-interval 20 second limit 10
+	</select>
+	<select id="getTradeGopWithLock" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where id = #{id,jdbcType=INTEGER} for update
+	</select>
+
+	<select id="getTradeOrder" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where uid =
+		#{uid,jdbcType=INTEGER}
+	</select>
+
+	<select id="getByOuterOrderNo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where outer_order_no =
+		#{outerOrderNo,jdbcType=CHAR}
+		and uid =
+		#{uid,jdbcType=INTEGER}
+	</select>
+
+	<select id="getByInternalOrderNo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where inner_order_no =
+		#{internalOrderNo,jdbcType=CHAR}
+	</select>
+
+	<insert id="insertSelective" parameterType="com.gop.domain.TradeOrder">
+		insert into trade_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="brokerId != null">
+				broker_id,
+			</if>
+			<if test="accountId != null">
+				account_id,
+			</if>
+			<if test="symbol != null">
+				symbol,
+			</if>
+			<if test="outerOrderNo != null">
+				outer_order_no,
+			</if>
+			<if test="innerOrderNo != null">
+				inner_order_no,
+			</if>
+			<if test="requestNo != null">
+				request_no,
+			</if>
+
+			<if test="number != null">
+				number,
+			</if>
+			<if test="numberOver != null">
+				number_over,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="moneyOver != null">
+				money_over,
+			</if>
+			<if test="orderType != null">
+				order_type,
+			</if>
+			<if test="tradeFlag != null">
+				trade_flag,
+			</if>
+			<if test="tradedNumber != null">
+				traded_number,
+			</if>
+			<if test="tradedMoney != null">
+				traded_money,
+			</if>
+			<if test="fee != null">
+				fee,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="sendStatus != null">
+				send_status,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="failMessageCode != null">
+				fail_message_code,
+			</if>
+			<if test="failMessageDes != null">
+				fail_message_des,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="brokerId != null">
+				#{brokerId,jdbcType=INTEGER},
+			</if>
+			<if test="accountId != null">
+				#{accountId,jdbcType=INTEGER},
+			</if>
+			<if test="symbol != null">
+				#{symbol,jdbcType=VARCHAR},
+			</if>
+			<if test="outerOrderNo != null">
+				#{outerOrderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="innerOrderNo != null">
+				#{innerOrderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="requestNo != null">
+				#{requestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=DECIMAL},
+			</if>
+			<if test="numberOver != null">
+				#{numberOver,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyOver != null">
+				#{moneyOver,jdbcType=DECIMAL},
+			</if>
+			<if test="orderType != null">
+				#{orderType,jdbcType=CHAR},
+			</if>
+			<if test="tradeFlag != null">
+				#{tradeFlag,jdbcType=CHAR},
+			</if>
+			<if test="tradedNumber != null">
+				#{tradedNumber,jdbcType=DECIMAL},
+			</if>
+			<if test="tradedMoney != null">
+				#{tradedMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="fee != null">
+				#{fee,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="sendStatus != null">
+				#{sendStatus,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="failMessageCode != null">
+				#{failMessageCode,jdbcType=VARCHAR},
+			</if>
+			<if test="failMessageDes != null">
+				#{failMessageDes,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.TradeOrder">
+		update trade_order
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="brokerId != null">
+				broker_id = #{brokerId,jdbcType=INTEGER},
+			</if>
+			<if test="accountId != null">
+				account_id = #{accountId,jdbcType=INTEGER},
+			</if>
+
+			<if test="symbol != null">
+				symbol = #{symbol,jdbcType=VARCHAR},
+			</if>
+			<if test="outerOrderNo != null">
+				outer_order_no = #{outerOrderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="innerOrderNo != null">
+				inner_order_no = #{innerOrderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="requestNo != null">
+				request_no = #{requestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="number != null">
+				number = #{number,jdbcType=DECIMAL},
+			</if>
+			<if test="numberOver != null">
+				number_over = #{numberOver,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyOver != null">
+				money_over = #{moneyOver,jdbcType=DECIMAL},
+			</if>
+			<if test="orderType != null">
+				order_type = #{orderType,jdbcType=CHAR},
+			</if>
+			<if test="tradeFlag != null">
+				trade_flag = #{tradeFlag,jdbcType=CHAR},
+			</if>
+			<if test="tradedNumber != null">
+				traded_number = #{tradedNumber,jdbcType=DECIMAL},
+			</if>
+			<if test="tradedMoney != null">
+				traded_money = #{tradedMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="fee != null">
+				fee= #{fee,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="sendStatus != null">
+				send_status = #{sendStatus,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="failMessageCode != null">
+				fail_message_code = #{failMessageCode,jdbcType=VARCHAR},
+			</if>
+			<if test="failMessageDes != null">
+				fail_message_des = #{failMessageDes,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.TradeOrder">
+		update
+		trade_order
+		set uid = #{uid,jdbcType=INTEGER},
+		account_id =
+		#{accountId,jdbcType=INTEGER},
+		symbol = #{symbol,jdbcType=VARCHAR},
+		outer_order_no = #{outerOrderNo,jdbcType=VARCHAR},
+		inner_order_no =
+		#{innerOrderNo,jdbcType=VARCHAR},
+		number = #{number,jdbcType=DECIMAL},
+		price = #{price,jdbcType=DECIMAL},
+		money = #{money,jdbcType=DECIMAL},
+		order_type = #{orderType,jdbcType=CHAR},
+		trade_flag =
+		#{tradeFlag,jdbcType=CHAR},
+		traded_number =
+		#{tradedNumber,jdbcType=DECIMAL},
+		traded_money =
+		#{tradedMoney,jdbcType=DECIMAL},
+		status = #{status,jdbcType=CHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP},
+		fail_message_code =
+		#{failMessageCode,jdbcType=VARCHAR},
+		fail_message_des =
+		#{failMessageDes,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateSendStatusByInnerOrderNo">
+		update
+		trade_order
+		set send_status =
+		#{sendStatus,jdbcType=CHAR}
+		where inner_order_no =
+		#{innerOrderNo,jdbcType=VARCHAR}
+	</update>
+
+	<select id="getTradeGopByTxNum" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		where inner_order_no = #{txNum}
+	</select>
+
+	<select id="tradeCoinCurrentList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		<where>
+			<if test="uid != null">
+				and uid = #{uid}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+		</where>
+	</select>
+
+	<select id="getTradeList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		<where>
+			<if test="brokerId != null">
+				and broker_id = #{brokerId}
+			</if>
+			<if test="symbol != null">
+				and symbol = #{symbol}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+			<if test="type != null">
+				and order_type = #{type}
+			</if>
+
+			<if test="uid != null">
+				and uid = #{uid}
+			</if>
+
+			<if test="accountId != null">
+				and account_id = #{accountId}
+			</if>
+			<if test="innerOrderId != null">
+				and inner_order_no = #{innerOrderId}
+			</if>
+		</where>
+	</select>
+	<select id="getTradeRecordList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from trade_order
+		<where>
+			<if test="brokerId != null">
+				and broker_id = #{brokerId}
+			</if>
+			<if test="tradeFlag != null">
+				and trade_flag = #{tradeFlag}
+			</if>
+			<if test="uid != null">
+				and uid = #{uid}
+			</if>
+			<if test="symbol != null">
+				and symbol = #{symbol}
+			</if>
+			<if test="orderType != null">
+				and order_type = #{orderType}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+			<if test="startTime != null">
+				and create_date <![CDATA[>]]> #{startTime}
+			</if>
+			<if test="endTime != null">
+				and create_date <![CDATA[<]]> #{endTime}
+			</if>
+		</where>
+	</select>
+</mapper>

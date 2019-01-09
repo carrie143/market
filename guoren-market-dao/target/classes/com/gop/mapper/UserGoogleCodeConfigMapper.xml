@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserGoogleCodeConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.UserGoogleCodeConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="secret_code" property="secretCode" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="reset_date" property="resetDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, flag, secret_code, create_date, update_date,reset_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_google_code_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.gop.domain.UserGoogleCodeConfig" >
+    insert into user_google_code_config (id, uid, flag,secret_code, 
+      create_date, update_date,reset_date)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{flag,jdbcType=VARCHAR}, 
+     #{secretCode,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{resetDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.UserGoogleCodeConfig" >
+    insert into user_google_code_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="secretCode != null" >
+        secret_code,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="resetDate != null" >
+        reset_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="secretCode != null" >
+        #{secretCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resetDate != null" >
+        #{resetDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserGoogleCodeConfig" >
+    update user_google_code_config
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="secretCode != null" >
+        secret_code = #{secretCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resetDate != null" >
+        reset_date = #{resetDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.UserGoogleCodeConfig" >
+    update user_google_code_config
+    set uid = #{uid,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=VARCHAR},
+      secret_code = #{secretCode,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      reset_date = #{resetDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateUserGoogleCodeFlagByUid">
+    update user_google_code_config
+    set flag = #{flag,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="countGoogleCodeConfigByUid" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(1)
+    from user_google_code_config
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByUid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_google_code_config
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateUserGoogleCodeSecretCodeByUid">
+    update user_google_code_config
+    set secret_code = #{secretCode,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateSelectiveByUid" parameterType="com.gop.domain.UserGoogleCodeConfig" >
+    update user_google_code_config
+    <set>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="secretCode != null" >
+        secret_code = #{secretCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resetDate != null" >
+        reset_date = #{resetDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

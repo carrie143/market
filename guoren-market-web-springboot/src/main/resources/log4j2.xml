@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<properties>
+		<!--<property name="mongoDBName">gdaelog</property>-->
+		<property name="collectionName">market_errorlog</property>
+	</properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout>
+				<pattern>%d %p %C{1.} [%t] %m%n</pattern>
+			</PatternLayout>
+		</Console>
+		<!--<NoSql name="mongoDBErrorLogAppender">-->
+			<!--&lt;!&ndash; 录入日志level及以上级别的信息(onMatch),其他的直接拒绝(onMismatch)-->
+			<!--设置过滤条件下限为Error &ndash;&gt;-->
+			<!--<ThresholdFilter level="error" onMatch="ACCEPT"-->
+				<!--onMismatch="DENY" />-->
+			<!--<MongoDb databaseName="${mongoDBName}" collectionName="${collectionName}" factoryClassName="com.gop.config.Log4j2MongoConfig"-->
+               <!--factoryMethodName="mongoClient" />-->
+		<!--</NoSql> -->
+		<RollingFile name="infoFile" fileName="./common-info.log"
+			filePattern="./common-info_%d{yyyy-MM-dd}_%i.log">
+			<PatternLayout pattern="%d %p %c %L %m%n" />
+			<Policies>
+				<!-- 每24小时更新一次 -->
+				<TimeBasedTriggeringPolicy modulate="true"
+					interval="24" />
+				<SizeBasedTriggeringPolicy size="10240KB" />
+			</Policies>
+			<!-- 最多备份30个 -->
+			<DefaultRolloverStrategy max="30" />
+			<Filters>
+				<ThresholdFilter level="warn" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<ThresholdFilter level="info" onMatch="ACCEPT"
+					onMismatch="DENY" />
+
+			</Filters>
+		</RollingFile>
+		<RollingFile name="errorFile" fileName="./common-error.log"
+			filePattern="./common-error_%d{yyyy-MM-dd}_%i.log">
+			<PatternLayout pattern="%d %p %c %L %m%n" />
+			<Policies>
+				<!-- 每24小时更新一次 -->
+				<TimeBasedTriggeringPolicy modulate="true"
+					interval="24" />
+				<SizeBasedTriggeringPolicy size="10240KB" />
+			</Policies>
+			<!-- 最多备份30个 -->
+			<DefaultRolloverStrategy max="30" />
+			<Filters>
+
+				<ThresholdFilter level="error" onMatch="ACCEPT"
+					onMismatch="DENY" />
+
+			</Filters>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="org.apache.catalina.util.LifecycleBase" level="error" />
+		<Logger name="org.apache.coyote.http11.Http11NioProtocol"
+			level="warn" />
+		<Logger name="org.apache.tomcat.util.net.NioSelectorPool"
+			level="warn" />
+		<Logger name="org.hibernate.validator.internal.util.Version"
+			level="warn" />
+		<Logger name="org.springframework" level="info" />
+		<Logger name="com.dangdang" level="error" />
+		<Logger name="com.gop" level="info" />
+		<Logger name="com.gop.mapper" level="TRACE" additivity="false" />
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="infoFile" />
+			<AppenderRef ref="errorFile" />
+			<!--<AppenderRef ref="mongoDBErrorLogAppender"/>-->
+		</Root>
+
+	</Loggers>
+</Configuration>  

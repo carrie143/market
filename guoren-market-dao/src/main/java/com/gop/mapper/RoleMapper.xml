@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.gop.domain.Role">
+        <id column="role_id" property="roleId" jdbcType="INTEGER" />
+        <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+        <result column="instruction" property="instruction" jdbcType="VARCHAR" />
+        <result column="role_status" property="status" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        role_id, role_name, instruction, role_status, create_date, update_date
+    </sql>
+    <select id="getRoleList" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from role
+        where role_status = #{roleStatus}
+    </select>
+
+    <insert id="createRole" parameterType="com.gop.domain.Role" useGeneratedKeys="true" keyProperty="roleId" >
+        insert into role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="instruction != null">
+                instruction,
+            </if>
+            <if test="status != null">
+                role_status,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="updateDate != null">
+                update_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="instruction != null">
+                #{instruction,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getRoleById" resultMap="BaseResultMap"
+            parameterType="com.gop.domain.Role">
+        select
+        <include refid="Base_Column_List" />
+        from role
+        where role_id = #{roleId,jdbcType=INTEGER}
+        and role_status = #{status,jdbcType=INTEGER}
+    </select>
+    <select id="getRoleByName" resultType="int"
+            parameterType="com.gop.domain.Role">
+        select count(1)
+        from role
+        where role_name = #{roleName,jdbcType=VARCHAR}
+        and role_status = #{status,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteRole"  parameterType="java.lang.Integer">
+        delete from role
+        where role_id = #{role_id,jdbcType=INTEGER}
+    </delete>
+    <update id="updateRoleStatus" parameterType="com.gop.domain.Role">
+        update role
+        <set >
+            <if test="status != null" >
+                role_status = #{status,jdbcType=INTEGER},
+            </if>
+        </set>
+        where role_id = #{roleId,jdbcType=INTEGER}
+    </update>
+</mapper>

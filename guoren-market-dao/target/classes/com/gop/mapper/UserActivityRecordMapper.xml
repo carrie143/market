@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserActivityRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.UserActivityRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="activity_type" property="activityType" jdbcType="VARCHAR" />
+    <result column="card_type" property="cardType" jdbcType="VARCHAR" />
+    <result column="card_no" property="cardNo" jdbcType="VARCHAR" />
+    <result column="request_no" property="requestNo" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, activity_type, card_type, card_no,request_no, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_activity_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_activity_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.UserActivityRecord" >
+    insert into user_activity_record (id, uid, activity_type, 
+      card_type, card_no,request_no, create_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{activityType,jdbcType=VARCHAR}, 
+      #{cardType,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, #{requestNo,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.UserActivityRecord" >
+    insert into user_activity_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="activityType != null" >
+        activity_type,
+      </if>
+      <if test="cardType != null" >
+        card_type,
+      </if>
+      <if test="cardNo != null" >
+        card_no,
+      </if>
+      <if test="requestNo != null" >
+        request_no,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="activityType != null" >
+        #{activityType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserActivityRecord" >
+    update user_activity_record
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="activityType != null" >
+        activity_type = #{activityType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        card_type = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        card_no = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        request_no = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.UserActivityRecord" >
+    update user_activity_record
+    set uid = #{uid,jdbcType=INTEGER},
+      activity_type = #{activityType,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=VARCHAR},
+      card_no = #{cardNo,jdbcType=VARCHAR},
+      request_no = #{requestNo,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertRecord" parameterType="com.gop.domain.UserActivityRecord" >
+    insert into user_activity_record (uid, card_type,card_no,request_no,activity_type)
+    values ( #{uid,jdbcType=INTEGER},#{cardType,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR},
+    #{requestNo,jdbcType=VARCHAR},
+    #{activityType,jdbcType=VARCHAR}
+     )
+  </insert>
+  <select id="getCountByUidAndActivityType"  resultType="java.lang.Integer">
+    select 
+    count(1)
+    from user_activity_record
+    where 
+    uid = #{uid,jdbcType=INTEGER}
+    and 
+    activity_type = #{type,jdbcType=VARCHAR}
+  </select>
+  <select id="getCountByActivityTypeAndCardTypeAndCardNo"  resultType="java.lang.Integer">
+    select 
+    count(1)
+    from user_activity_record
+    where 
+    activity_type = #{type,jdbcType=VARCHAR}
+    and
+    card_type = #{cardType,jdbcType=VARCHAR}
+    and 
+    card_no = #{cardNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

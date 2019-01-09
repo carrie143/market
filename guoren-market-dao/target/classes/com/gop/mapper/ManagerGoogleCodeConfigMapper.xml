@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ManagerGoogleCodeConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.ManagerGoogleCodeConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="secret_code" property="secretCode" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, admin_id, secret_code, del_flag, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from manager_google_code_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.gop.domain.ManagerGoogleCodeConfig" >
+    insert into manager_google_code_config (id, admin_id, secret_code, 
+      del_flag, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{secretCode,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ManagerGoogleCodeConfig" >
+    insert into manager_google_code_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="secretCode != null" >
+        secret_code,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="secretCode != null" >
+        #{secretCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ManagerGoogleCodeConfig" >
+    update manager_google_code_config
+    <set >
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="secretCode != null" >
+        secret_code = #{secretCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ManagerGoogleCodeConfig" >
+    update manager_google_code_config
+    set admin_id = #{adminId,jdbcType=INTEGER},
+      secret_code = #{secretCode,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="countManagerGoogleCodeConfigByAdminId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+    count(1)
+    from manager_google_code_config
+    where admin_id = #{adminId,jdbcType=INTEGER}
+    and del_flag = 'FALSE'
+  </select>
+  <insert id="addManagerGoogleCodeConfig" parameterType="com.gop.domain.ManagerGoogleCodeConfig" >
+    insert into manager_google_code_config (admin_id, secret_code, 
+      del_flag)
+    values (#{adminId,jdbcType=INTEGER}, #{secretCode,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <select id="selectManagerGoogleCodeConfigByAdminId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manager_google_code_config
+    where admin_id = #{adminId,jdbcType=INTEGER}
+    and del_flag = #{delFlag,jdbcType=CHAR}
+  </select>
+  <update id="updateManagerGoogleCodeConfigByAdminIdAndDelFlag">
+    update manager_google_code_config
+    set del_flag = #{endflag,jdbcType=CHAR}
+    where admin_id = #{adminId,jdbcType=INTEGER} 
+    and del_flag = #{beginflag,jdbcType=CHAR}
+  </update>
+</mapper>

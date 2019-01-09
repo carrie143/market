@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserIdentificationMapper">
+    <resultMap id="BaseResultMap" type="com.gop.domain.UserIdentification">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="country_id" property="countryId" jdbcType="VARCHAR"/>
+        <result column="full_name" property="fullName" jdbcType="VARCHAR"/>
+        <result column="country" property="country" jdbcType="VARCHAR"/>
+        <result column="card_type" property="cardType" jdbcType="VARCHAR"/>
+        <result column="card_no" property="cardNo" jdbcType="VARCHAR"/>
+        <result column="expired_date" property="expiredDate" jdbcType="TIMESTAMP"/>
+        <result column="card_photo" property="cardPhoto" jdbcType="VARCHAR"/>
+        <result column="card_back" property="cardBack" jdbcType="VARCHAR"/>
+        <result column="card_handhold" property="cardHandhold"
+                jdbcType="VARCHAR"/>
+        <result column="card_translate" property="cardTranslate"
+                jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="audit_uid" property="auditUid" jdbcType="INTEGER"/>
+        <result column="audit_date" property="auditDate" jdbcType="TIMESTAMP"/>
+        <result column="audit_status" property="auditStatus" jdbcType="CHAR"/>
+        <result column="audit_first" property="auditFirst" jdbcType="CHAR"/>
+        <result column="audit_message_id" property="auditMessageId"
+                jdbcType="VARCHAR"/>
+        <result column="audit_message" property="auditMessage"
+                jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id, uid, country_id, full_name,country, card_type, card_no, expired_date,
+		card_photo, card_handhold,card_back,
+		card_translate, status, audit_uid, audit_date, audit_status, audit_first,
+		audit_message_id,
+		audit_message, create_date, update_date
+	</sql>
+    <insert id="insert" parameterType="com.gop.domain.UserIdentification">
+		insert into user_identification (id, uid, country_id,full_name,
+		country, card_type, card_no,
+		expired_date, card_photo, card_handhold,card_back,
+		card_translate, status, audit_uid,
+		audit_date, audit_status, audit_first,
+		audit_message_id, audit_message, create_date,
+		update_date)
+		values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		#{countryId,jdbcType=VARCHAR},
+		#{fullName,jdbcType=VARCHAR},
+		#{country,jdbcType=VARCHAR}, #{cardType,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR},
+		#{expiredDate,jdbcType=TIMESTAMP}, #{cardPhoto,jdbcType=VARCHAR},
+		#{cardHandhold,jdbcType=VARCHAR},
+		#{cardBack,jdbcType=VARCHAR},
+		#{cardTranslate,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{auditUid,jdbcType=INTEGER},
+		#{auditDate,jdbcType=TIMESTAMP}, #{auditStatus,jdbcType=CHAR},
+		#{auditFirst,jdbcType=CHAR},
+		#{auditMessageId,jdbcType=VARCHAR}, #{auditMessage,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP})
+	</insert>
+
+    <select id="getLastIdentityInfoByUid" resultMap="BaseResultMap">
+		select * from
+		user_identification
+		where id = (select max(id) from user_identification
+		where uid = #{uid})
+	</select>
+
+    <select id="getIdentityInfoList" resultMap="BaseResultMap">
+        select * from user_identification
+        <where>
+            <if test="userId != null">
+                and uid = #{userId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <select id="getIdentityInfoById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        user_identification where id = #{id}
+    </select>
+
+    <update id="updateAudit" parameterType="com.gop.domain.UserIdentification">
+        update user_identification
+        <set>
+            <if test="auditUid != null">
+                audit_uid = #{auditUid},
+            </if>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus},
+            </if>
+            <if test="auditMessageId != null">
+                audit_message_id = #{auditMessageId},
+            </if>
+            <if test="auditMessage != null">
+                audit_message = #{auditMessage},
+            </if>
+            <if test="auditDate != null">
+                update_date = #{auditDate},
+            </if>
+            <if test="auditDate != null">
+                audit_date = #{auditDate},
+            </if>
+            <if test="auditFirst != null">
+                audit_first = #{auditFirst},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="getIdentityHistoryList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        user_identification where
+        uid = #{uid} order by id desc
+    </select>
+    <select id="getIdentityHistoryListByLimitNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        user_identification where
+        uid = #{uid} order by id desc
+        <if test="limitNo != null">
+            limit #{limitNo}
+        </if>
+    </select>
+    <select id="getIdentityHistoryCount" resultType="java.lang.Integer">
+		select count(1) from user_identification where 
+			uid = #{uid} 
+	</select>
+    <select id="getLastUserIdentificationInfoByUid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        user_identification
+        where
+        uid = #{uid}
+        order by id desc
+        limit 1;
+    </select>
+    <select id="getUserIdentificationInfoWtihAuditStatus" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        user_identification
+        where
+        uid = #{uid}
+        and
+        audit_status = #{status}
+    </select>
+    <select id="getAmountOfIdentificationWithStatus" resultType="java.lang.Integer">
+		select 
+		count(1)
+		from
+			user_identification 
+		where
+		audit_status = #{status}
+	</select>
+    <select id="getUserByUidAndStatusAndAuditStatus" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        user_identification
+        where
+        uid = #{uid}
+        and
+        status = #{status}
+        and
+        audit_status = #{auditStatus}
+
+    </select>
+    <select id="countUserLevel" resultType="int">
+		select count(1) from
+		user_identification
+		where audit_status = 'OK'
+		and date_format(audit_date,'%Y-%m-%d') = date_format(#{date},'%Y-%m-%d')
+	</select>
+    <select id="getAddUserCount" parameterType='java.util.Map' resultType="java.lang.Integer">
+        select count(1) count from user u,user_identification ui
+        where
+        u.uid = ui.uid and
+        ui.`status` = 'FINISH' and
+        ui.audit_status = 'OK' and
+        <![CDATA[ ui.update_date >= #{strDay} ]]> and
+        <![CDATA[ ui.update_date <= #{endDay} ]]>
+    </select>
+    <select id="getAddUser" parameterType='java.util.Map' resultType="java.lang.Integer">
+        select u.uid from user u,user_identification ui
+        where
+        u.uid = ui.uid and
+        ui.`status` = 'FINISH' and
+        ui.audit_status = 'OK' and
+        <![CDATA[ ui.update_date >= #{strDay} ]]> and
+        <![CDATA[ ui.update_date <= #{endDay} ]]>
+        order by #{orderBy} #{order}
+        limit #{strRow},#{endRow}
+    </select>
+    <select id="getUserInvite" resultType="java.lang.Integer">
+      select ifnull(max(invite_uid),0) from user where uid = #{uid}
+    </select>
+
+</mapper>

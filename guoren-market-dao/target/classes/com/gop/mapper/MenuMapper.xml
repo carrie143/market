@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.MeunMapper" >
+    <resultMap id="BaseResultMap" type="com.gop.domain.Menu" >
+        <id column="menu_id" property="menuId" jdbcType="INTEGER" />
+        <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+        <result column="menu_module" property="menuModule" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="uri" property="uri" jdbcType="VARCHAR" />
+        <result column="show" property="show" jdbcType="VARCHAR" />
+        <result column="i18n" property="i18n" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        menu_id, menu_name, menu_module,parent_id,level,uri,menu.show,i18n
+    </sql>
+    <select id="getMenuById" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from menu
+        where menu_id = #{menuId}
+    </select>
+    <select id="getMenuByParentId" resultMap="BaseResultMap"
+            parameterType="com.gop.domain.Menu">
+        select
+        <include refid="Base_Column_List" />
+        from menu
+        <where>
+            <if test="parentId != null" >
+          parent_id = #{parentId}
+            </if>
+            <if test="level != null" >
+          and level = #{level}
+            </if>
+        </where>
+    </select>
+
+    <select id="getMenuByRoleId" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        menu.menu_id, menu.menu_name, menu.menu_module,menu.parent_id,menu.level,menu.uri,menu.show,menu.i18n
+        from menu_role
+        left JOIN menu on menu.menu_id = menu_role.menu_id
+        where role_id = #{roleId}  and menu_role.`status` = 1
+    </select>
+</mapper>

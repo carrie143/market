@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ChannelCibOrderWithdrawMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.ChannelCibOrderWithdraw" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="txid" property="txid" jdbcType="VARCHAR" />
+    <result column="pay_no" property="payNo" jdbcType="CHAR" />
+    <result column="sub_merchant" property="subMerchant" jdbcType="VARCHAR" />
+    <result column="bank_no" property="bankNo" jdbcType="CHAR" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="account_type" property="accountType" jdbcType="CHAR" />
+    <result column="currency_code" property="currencyCode" jdbcType="CHAR" />
+    <result column="transfer_status" property="transferStatus" jdbcType="CHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="transfer_usage" property="transferUsage" jdbcType="VARCHAR" />
+    <result column="sys_timestamp" property="sysTimestamp" jdbcType="CHAR" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="serial_no" property="serialNo" jdbcType="CHAR" />
+    <result column="transfer_date" property="transferDate" jdbcType="CHAR" />
+    <result column="transfer_time" property="transferTime" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, txid, pay_no, sub_merchant, bank_no, account_no, account_name, account_type, 
+    currency_code, transfer_status, amount, transfer_usage, sys_timestamp, fee, serial_no, 
+    transfer_date, transfer_time, remark, create_date, update_date, version
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from channel_cib_order_withdraw
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from channel_cib_order_withdraw
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.ChannelCibOrderWithdraw" >
+    insert into channel_cib_order_withdraw (id, txid, pay_no, 
+      sub_merchant, bank_no, account_no, 
+      account_name, account_type, currency_code, 
+      transfer_status, amount, transfer_usage, 
+      sys_timestamp, fee, serial_no, 
+      transfer_date, transfer_time, remark, 
+      create_date, update_date, version
+      )
+    values (#{id,jdbcType=INTEGER}, #{txid,jdbcType=VARCHAR}, #{payNo,jdbcType=CHAR}, 
+      #{subMerchant,jdbcType=VARCHAR}, #{bankNo,jdbcType=CHAR}, #{accountNo,jdbcType=VARCHAR}, 
+      #{accountName,jdbcType=VARCHAR}, #{accountType,jdbcType=CHAR}, #{currencyCode,jdbcType=CHAR}, 
+      #{transferStatus,jdbcType=CHAR}, #{amount,jdbcType=DECIMAL}, #{transferUsage,jdbcType=VARCHAR}, 
+      #{sysTimestamp,jdbcType=CHAR}, #{fee,jdbcType=DECIMAL}, #{serialNo,jdbcType=CHAR}, 
+      #{transferDate,jdbcType=CHAR}, #{transferTime,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ChannelCibOrderWithdraw" >
+    insert into channel_cib_order_withdraw
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="txid != null" >
+        txid,
+      </if>
+      <if test="payNo != null" >
+        pay_no,
+      </if>
+      <if test="subMerchant != null" >
+        sub_merchant,
+      </if>
+      <if test="bankNo != null" >
+        bank_no,
+      </if>
+      <if test="accountNo != null" >
+        account_no,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="currencyCode != null" >
+        currency_code,
+      </if>
+      <if test="transferStatus != null" >
+        transfer_status,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="transferUsage != null" >
+        transfer_usage,
+      </if>
+      <if test="sysTimestamp != null" >
+        sys_timestamp,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="transferDate != null" >
+        transfer_date,
+      </if>
+      <if test="transferTime != null" >
+        transfer_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="txid != null" >
+        #{txid,jdbcType=VARCHAR},
+      </if>
+      <if test="payNo != null" >
+        #{payNo,jdbcType=CHAR},
+      </if>
+      <if test="subMerchant != null" >
+        #{subMerchant,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null" >
+        #{bankNo,jdbcType=CHAR},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=CHAR},
+      </if>
+      <if test="currencyCode != null" >
+        #{currencyCode,jdbcType=CHAR},
+      </if>
+      <if test="transferStatus != null" >
+        #{transferStatus,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="transferUsage != null" >
+        #{transferUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="sysTimestamp != null" >
+        #{sysTimestamp,jdbcType=CHAR},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=CHAR},
+      </if>
+      <if test="transferDate != null" >
+        #{transferDate,jdbcType=CHAR},
+      </if>
+      <if test="transferTime != null" >
+        #{transferTime,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ChannelCibOrderWithdraw" >
+    update channel_cib_order_withdraw
+    <set >
+      <if test="txid != null" >
+        txid = #{txid,jdbcType=VARCHAR},
+      </if>
+      <if test="payNo != null" >
+        pay_no = #{payNo,jdbcType=CHAR},
+      </if>
+      <if test="subMerchant != null" >
+        sub_merchant = #{subMerchant,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null" >
+        bank_no = #{bankNo,jdbcType=CHAR},
+      </if>
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=CHAR},
+      </if>
+      <if test="currencyCode != null" >
+        currency_code = #{currencyCode,jdbcType=CHAR},
+      </if>
+      <if test="transferStatus != null" >
+        transfer_status = #{transferStatus,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="transferUsage != null" >
+        transfer_usage = #{transferUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="sysTimestamp != null" >
+        sys_timestamp = #{sysTimestamp,jdbcType=CHAR},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=CHAR},
+      </if>
+      <if test="transferDate != null" >
+        transfer_date = #{transferDate,jdbcType=CHAR},
+      </if>
+      <if test="transferTime != null" >
+        transfer_time = #{transferTime,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ChannelCibOrderWithdraw" >
+    update channel_cib_order_withdraw
+    set txid = #{txid,jdbcType=VARCHAR},
+      pay_no = #{payNo,jdbcType=CHAR},
+      sub_merchant = #{subMerchant,jdbcType=VARCHAR},
+      bank_no = #{bankNo,jdbcType=CHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      account_type = #{accountType,jdbcType=CHAR},
+      currency_code = #{currencyCode,jdbcType=CHAR},
+      transfer_status = #{transferStatus,jdbcType=CHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      transfer_usage = #{transferUsage,jdbcType=VARCHAR},
+      sys_timestamp = #{sysTimestamp,jdbcType=CHAR},
+      fee = #{fee,jdbcType=DECIMAL},
+      serial_no = #{serialNo,jdbcType=CHAR},
+      transfer_date = #{transferDate,jdbcType=CHAR},
+      transfer_time = #{transferTime,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- 自定义方法开始 -->
+	<update id="updateByVersion" parameterType="com.gop.domain.ChannelCibOrderWithdraw">
+		update channel_cib_order_withdraw,
+			(SELECT max(version) version FROM channel_cib_order_withdraw WHERE txid = #{txid,jdbcType=CHAR}) s 
+		<set>
+			<if test="txid != null">
+				channel_cib_order_withdraw.txid = #{txid,jdbcType=CHAR},
+			</if>
+			<if test="payNo != null">
+				channel_cib_order_withdraw.pay_no = #{payNo,jdbcType=CHAR},
+			</if>
+			<if test="accountNo != null">
+				channel_cib_order_withdraw.account_no = #{accountNo,jdbcType=VARCHAR},
+			</if>
+			<if test="accountName != null">
+				channel_cib_order_withdraw.account_name = #{accountName,jdbcType=VARCHAR},
+			</if>
+			<if test="accountType != null">
+				channel_cib_order_withdraw.account_type = #{accountType,jdbcType=CHAR},
+			</if>
+			<if test="amount != null">
+				channel_cib_order_withdraw.amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="remark != null">
+				channel_cib_order_withdraw.remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="transferUsage != null">
+				channel_cib_order_withdraw.transfer_usage = #{transferUsage,jdbcType=VARCHAR},
+			</if>
+			<if test="fee != null">
+				channel_cib_order_withdraw.fee = #{fee,jdbcType=DECIMAL},
+			</if>
+			<if test=" transferStatus != null">
+				channel_cib_order_withdraw.transfer_status = #{transferStatus,jdbcType=CHAR},
+			</if>
+			<if test="updateDate != null">
+				channel_cib_order_withdraw.update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		,channel_cib_order_withdraw.version =  s.version + 1
+		where channel_cib_order_withdraw.Id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<select id="getCibPayListByTxId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from channel_cib_order_withdraw
+		where txid = #{txid}
+	</select>
+	
+	<select id="getLastStatusByTxId" resultType="java.lang.String">
+		select
+			channel_cib_order_withdraw.transfer_status
+		from channel_cib_order_withdraw,
+		 ( select id no, max(update_date) from channel_cib_order_withdraw where txid = #{txid,jdbcType=TIMESTAMP} ) S 
+		where channel_cib_order_withdraw.id = S.no
+	</select>
+	
+	<select id="getLastOrderByTxId" resultMap="BaseResultMap">
+		select
+			channel_cib_order_withdraw.id, channel_cib_order_withdraw.txid, channel_cib_order_withdraw.pay_no, channel_cib_order_withdraw.sub_merchant, channel_cib_order_withdraw.bank_no, channel_cib_order_withdraw.account_no, channel_cib_order_withdraw.account_name, channel_cib_order_withdraw.account_type,
+			channel_cib_order_withdraw.currency_code, channel_cib_order_withdraw.amount, channel_cib_order_withdraw.transfer_usage,
+			channel_cib_order_withdraw.sys_timestamp, channel_cib_order_withdraw.fee, channel_cib_order_withdraw.serial_no, channel_cib_order_withdraw.transfer_date, channel_cib_order_withdraw.transfer_time, channel_cib_order_withdraw.transfer_status,
+			channel_cib_order_withdraw.remark, channel_cib_order_withdraw.create_date, channel_cib_order_withdraw.update_date, channel_cib_order_withdraw.version
+		from channel_cib_order_withdraw,
+		 ( select id no, max(update_date) from channel_cib_order_withdraw where txid = #{txid} ) S 
+		where channel_cib_order_withdraw.id = S.no
+	</select>
+	
+	<select id="getCibOrderByStatus" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from channel_cib_order_withdraw
+		where transfer_status = #{transferStatus,jdbcType=VARCHAR}
+		 <![CDATA[
+		  and create_date >= DATE_SUB(CURDATE(),INTERVAL 12 HOUR)
+		  ]]>
+	</select>
+	
+	<select id="selectForUpdate" resultMap="BaseResultMap">
+    	select 
+    		<include refid="Base_Column_List" />
+    	from channel_cib_order_withdraw
+    	where id = #{id}
+    	for update
+  </select>
+	
+	<!-- 自定义方法结束 -->
+</mapper>

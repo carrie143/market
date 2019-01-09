@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ConfigSymbolProfileMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.ConfigSymbolProfile">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="symbol" property="symbol" jdbcType="VARCHAR" />
+
+		<result column="profile_key" property="profileKey" jdbcType="VARCHAR"
+			typeHandler="com.gop.mapper.ConfigSymbolTypeHandler" />
+
+		<result column="profile_value" property="profileValue"
+			jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, symbol, profile_key,
+		profile_value,
+		create_date,
+		update_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from config_symbol_profile
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="getBySymbol" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from config_symbol_profile
+		where symbol = #{symbol,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		config_symbol_profile
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insertSelective" parameterType="com.gop.domain.ConfigSymbolProfile">
+		insert into config_symbol_profile
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="symbol != null">
+				symbol,
+			</if>
+
+			<if test="profileKey != null">
+				profile_key,
+			</if>
+
+			<if test="profileValue != null">
+				profile_value,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="symbol != null">
+				#{symbol,jdbcType=VARCHAR},
+			</if>
+
+			<if test="profileKey != null">
+				#{profileKey,jdbcType=VARCHAR},
+			</if>
+
+			<if test="profileValue != null">
+				#{profileValue,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<insert id="insertOnDuplicate" parameterType="com.gop.domain.ConfigSymbolProfile">
+		insert into
+		config_symbol_profile (symbol,
+		profile_key,
+		profile_value
+		)
+		values ( #{symbol,jdbcType=VARCHAR},
+
+		#{profileKey,jdbcType=VARCHAR,typeHandler=com.gop.mapper.ConfigSymbolTypeHandler},
+		#{profileValue,jdbcType=VARCHAR}
+		)
+		ON DUPLICATE KEY UPDATE
+		profile_value=#{profileValue,jdbcType=VARCHAR}
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ConfigSymbolProfile">
+		update config_symbol_profile
+		<set>
+			<if test="symbol != null">
+				symbol = #{symbol,jdbcType=VARCHAR},
+			</if>
+
+			<if test="profileKey != null">
+				profile_key = #{profileKey,jdbcType=VARCHAR},
+			</if>
+			<if test="profileValue != null">
+				profile_value = #{profileValue,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.ConfigSymbolProfile">
+		update
+		config_symbol_profile
+		set symbol = #{symbol,jdbcType=VARCHAR},
+
+		profile_key =
+		#{profileKey,jdbcType=VARCHAR},
+		profile_value =
+		#{profileValue,jdbcType=VARCHAR},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- 自定义方法 -->
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from config_symbol_profile
+		order by symbol,profile_key
+	</select>
+	<select id="selectByProfileKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from config_symbol_profile
+		where
+		profile_key =
+		#{key,typeHandler=com.gop.mapper.ConfigSymbolTypeHandler}
+	</select>
+	<select id="selectBySymbolAndProfileKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from config_symbol_profile
+		where
+		symbol=#{symbol} and
+		profile_key =
+		#{configSymbolType,typeHandler=com.gop.mapper.ConfigSymbolTypeHandler}
+	</select>
+
+
+</mapper>

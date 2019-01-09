@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.DepositMatchCurrencyOrderUserMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.DepositMatchCurrencyOrderUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="recharge_name" property="rechargeName" jdbcType="VARCHAR" />
+    <result column="recharge_bank" property="rechargeBank" jdbcType="VARCHAR" />
+    <result column="recharge_account_no" property="rechargeAccountNo" jdbcType="VARCHAR" />
+    <result column="recharge_amount" property="rechargeAmount" jdbcType="DECIMAL" />
+    <result column="recharge_time" property="rechargeTime" jdbcType="TIMESTAMP" />
+    <result column="recharge_remark" property="rechargeRemark" jdbcType="VARCHAR" />
+    <result column="order_name" property="orderName" jdbcType="VARCHAR" />
+    <result column="order_bank" property="orderBank" jdbcType="VARCHAR" />
+    <result column="order_account_no" property="orderAccountNo" jdbcType="VARCHAR" />
+    <result column="order_amount" property="orderAmount" jdbcType="DECIMAL" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="order_remark" property="orderRemark" jdbcType="VARCHAR" />
+    <result column="creater_user" property="createrUser" jdbcType="INTEGER" />
+    <result column="link_uid" property="linkUid" jdbcType="INTEGER" />
+    <result column="confirm_admin_id" property="confirmAdminId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="order_serial_number" property="orderSerialNumber" jdbcType="VARCHAR" />
+    <result column="bank_serial_number" property="bankSerialNumber" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, recharge_name, recharge_bank, recharge_account_no, recharge_amount, recharge_time, 
+    recharge_remark, order_name, order_bank, order_account_no, order_amount, order_time, 
+    order_remark, creater_user, link_uid, confirm_admin_id, status, order_serial_number, 
+    bank_serial_number, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from deposit_match_currency_order_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from deposit_match_currency_order_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.DepositMatchCurrencyOrderUser" >
+    insert into deposit_match_currency_order_user (id, recharge_name, recharge_bank, 
+      recharge_account_no, recharge_amount, recharge_time, 
+      recharge_remark, order_name, order_bank, 
+      order_account_no, order_amount, order_time, 
+      order_remark, creater_user, link_uid, 
+      confirm_admin_id, status, order_serial_number, 
+      bank_serial_number, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{rechargeName,jdbcType=VARCHAR}, #{rechargeBank,jdbcType=VARCHAR}, 
+      #{rechargeAccountNo,jdbcType=VARCHAR}, #{rechargeAmount,jdbcType=DECIMAL}, #{rechargeTime,jdbcType=TIMESTAMP}, 
+      #{rechargeRemark,jdbcType=VARCHAR}, #{orderName,jdbcType=VARCHAR}, #{orderBank,jdbcType=VARCHAR}, 
+      #{orderAccountNo,jdbcType=VARCHAR}, #{orderAmount,jdbcType=DECIMAL}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{orderRemark,jdbcType=VARCHAR}, #{createrUser,jdbcType=INTEGER}, #{linkUid,jdbcType=INTEGER}, 
+      #{confirmAdminId,jdbcType=INTEGER}, #{status,jdbcType=CHAR}, #{orderSerialNumber,jdbcType=VARCHAR}, 
+      #{bankSerialNumber,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.DepositMatchCurrencyOrderUser" >
+    insert into deposit_match_currency_order_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="rechargeName != null" >
+        recharge_name,
+      </if>
+      <if test="rechargeBank != null" >
+        recharge_bank,
+      </if>
+      <if test="rechargeAccountNo != null" >
+        recharge_account_no,
+      </if>
+      <if test="rechargeAmount != null" >
+        recharge_amount,
+      </if>
+      <if test="rechargeTime != null" >
+        recharge_time,
+      </if>
+      <if test="rechargeRemark != null" >
+        recharge_remark,
+      </if>
+      <if test="orderName != null" >
+        order_name,
+      </if>
+      <if test="orderBank != null" >
+        order_bank,
+      </if>
+      <if test="orderAccountNo != null" >
+        order_account_no,
+      </if>
+      <if test="orderAmount != null" >
+        order_amount,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="orderRemark != null" >
+        order_remark,
+      </if>
+      <if test="createrUser != null" >
+        creater_user,
+      </if>
+      <if test="linkUid != null" >
+        link_uid,
+      </if>
+      <if test="confirmAdminId != null" >
+        confirm_admin_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="orderSerialNumber != null" >
+        order_serial_number,
+      </if>
+      <if test="bankSerialNumber != null" >
+        bank_serial_number,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeName != null" >
+        #{rechargeName,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeBank != null" >
+        #{rechargeBank,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeAccountNo != null" >
+        #{rechargeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeAmount != null" >
+        #{rechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeTime != null" >
+        #{rechargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rechargeRemark != null" >
+        #{rechargeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderName != null" >
+        #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBank != null" >
+        #{orderBank,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAccountNo != null" >
+        #{orderAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderRemark != null" >
+        #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createrUser != null" >
+        #{createrUser,jdbcType=INTEGER},
+      </if>
+      <if test="linkUid != null" >
+        #{linkUid,jdbcType=INTEGER},
+      </if>
+      <if test="confirmAdminId != null" >
+        #{confirmAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="orderSerialNumber != null" >
+        #{orderSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankSerialNumber != null" >
+        #{bankSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.DepositMatchCurrencyOrderUser" >
+    update deposit_match_currency_order_user
+    <set >
+      <if test="rechargeName != null" >
+        recharge_name = #{rechargeName,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeBank != null" >
+        recharge_bank = #{rechargeBank,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeAccountNo != null" >
+        recharge_account_no = #{rechargeAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeAmount != null" >
+        recharge_amount = #{rechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeTime != null" >
+        recharge_time = #{rechargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rechargeRemark != null" >
+        recharge_remark = #{rechargeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderName != null" >
+        order_name = #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBank != null" >
+        order_bank = #{orderBank,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAccountNo != null" >
+        order_account_no = #{orderAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        order_amount = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderRemark != null" >
+        order_remark = #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createrUser != null" >
+        creater_user = #{createrUser,jdbcType=INTEGER},
+      </if>
+      <if test="linkUid != null" >
+        link_uid = #{linkUid,jdbcType=INTEGER},
+      </if>
+      <if test="confirmAdminId != null" >
+        confirm_admin_id = #{confirmAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="orderSerialNumber != null" >
+        order_serial_number = #{orderSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankSerialNumber != null" >
+        bank_serial_number = #{bankSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.DepositMatchCurrencyOrderUser" >
+    update deposit_match_currency_order_user
+    set recharge_name = #{rechargeName,jdbcType=VARCHAR},
+      recharge_bank = #{rechargeBank,jdbcType=VARCHAR},
+      recharge_account_no = #{rechargeAccountNo,jdbcType=VARCHAR},
+      recharge_amount = #{rechargeAmount,jdbcType=DECIMAL},
+      recharge_time = #{rechargeTime,jdbcType=TIMESTAMP},
+      recharge_remark = #{rechargeRemark,jdbcType=VARCHAR},
+      order_name = #{orderName,jdbcType=VARCHAR},
+      order_bank = #{orderBank,jdbcType=VARCHAR},
+      order_account_no = #{orderAccountNo,jdbcType=VARCHAR},
+      order_amount = #{orderAmount,jdbcType=DECIMAL},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      order_remark = #{orderRemark,jdbcType=VARCHAR},
+      creater_user = #{createrUser,jdbcType=INTEGER},
+      link_uid = #{linkUid,jdbcType=INTEGER},
+      confirm_admin_id = #{confirmAdminId,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      order_serial_number = #{orderSerialNumber,jdbcType=VARCHAR},
+      bank_serial_number = #{bankSerialNumber,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <update id="confirm">
+		update deposit_match_currency_order_user
+		set status
+		='CONFIRM',confirm_user=#{adminUser} where id=#{id}
+	</update>
+
+	<update id="induival">
+		update deposit_match_currency_order_user
+		set status
+		='INVALID',confirm_user=#{adminUser} where id=#{id}
+	</update>
+	
+	
+	<select id="getEffectiveBySerialNumber" resultType="java.lang.Integer">
+		select
+		count(1) from deposit_match_currency_order_user where
+		bank_serial_number
+		=#{orderSerialNumber} and status &lt;&gt;
+		'INVALID'
+	</select>
+
+	<select id="getByStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from deposit_match_currency_order_user
+		<where>
+			<choose>
+				<when test="status !=null">
+					status =#{status}
+				</when>
+				<otherwise>
+					status &lt;&gt; 'INVALID'
+				</otherwise>
+			</choose>
+			<if test="name !=null">
+				and order_name =#{name}
+			</if>
+
+			<if test="accountNo !=null">
+				and order_account_no =#{accountNo}
+			</if>
+
+		</where>
+
+	</select>
+	<select id="selectByPrimaryKeyLock" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from deposit_match_currency_order_user
+		where id = #{id,jdbcType=INTEGER} for update
+	</select>
+	
+</mapper>

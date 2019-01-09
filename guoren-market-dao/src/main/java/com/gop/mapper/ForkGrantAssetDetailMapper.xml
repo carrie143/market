@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ForkGrantAssetDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.ForkGrantAssetDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="plan_id" property="planId" jdbcType="INTEGER" />
+    <result column="target_asset_code" property="targetAssetCode" jdbcType="VARCHAR" />
+    <result column="exchange_num" property="exchangeNum" jdbcType="DECIMAL" />
+    <result column="request_no" property="requestNo" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, plan_id, target_asset_code, exchange_num, request_no, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fork_grant_asset_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fork_grant_asset_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.ForkGrantAssetDetail" >
+    insert into fork_grant_asset_detail (id, uid, plan_id, 
+      target_asset_code, exchange_num, request_no, 
+      create_date)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{planId,jdbcType=INTEGER}, 
+      #{targetAssetCode,jdbcType=VARCHAR}, #{exchangeNum,jdbcType=DECIMAL}, #{requestNo,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ForkGrantAssetDetail" >
+    insert into fork_grant_asset_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="planId != null" >
+        plan_id,
+      </if>
+      <if test="targetAssetCode != null" >
+        target_asset_code,
+      </if>
+      <if test="exchangeNum != null" >
+        exchange_num,
+      </if>
+      <if test="requestNo != null" >
+        request_no,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null" >
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="targetAssetCode != null" >
+        #{targetAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeNum != null" >
+        #{exchangeNum,jdbcType=DECIMAL},
+      </if>
+      <if test="requestNo != null" >
+        #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ForkGrantAssetDetail" >
+    update fork_grant_asset_detail
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null" >
+        plan_id = #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="targetAssetCode != null" >
+        target_asset_code = #{targetAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeNum != null" >
+        exchange_num = #{exchangeNum,jdbcType=DECIMAL},
+      </if>
+      <if test="requestNo != null" >
+        request_no = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ForkGrantAssetDetail" >
+    update fork_grant_asset_detail
+    set uid = #{uid,jdbcType=INTEGER},
+      plan_id = #{planId,jdbcType=INTEGER},
+      target_asset_code = #{targetAssetCode,jdbcType=VARCHAR},
+      exchange_num = #{exchangeNum,jdbcType=DECIMAL},
+      request_no = #{requestNo,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

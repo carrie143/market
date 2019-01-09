@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.DepositMatchBankOrderUserMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.DepositMatchBankOrderUser">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="serial_number" property="serialNumber"
+			jdbcType="VARCHAR" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+		<result column="postscript" property="postscript" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="source" property="source" jdbcType="VARCHAR" />
+		<result column="editer_admin_id" property="editerAdminId"
+			jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, serial_number, money, name, bank_name, account_no, postscript,
+		status, source,
+		editer_admin_id, create_date, update_date, insert_date
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from deposit_match_bank_order_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from deposit_match_bank_order_user
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.DepositMatchBankOrderUser">
+		insert into deposit_match_bank_order_user (id, serial_number, money,
+		name, bank_name, account_no,
+		postscript, status, source,
+		editer_admin_id, create_date, update_date,
+		insert_date)
+		values (#{id,jdbcType=INTEGER}, #{serialNumber,jdbcType=VARCHAR},
+		#{money,jdbcType=DECIMAL},
+		#{name,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR},
+		#{postscript,jdbcType=VARCHAR}, #{status,jdbcType=CHAR},
+		#{source,jdbcType=VARCHAR},
+		#{editerAdminId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP},
+		#{insertDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.DepositMatchBankOrderUser">
+		insert into deposit_match_bank_order_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="serialNumber != null">
+				serial_number,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="bankName != null">
+				bank_name,
+			</if>
+			<if test="accountNo != null">
+				account_no,
+			</if>
+			<if test="postscript != null">
+				postscript,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="source != null">
+				source,
+			</if>
+			<if test="editerAdminId != null">
+				editer_admin_id,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="insertDate != null">
+				insert_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="serialNumber != null">
+				#{serialNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="accountNo != null">
+				#{accountNo,jdbcType=VARCHAR},
+			</if>
+			<if test="postscript != null">
+				#{postscript,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="source != null">
+				#{source,jdbcType=VARCHAR},
+			</if>
+			<if test="editerAdminId != null">
+				#{editerAdminId,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="insertDate != null">
+				#{insertDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.DepositMatchBankOrderUser">
+		update deposit_match_bank_order_user
+		<set>
+			<if test="serialNumber != null">
+				serial_number = #{serialNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				bank_name = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="accountNo != null">
+				account_no = #{accountNo,jdbcType=VARCHAR},
+			</if>
+			<if test="postscript != null">
+				postscript = #{postscript,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="source != null">
+				source = #{source,jdbcType=VARCHAR},
+			</if>
+			<if test="editerAdminId != null">
+				editer_admin_id = #{editerAdminId,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="insertDate != null">
+				insert_date = #{insertDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.DepositMatchBankOrderUser">
+		update deposit_match_bank_order_user
+		set serial_number = #{serialNumber,jdbcType=VARCHAR},
+		money = #{money,jdbcType=DECIMAL},
+		name = #{name,jdbcType=VARCHAR},
+		bank_name = #{bankName,jdbcType=VARCHAR},
+		account_no = #{accountNo,jdbcType=VARCHAR},
+		postscript = #{postscript,jdbcType=VARCHAR},
+		status = #{status,jdbcType=CHAR},
+		source = #{source,jdbcType=VARCHAR},
+		editer_admin_id = #{editerAdminId,jdbcType=INTEGER},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date = #{updateDate,jdbcType=TIMESTAMP},
+		insert_date = #{insertDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="unrelevanceBySerialNumber">
+		update
+		deposit_match_bank_order_user
+		set
+		status='UNRELEVANCE' where
+		serial_number=#{serialNumber} and status='RELEVANCE'
+	</update>
+	
+	<select id="queryBankStatement" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		deposit_match_bank_order_user
+		<where>
+			<trim suffixOverrides="and">
+				<if test="beginTime != null ">
+					insert_date<![CDATA[>=]]>
+					#{beginTime} and
+				</if>
+				<if test="endTime != null">
+				    insert_date <![CDATA[<=]]>
+					#{endTime} and
+				</if>
+				<if test="minAmount != null">
+					money  <![CDATA[>=]]>
+					#{minAmount} and
+				</if>
+				<if test="maxAmount != null">
+					money  <![CDATA[<=]]>
+					#{maxAmount} and
+				</if>
+				<if test="status != null">
+					status = #{status} and
+				</if>
+				<if test="name != null">
+					name like #{name} and
+				</if>
+				<if test="accountNo != null">
+					account_no like #{accountNo} and
+				</if>
+
+			</trim>
+		</where>
+
+	</select>
+
+	<update id="confirmBySerialNumber">
+		update
+		deposit_match_bank_order_user
+		set
+		status='CONFIRM' where
+		serial_number=#{serialNumber} and status='RELEVANCE'
+	</update>
+	
+
+	<select id="selectByPrimaryKeyLock" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from deposit_match_bank_order_user
+		where id = #{id,jdbcType=INTEGER}
+		for update
+	</select>
+</mapper>

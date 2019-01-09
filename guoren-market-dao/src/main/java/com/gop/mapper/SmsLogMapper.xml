@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gop.mapper.SmsLogMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.SmsLog">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="msg_id" property="msgId" jdbcType="VARCHAR" />
+		<result column="service_code" property="serviceCode" jdbcType="CHAR" />
+		<result column="service_provider" property="serviceProvider"
+			jdbcType="CHAR" />
+		<result column="sys_code" property="sysCode" jdbcType="CHAR" />
+		<result column="mobile" property="mobile" jdbcType="CHAR" />
+		<result column="msg_content" property="msgContent" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, msg_id, service_code, service_provider, sys_code,
+		mobile,
+		msg_content, create_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sms_log
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		sms_log
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.SmsLog">
+		insert into sms_log (id,
+		msg_id, service_code,
+		service_provider, sys_code, mobile,
+		msg_content,
+		create_date)
+		values (#{id,jdbcType=INTEGER}, #{msgId,jdbcType=VARCHAR},
+		#{serviceCode,jdbcType=CHAR},
+		#{serviceProvider,jdbcType=CHAR},
+		#{sysCode,jdbcType=CHAR}, #{mobile,jdbcType=CHAR},
+		#{msgContent,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.gop.domain.SmsLog">
+		insert into sms_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="msgId != null">
+				msg_id,
+			</if>
+			<if test="serviceCode != null">
+				service_code,
+			</if>
+			<if test="serviceProvider != null">
+				service_provider,
+			</if>
+			<if test="sysCode != null">
+				sys_code,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="msgContent != null">
+				msg_content,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="msgId != null">
+				#{msgId,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceCode != null">
+				#{serviceCode,jdbcType=CHAR},
+			</if>
+			<if test="serviceProvider != null">
+				#{serviceProvider,jdbcType=CHAR},
+			</if>
+			<if test="sysCode != null">
+				#{sysCode,jdbcType=CHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=CHAR},
+			</if>
+			<if test="msgContent != null">
+				#{msgContent,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.SmsLog">
+		update sms_log
+		<set>
+			<if test="msgId != null">
+				msg_id = #{msgId,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceCode != null">
+				service_code = #{serviceCode,jdbcType=CHAR},
+			</if>
+			<if test="serviceProvider != null">
+				service_provider = #{serviceProvider,jdbcType=CHAR},
+			</if>
+			<if test="sysCode != null">
+				sys_code = #{sysCode,jdbcType=CHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=CHAR},
+			</if>
+			<if test="msgContent != null">
+				msg_content = #{msgContent,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.SmsLog">
+		update sms_log
+		set
+		msg_id = #{msgId,jdbcType=VARCHAR},
+		service_code =
+		#{serviceCode,jdbcType=CHAR},
+		service_provider =
+		#{serviceProvider,jdbcType=CHAR},
+		sys_code = #{sysCode,jdbcType=CHAR},
+		mobile = #{mobile,jdbcType=CHAR},
+		msg_content =
+		#{msgContent,jdbcType=VARCHAR},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

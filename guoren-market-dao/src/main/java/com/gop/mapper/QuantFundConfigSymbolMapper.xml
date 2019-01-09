@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.QuantFundConfigSymbolMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.QuantFundConfigSymbol">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="fund_symbol" property="fundSymbol" jdbcType="VARCHAR" />
+		<result column="trade_asset_code" property="tradeAssetCode"
+			jdbcType="VARCHAR" />
+		<result column="fund_asset_code" property="fundAssetCode"
+			jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, fund_symbol, trade_asset_code, fund_asset_code, status,
+		create_date,
+		update_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from quant_fund_config_symbol
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		quant_fund_config_symbol
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.QuantFundConfigSymbol">
+		insert into
+		quant_fund_config_symbol (id, fund_symbol,
+		trade_asset_code,
+		fund_asset_code, status, create_date,
+		update_date)
+		values
+		(#{id,jdbcType=INTEGER}, #{fundSymbol,jdbcType=VARCHAR},
+		#{tradeAssetCode,jdbcType=VARCHAR},
+		#{fundAssetCode,jdbcType=VARCHAR},
+		#{status,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP})
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.gop.domain.QuantFundConfigSymbol">
+		insert into quant_fund_config_symbol
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="fundSymbol != null">
+				fund_symbol,
+			</if>
+			<if test="tradeAssetCode != null">
+				trade_asset_code,
+			</if>
+			<if test="fundAssetCode != null">
+				fund_asset_code,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="fundSymbol != null">
+				#{fundSymbol,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeAssetCode != null">
+				#{tradeAssetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fundAssetCode != null">
+				#{fundAssetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.QuantFundConfigSymbol">
+		update quant_fund_config_symbol
+		<set>
+			<if test="fundSymbol != null">
+				fund_symbol = #{fundSymbol,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeAssetCode != null">
+				trade_asset_code = #{tradeAssetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fundAssetCode != null">
+				fund_asset_code = #{fundAssetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.QuantFundConfigSymbol">
+		update
+		quant_fund_config_symbol
+		set fund_symbol =
+		#{fundSymbol,jdbcType=VARCHAR},
+		trade_asset_code =
+		#{tradeAssetCode,jdbcType=VARCHAR},
+		fund_asset_code =
+		#{fundAssetCode,jdbcType=VARCHAR},
+		status = #{status,jdbcType=CHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertOrUpdate" parameterType="com.gop.domain.QuantFundConfigSymbol">
+		insert into
+		quant_fund_config_symbol ( fund_symbol,
+		trade_asset_code,
+		fund_asset_code, status, create_date,
+		update_date)
+		values
+		( #{fundSymbol,jdbcType=VARCHAR},
+		#{tradeAssetCode,jdbcType=VARCHAR},
+		#{fundAssetCode,jdbcType=VARCHAR},
+		#{status,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP})
+		ON DUPLICATE KEY UPDATE
+		status =
+		#{status,jdbcType=CHAR},fund_symbol = #{fundSymbol,jdbcType=VARCHAR}
+	</insert>
+	<select id="selectBySymbol" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from quant_fund_config_symbol
+		where fund_symbol =
+		#{symbol,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByFundSymbol" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from quant_fund_config_symbol
+		<where>
+			<if test="fundSymbol != null">
+				and fund_symbol = #{fundSymbol,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				and status = #{status,jdbcType=CHAR},
+			</if>
+		</where>
+	</select>
+</mapper>

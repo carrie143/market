@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.C2cTransOrderComplaintMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.C2cTransOrderComplaint">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="complain_id" property="complainId" jdbcType="VARCHAR" />
+		<result column="order_id" property="orderId" jdbcType="VARCHAR" />
+		<result column="trans_order_id" property="transOrderId"
+			jdbcType="VARCHAR" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="complain_type" property="complainType"
+			jdbcType="CHAR" />
+		<result column="complain_reason" property="complainReason"
+			jdbcType="VARCHAR" />
+		<result column="buy_phone" property="buyPhone" jdbcType="VARCHAR" />
+		<result column="sell_phone" property="sellPhone" jdbcType="VARCHAR" />
+		<result column="pay_type" property="payType" jdbcType="CHAR" />
+		<result column="pay_no" property="payNo" jdbcType="VARCHAR" />
+		<result column="capture" property="capture" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="trans_order_status" property="transOrderStatus"
+			jdbcType="CHAR" />
+		<result column="oper_uid" property="operUid" jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, complain_id, order_id, trans_order_id, uid,
+		complain_type,
+		complain_reason, buy_phone,
+		sell_phone, pay_type, pay_no,
+		capture, remark, status,trans_order_status, oper_uid, create_date,
+		update_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from c2c_trans_order_complaint
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		c2c_trans_order_complaint
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.C2cTransOrderComplaint">
+		insert into
+		c2c_trans_order_complaint (id, complain_id, order_id,
+		trans_order_id,
+		uid, complain_type,
+		complain_reason, buy_phone, sell_phone,
+		pay_type,
+		pay_no, capture,
+		remark, status, trans_order_status,oper_uid,
+		create_date, update_date)
+		values (#{id,jdbcType=INTEGER},
+		#{complainId,jdbcType=VARCHAR},
+		#{orderId,jdbcType=VARCHAR},
+		#{transOrderId,jdbcType=VARCHAR},
+		#{uid,jdbcType=INTEGER},
+		#{complainType,jdbcType=CHAR},
+		#{complainReason,jdbcType=VARCHAR},
+		#{buyPhone,jdbcType=VARCHAR},
+		#{sellPhone,jdbcType=VARCHAR},
+		#{payType,jdbcType=CHAR},
+		#{payNo,jdbcType=VARCHAR},
+		#{capture,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{status,jdbcType=CHAR},
+		#{transOrderStatus,jdbcType=CHAR},
+		#{operUid,jdbcType=INTEGER},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.C2cTransOrderComplaint">
+		insert into c2c_trans_order_complaint
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="complainId != null">
+				complain_id,
+			</if>
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="transOrderId != null">
+				trans_order_id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="complainType != null">
+				complain_type,
+			</if>
+			<if test="complainReason != null">
+				complain_reason,
+			</if>
+			<if test="buyPhone != null">
+				buy_phone,
+			</if>
+			<if test="sellPhone != null">
+				sell_phone,
+			</if>
+			<if test="payType != null">
+				pay_type,
+			</if>
+			<if test="payNo != null">
+				pay_no,
+			</if>
+			<if test="capture != null">
+				capture,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="transOrderStatus != null">
+				trans_order_status,
+			</if>
+			<if test="operUid != null">
+				oper_uid,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="complainId != null">
+				#{complainId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="transOrderId != null">
+				#{transOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="complainType != null">
+				#{complainType,jdbcType=CHAR},
+			</if>
+			<if test="complainReason != null">
+				#{complainReason,jdbcType=VARCHAR},
+			</if>
+			<if test="buyPhone != null">
+				#{buyPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="sellPhone != null">
+				#{sellPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="payType != null">
+				#{payType,jdbcType=CHAR},
+			</if>
+			<if test="payNo != null">
+				#{payNo,jdbcType=VARCHAR},
+			</if>
+			<if test="capture != null">
+				#{capture,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="transOrderStatus != null">
+				#{transOrderStatus,jdbcType=CHAR},
+			</if>
+			<if test="operUid != null">
+				#{operUid,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.C2cTransOrderComplaint">
+		update c2c_trans_order_complaint
+		<set>
+			<if test="complainId != null">
+				complain_id = #{complainId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				order_id = #{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="transOrderId != null">
+				trans_order_id = #{transOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="complainType != null">
+				complain_type = #{complainType,jdbcType=CHAR},
+			</if>
+			<if test="complainReason != null">
+				complain_reason = #{complainReason,jdbcType=VARCHAR},
+			</if>
+			<if test="buyPhone != null">
+				buy_phone = #{buyPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="sellPhone != null">
+				sell_phone = #{sellPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="payType != null">
+				pay_type = #{payType,jdbcType=CHAR},
+			</if>
+			<if test="payNo != null">
+				pay_no = #{payNo,jdbcType=VARCHAR},
+			</if>
+			<if test="capture != null">
+				capture = #{capture,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="transOrderStatus != null">
+				trans_order_status = #{transOrderStatus,jdbcType=CHAR},
+			</if>
+			<if test="operUid != null">
+				oper_uid = #{operUid,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.C2cTransOrderComplaint">
+		update
+		c2c_trans_order_complaint
+		set complain_id =
+		#{complainId,jdbcType=VARCHAR},
+		order_id = #{orderId,jdbcType=VARCHAR},
+		trans_order_id = #{transOrderId,jdbcType=VARCHAR},
+		uid =
+		#{uid,jdbcType=INTEGER},
+		complain_type = #{complainType,jdbcType=CHAR},
+		complain_reason = #{complainReason,jdbcType=VARCHAR},
+		buy_phone =
+		#{buyPhone,jdbcType=VARCHAR},
+		sell_phone =
+		#{sellPhone,jdbcType=VARCHAR},
+		pay_type = #{payType,jdbcType=CHAR},
+		pay_no = #{payNo,jdbcType=VARCHAR},
+		capture =
+		#{capture,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		status = #{status,jdbcType=CHAR},
+		trans_order_status =
+		#{transOrderStatus,jdbcType=CHAR},
+		oper_uid =
+		#{operUid,jdbcType=INTEGER},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByStatusAndComplainType" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from c2c_trans_order_complaint
+		where
+		status = #{status,jdbcType=CHAR}
+		<if test="complainType != null">
+		 and complain_type = #{complainType,jdbcType=CHAR}
+		</if>
+	</select>
+	<select id="selectByComplainId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from c2c_trans_order_complaint
+		where complain_id = #{complainId}
+
+	</select>
+	<select id="selectByTransOrderId" resultType="java.lang.Integer">
+		select count(1)
+		from c2c_trans_order_complaint
+		where trans_order_id = #{transOrderId}
+	</select>
+	<update id="updateToProcesedByComplainId">
+		update
+		c2c_trans_order_complaint
+		set
+		oper_uid =
+		#{operUid},
+		status = #{endStatus}
+		where
+		complain_id = #{complainId}
+		and
+		trans_order_id = #{transOrderId}
+		and
+		status = #{preStatus}
+	</update>
+</mapper>

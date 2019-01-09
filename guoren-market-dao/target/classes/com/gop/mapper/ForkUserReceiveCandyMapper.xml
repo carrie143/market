@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gop.mapper.ForkUserReceiveCandyMapper">
+  <resultMap id="BaseResultMap" type="com.gop.domain.ForkUserReceiveCandy">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="fork_asset_code" jdbcType="VARCHAR" property="forkAssetCode" />
+    <result column="target_asset_code" jdbcType="VARCHAR" property="targetAssetCode" />
+    <result column="fork_amount" jdbcType="DECIMAL" property="forkAmount" />
+    <result column="target_amount" jdbcType="DECIMAL" property="targetAmount" />
+    <result column="exchange_rate" jdbcType="DECIMAL" property="exchangeRate" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, fork_asset_code, target_asset_code, fork_amount, target_amount, exchange_rate, 
+    status, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fork_user_receive_candy
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.gop.domain.ForkUserReceiveCandy">
+    insert into fork_user_receive_candy (id, uid, fork_asset_code, 
+      target_asset_code, fork_amount, target_amount, 
+      exchange_rate, status, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{forkAssetCode,jdbcType=VARCHAR}, 
+      #{targetAssetCode,jdbcType=VARCHAR}, #{forkAmount,jdbcType=DECIMAL}, #{targetAmount,jdbcType=DECIMAL}, 
+      #{exchangeRate,jdbcType=DECIMAL}, #{status,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ForkUserReceiveCandy">
+    insert into fork_user_receive_candy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="forkAssetCode != null">
+        fork_asset_code,
+      </if>
+      <if test="targetAssetCode != null">
+        target_asset_code,
+      </if>
+      <if test="forkAmount != null">
+        fork_amount,
+      </if>
+      <if test="targetAmount != null">
+        target_amount,
+      </if>
+      <if test="exchangeRate != null">
+        exchange_rate,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="forkAssetCode != null">
+        #{forkAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetAssetCode != null">
+        #{targetAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="forkAmount != null">
+        #{forkAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="targetAmount != null">
+        #{targetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeRate != null">
+        #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ForkUserReceiveCandy">
+    update fork_user_receive_candy
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="forkAssetCode != null">
+        fork_asset_code = #{forkAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetAssetCode != null">
+        target_asset_code = #{targetAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="forkAmount != null">
+        fork_amount = #{forkAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="targetAmount != null">
+        target_amount = #{targetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeRate != null">
+        exchange_rate = #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ForkUserReceiveCandy">
+    update fork_user_receive_candy
+    set uid = #{uid,jdbcType=INTEGER},
+      fork_asset_code = #{forkAssetCode,jdbcType=VARCHAR},
+      target_asset_code = #{targetAssetCode,jdbcType=VARCHAR},
+      fork_amount = #{forkAmount,jdbcType=DECIMAL},
+      target_amount = #{targetAmount,jdbcType=DECIMAL},
+      exchange_rate = #{exchangeRate,jdbcType=DECIMAL},
+      status = #{status,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getForkUserReceiveCandyByUidAndAssetCode"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fork_user_receive_candy
+    where uid = #{uid,jdbcType=INTEGER}
+    and fork_asset_code = #{forkAssetCode,jdbcType=VARCHAR}
+    and target_asset_code = #{targetAssetCode,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateForkUserReceiveCandyStatusById">
+    update fork_user_receive_candy
+    set status = #{endStatus,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+    and status = #{beginStatus,jdbcType=CHAR}
+  </update>
+  
+</mapper>

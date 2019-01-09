@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.BeginingBalanceMapper" >
+    <resultMap id="BaseResultMap" type="com.gop.domain.BeginingBalance" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+        <result column="accountNo" property="accountNo" jdbcType="VARCHAR" />
+        <result column="amount_available" property="amount_available" jdbcType="DECIMAL" />
+        <result column="amount_lock" property="amount_lock" jdbcType="DECIMAL" />
+        <result column="amount_total" property="amount_total" jdbcType="DECIMAL" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, asset_code, amount_available,amount_lock,amount_total,create_date,update_date
+    </sql>
+    <select id="getBeginingBalance" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from begining_balance
+        where date_format(create_date,'%Y-%m-%d') = date_format(#{startDate},'%Y-%m-%d')
+        <if test="assetCode != null">
+            and asset_code = #{assetCode}
+        </if>
+            group by asset_code
+    </select>
+    <insert id="insertBatch" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into begining_balance
+        (asset_code,amount_available,amount_lock,amount_total,create_date,update_date) values
+        <foreach collection="list" item="beginingBalance" index="index" separator=",">
+            (
+            #{beginingBalance.assetCode},
+            #{beginingBalance.amount_available},
+            #{beginingBalance.amount_lock},
+            #{beginingBalance.amount_total},
+            #{beginingBalance.createDate},
+            #{beginingBalance.updateDate}
+            )
+        </foreach>
+
+    </insert>
+
+
+</mapper>

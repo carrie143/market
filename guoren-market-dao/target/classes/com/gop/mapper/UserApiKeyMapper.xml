@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserApiKeyMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.UserApiKey">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="user_no" property="userNo" jdbcType="VARCHAR" />
+		<result column="broker_id" property="brokerId" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="CHAR" />
+		<result column="auth_type" property="authType" jdbcType="CHAR" />
+		<result column="passphrase" property="passphrase" jdbcType="VARCHAR" />
+		<result column="access_key" property="accessKey" jdbcType="CHAR" />
+		<result column="secret_key" property="secretKey" jdbcType="CHAR" />
+		<result column="level" property="level" jdbcType="CHAR" />
+		<result column="ip_allow" property="ipAllow" jdbcType="CHAR" />
+		<result column="del_flag" property="delFlag" jdbcType="CHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, user_no, broker_id, name, auth_type, passphrase,
+		access_key,
+		secret_key,
+		level, ip_allow, del_flag, create_date,
+		update_date
+	</sql>
+
+	<select id="selectByUserNo" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user_api_key
+		where user_no = #{userNo,jdbcType=CHAR}
+	</select>
+
+	<select id="selectByUserId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_api_key
+		where uid = #{uid}
+	</select>
+
+</mapper>

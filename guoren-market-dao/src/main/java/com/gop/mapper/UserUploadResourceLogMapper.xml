@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gop.mapper.UserUploadResourceLogMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.UserUploadResourceLog">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="uid" jdbcType="INTEGER" property="uid" />
+		<result column="tag" jdbcType="VARCHAR" property="tag" />
+		<result column="dataType" jdbcType="VARCHAR" property="datatype" />
+		<result column="soucre" jdbcType="VARCHAR" property="soucre" />
+		<result column="storeType" jdbcType="VARCHAR" property="storetype" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+		<result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, tag, dataType, soucre, storeType, createTime,
+		updateTime
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_upload_resource_log
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		user_upload_resource_log
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.UserUploadResourceLog">
+		insert into
+		user_upload_resource_log (id, uid, tag,
+		dataType, soucre, storeType,
+		createTime, updateTime)
+		values (#{id,jdbcType=INTEGER},
+		#{uid,jdbcType=INTEGER},
+		#{tag,jdbcType=VARCHAR},
+		#{datatype,jdbcType=VARCHAR}, #{soucre,jdbcType=VARCHAR},
+		#{storetype,jdbcType=VARCHAR},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{updatetime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.UserUploadResourceLog">
+		insert into user_upload_resource_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="tag != null">
+				tag,
+			</if>
+			<if test="datatype != null">
+				dataType,
+			</if>
+			<if test="soucre != null">
+				soucre,
+			</if>
+			<if test="storetype != null">
+				storeType,
+			</if>
+			<if test="createtime != null">
+				createTime,
+			</if>
+			<if test="updatetime != null">
+				updateTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="tag != null">
+				#{tag,jdbcType=VARCHAR},
+			</if>
+			<if test="datatype != null">
+				#{datatype,jdbcType=VARCHAR},
+			</if>
+			<if test="soucre != null">
+				#{soucre,jdbcType=VARCHAR},
+			</if>
+			<if test="storetype != null">
+				#{storetype,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatetime != null">
+				#{updatetime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserUploadResourceLog">
+		update user_upload_resource_log
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="tag != null">
+				tag = #{tag,jdbcType=VARCHAR},
+			</if>
+			<if test="datatype != null">
+				dataType = #{datatype,jdbcType=VARCHAR},
+			</if>
+			<if test="soucre != null">
+				soucre = #{soucre,jdbcType=VARCHAR},
+			</if>
+			<if test="storetype != null">
+				storeType = #{storetype,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createTime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatetime != null">
+				updateTime = #{updatetime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.UserUploadResourceLog">
+		update
+		user_upload_resource_log
+		set uid = #{uid,jdbcType=INTEGER},
+		tag =
+		#{tag,jdbcType=VARCHAR},
+		dataType = #{datatype,jdbcType=VARCHAR},
+		soucre = #{soucre,jdbcType=VARCHAR},
+		storeType =
+		#{storetype,jdbcType=VARCHAR},
+		createTime =
+		#{createtime,jdbcType=TIMESTAMP},
+		updateTime =
+		#{updatetime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+
+
+	<select id="selectLogByTagAndUid" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_upload_resource_log
+		<trim>
+			<where>
+				<if test="tag != null">
+					tag = #{tag}
+				</if>
+
+				<if test="uid != null">
+					uid = #{uid}
+				</if>
+
+			</where>
+		</trim>
+
+	</select>
+</mapper>

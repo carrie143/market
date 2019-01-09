@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserLoginLogMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.UserLoginLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="ip_address" property="ipAddress" jdbcType="VARCHAR" />
+    <result column="ip_country" property="ipCountry" jdbcType="VARCHAR" />
+    <result column="ip_city" property="ipCity" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, ip_address, ip_country, ip_city, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_login_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_login_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.UserLoginLog" >
+    insert into user_login_log (id, uid, ip_address, ip_country,ip_city,
+      create_date)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{ipAddress,jdbcType=VARCHAR}, #{ipCountry,jdbcType=VARCHAR},#{ipCity,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.UserLoginLog" >
+    insert into user_login_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="ipAddress != null" >
+        ip_address,
+      </if>
+      <if test="ipCountry != null" >
+        ip_country,
+      </if>
+      <if test="ipCity != null" >
+        ip_city,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddress != null" >
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+       <if test="ipCountry != null" >
+        #{ipCountry,jdbcType=VARCHAR},
+      </if>
+       <if test="ipCity != null" >
+        #{ipCity,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserLoginLog" >
+    update user_login_log
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddress != null" >
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ipCountry != null" >
+        ip_country = #{ipCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="ipCity != null" >
+        ip_city = #{ipCity,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.UserLoginLog" >
+    update user_login_log
+    set uid = #{uid,jdbcType=INTEGER},
+      ip_address = #{ipAddress,jdbcType=VARCHAR},
+      ip_country = #{ipCountry,jdbcType=VARCHAR},
+      ip_city = #{ipCity,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByIpAddress" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from user_login_log
+    where 1=1
+    <if test="ipAddress != null" >
+       and ip_address = #{ipAddress,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="selectLastLoginIpByUid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from user_login_log where
+       uid = #{uid,jdbcType=INTEGER} order by id desc limit 1
+  </select>
+  
+  <select id="selectIpByUid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from user_login_log where
+       uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <select id="getFirstLoginByUid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from user_login_log where
+       uid = #{uid,jdbcType=INTEGER}
+    ORDER BY create_date desc
+	limit 1
+  </select>
+</mapper>

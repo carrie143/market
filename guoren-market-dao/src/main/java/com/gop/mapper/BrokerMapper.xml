@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.BrokerMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.Broker">
+		<id column="broker_id" property="brokerId" jdbcType="BIGINT" />
+		<result column="broker_no" property="brokerNo" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="login_salt" property="loginSalt" jdbcType="VARCHAR" />
+		<result column="login_password" property="loginPassword"
+			jdbcType="VARCHAR" />
+		<result column="pay_salt" property="paySalt" jdbcType="VARCHAR" />
+		<result column="pay_password" property="payPassword" jdbcType="VARCHAR" />
+		<result column="lock_num" property="lockNum" jdbcType="TINYINT" />
+		<result column="fullname" property="fullname" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="createip" property="createip" jdbcType="VARCHAR" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="updateip" property="updateip" jdbcType="VARCHAR" />
+		<result column="auth_level" property="authLevel" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		broker_id, broker_no, nickname, mobile, email, login_salt,
+		login_password,
+		pay_salt,
+		pay_password, lock_num, fullname, create_date,
+		createip, update_date, updateip,
+		auth_level
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from broker
+		where broker_id = #{brokerId,jdbcType=BIGINT}
+	</select>
+
+	<!-- 自定义方法 -->
+	<!-- 根据手机号查询Broker表记录 -->
+	<select id="selectByMobile" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from broker
+		where mobile = #{mobile,jdbcType=CHAR}
+	</select>
+	
+	<!-- 根据邮箱查询Broker表记录 -->
+	<select id="selectByEmail" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from broker
+		where email = #{email,jdbcType=CHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from broker
+		where broker_id = #{brokerId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.Broker">
+		insert into broker (broker_id,
+		broker_no, nickname,
+		mobile, email, login_salt,
+		login_password,
+		pay_salt, pay_password,
+		lock_num, fullname, create_date,
+		createip,
+		update_date, updateip,
+		auth_level)
+		values (#{brokerId,jdbcType=BIGINT},
+		#{brokerNo,jdbcType=VARCHAR},
+		#{nickname,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{loginSalt,jdbcType=VARCHAR},
+		#{loginPassword,jdbcType=VARCHAR},
+		#{paySalt,jdbcType=VARCHAR},
+		#{payPassword,jdbcType=VARCHAR},
+		#{lockNum,jdbcType=TINYINT}, #{fullname,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{createip,jdbcType=VARCHAR},
+		#{updateDate,jdbcType=TIMESTAMP},
+		#{updateip,jdbcType=VARCHAR},
+		#{authLevel,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.Broker">
+		insert into broker
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="brokerId != null">
+				broker_id,
+			</if>
+			<if test="brokerNo != null">
+				broker_no,
+			</if>
+			<if test="nickname != null">
+				nickname,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="loginSalt != null">
+				login_salt,
+			</if>
+			<if test="loginPassword != null">
+				login_password,
+			</if>
+			<if test="paySalt != null">
+				pay_salt,
+			</if>
+			<if test="payPassword != null">
+				pay_password,
+			</if>
+			<if test="lockNum != null">
+				lock_num,
+			</if>
+			<if test="fullname != null">
+				fullname,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="createip != null">
+				createip,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="updateip != null">
+				updateip,
+			</if>
+			<if test="authLevel != null">
+				auth_level,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="brokerId != null">
+				#{brokerId,jdbcType=BIGINT},
+			</if>
+			<if test="brokerNo != null">
+				#{brokerNo,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				#{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="loginSalt != null">
+				#{loginSalt,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPassword != null">
+				#{loginPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="paySalt != null">
+				#{paySalt,jdbcType=VARCHAR},
+			</if>
+			<if test="payPassword != null">
+				#{payPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="lockNum != null">
+				#{lockNum,jdbcType=TINYINT},
+			</if>
+			<if test="fullname != null">
+				#{fullname,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createip != null">
+				#{createip,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateip != null">
+				#{updateip,jdbcType=VARCHAR},
+			</if>
+			<if test="authLevel != null">
+				#{authLevel,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.Broker">
+		update broker
+		<set>
+			<if test="brokerNo != null">
+				broker_no = #{brokerNo,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				nickname = #{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="loginSalt != null">
+				login_salt = #{loginSalt,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPassword != null">
+				login_password = #{loginPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="paySalt != null">
+				pay_salt = #{paySalt,jdbcType=VARCHAR},
+			</if>
+			<if test="payPassword != null">
+				pay_password = #{payPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="lockNum != null">
+				lock_num = #{lockNum,jdbcType=TINYINT},
+			</if>
+			<if test="fullname != null">
+				fullname = #{fullname,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createip != null">
+				createip = #{createip,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateip != null">
+				updateip = #{updateip,jdbcType=VARCHAR},
+			</if>
+			<if test="authLevel != null">
+				auth_level = #{authLevel,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where broker_id = #{brokerId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.Broker">
+		update broker
+		set
+		broker_no = #{brokerNo,jdbcType=VARCHAR},
+		nickname =
+		#{nickname,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		login_salt =
+		#{loginSalt,jdbcType=VARCHAR},
+		login_password =
+		#{loginPassword,jdbcType=VARCHAR},
+		pay_salt =
+		#{paySalt,jdbcType=VARCHAR},
+		pay_password =
+		#{payPassword,jdbcType=VARCHAR},
+		lock_num =
+		#{lockNum,jdbcType=TINYINT},
+		fullname = #{fullname,jdbcType=VARCHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		createip =
+		#{createip,jdbcType=VARCHAR},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP},
+		updateip =
+		#{updateip,jdbcType=VARCHAR},
+		auth_level =
+		#{authLevel,jdbcType=VARCHAR}
+		where broker_id =
+		#{brokerId,jdbcType=BIGINT}
+	</update>
+	
+	
+	
+	<select id="getBrokerList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from broker
+	</select>
+</mapper>

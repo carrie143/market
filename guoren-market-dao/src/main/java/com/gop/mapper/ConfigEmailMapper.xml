@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ConfigEmailMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.ConfigEmail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mail_username" property="mailUsername" jdbcType="VARCHAR" />
+    <result column="mail_password" property="mailPassword" jdbcType="VARCHAR" />
+    <result column="mail_host" property="mailHost" jdbcType="VARCHAR" />
+    <result column="mail_subject" property="mailSubject" jdbcType="VARCHAR" />
+    <result column="send_count" property="sendCount" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mail_username, mail_password, mail_host, mail_subject, send_count, status, create_date, 
+    update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_email
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from config_email
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.ConfigEmail" >
+    insert into config_email (id, mail_username, mail_password, 
+      mail_host, mail_subject, send_count, 
+      status, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{mailUsername,jdbcType=VARCHAR}, #{mailPassword,jdbcType=VARCHAR}, 
+      #{mailHost,jdbcType=VARCHAR}, #{mailSubject,jdbcType=VARCHAR}, #{sendCount,jdbcType=INTEGER}, 
+      #{status,jdbcType=CHAR}, #{createDate,jdbcType=VARCHAR}, #{updateDate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ConfigEmail" >
+    insert into config_email
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mailUsername != null" >
+        mail_username,
+      </if>
+      <if test="mailPassword != null" >
+        mail_password,
+      </if>
+      <if test="mailHost != null" >
+        mail_host,
+      </if>
+      <if test="mailSubject != null" >
+        mail_subject,
+      </if>
+      <if test="sendCount != null" >
+        send_count,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mailUsername != null" >
+        #{mailUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="mailPassword != null" >
+        #{mailPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="mailHost != null" >
+        #{mailHost,jdbcType=VARCHAR},
+      </if>
+      <if test="mailSubject != null" >
+        #{mailSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="sendCount != null" >
+        #{sendCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ConfigEmail" >
+    update config_email
+    <set >
+      <if test="mailUsername != null" >
+        mail_username = #{mailUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="mailPassword != null" >
+        mail_password = #{mailPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="mailHost != null" >
+        mail_host = #{mailHost,jdbcType=VARCHAR},
+      </if>
+      <if test="mailSubject != null" >
+        mail_subject = #{mailSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="sendCount != null" >
+        send_count = #{sendCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ConfigEmail" >
+    update config_email
+    set mail_username = #{mailUsername,jdbcType=VARCHAR},
+      mail_password = #{mailPassword,jdbcType=VARCHAR},
+      mail_host = #{mailHost,jdbcType=VARCHAR},
+      mail_subject = #{mailSubject,jdbcType=VARCHAR},
+      send_count = #{sendCount,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateMailCount" parameterType="java.lang.Integer">
+	update config_email
+	set
+	send_count = send_count + 1
+	where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getEmailByMinSendCountAndStatus" resultMap="BaseResultMap">
+  	  select 
+    <include refid="Base_Column_List" />
+    from config_email
+    where 
+    status = #{status}
+    order by send_count asc limit 1
+  </select>
+</mapper>

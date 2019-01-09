@@ -1,0 +1,13 @@
+package com.gop.web.base.model;
+
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@ToString
+public class WebApiResponse {
+	private String code;
+	private String msg;
+	private Object data;
+
+}

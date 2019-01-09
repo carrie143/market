@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.AdminRoleMapper" >
+    <resultMap id="BaseResultMap" type="com.gop.domain.AdminRole" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+        <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, admin_id, role_id,create_date,update_date
+    </sql>
+    <select id="getAdminRoleList" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from admin_role
+        where role_id = #{roleId}
+    </select>
+    <delete id="deleteAdminRole"  parameterType="java.lang.Integer">
+        delete from admin_role
+        where role_id = #{roleId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.gop.domain.AdminRole">
+        insert into admin_role(admin_id,role_id,create_date,update_date)
+        values (#{adminId,jdbcType=INTEGER},
+        #{roleId,jdbcType=INTEGER},
+        #{createDate,jdbcType=TIMESTAMP},
+        #{updateDate,jdbcType=TIMESTAMP})
+    </insert>
+    <select id="getAdminRoleCount" resultType="int"
+            parameterType="com.gop.domain.AdminRole">
+        select count(1)
+        from admin_role
+        where role_id = #{roleId}
+        and admin_id = #{adminId}
+    </select>
+    <select id="getAdminRole" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select
+        role_id
+        from admin_role
+        where admin_id = #{adminId}
+    </select>
+</mapper>

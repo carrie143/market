@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.WithdrawCoinOrderUserMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.WithdrawCoinOrderUser">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="broker_id" property="brokerId" jdbcType="INTEGER" />
+		<result column="account_id" property="accountId" jdbcType="INTEGER" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+		<result column="channel_withdraw_id" property="channelWithdrawId"
+			jdbcType="INTEGER" />
+		<result column="coin_address" property="coinAddress" jdbcType="VARCHAR" />
+		<result column="outer_order_no" property="outerOrderNo"
+			jdbcType="CHAR" />
+		<result column="inner_order_no" property="innerOrderNo"
+			jdbcType="CHAR" />
+		<result column="number" property="number" jdbcType="DECIMAL" />
+		<result column="real_number" property="realNumber" jdbcType="DECIMAL" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="dest_address_type" property="destAddressType"
+			jdbcType="CHAR" />
+		<result column="msg" property="msg" jdbcType="CHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="tx_fee" property="txFee" jdbcType="DECIMAL" />
+		<result column="admin_id" property="adminId" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="withdrawStatisticeMap" type="com.gop.domain.StatisticeResult">
+		<result column="symbol" property="symbol" jdbcType="VARCHAR" />
+		<result column="tradeNumber" property="tradeNumber" jdbcType="DECIMAL" />
+	</resultMap>
+	<resultMap id="codeAndStatusMap" type="com.gop.domain.WithDrawStatistic">
+		<result column="assetCode" property="assetCode" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="DECIMAL" />
+		<result column="txfee" property="txfee" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="codeAndStatus_Column_List">
+		asset_code as assetCode,status as status ,sum(number) as number,sum(tx_fee) as txfee
+	</sql>
+	<sql id="withdraw_Column_List">
+		asset_code as symbol,sum(number) as tradeNumber
+	</sql>
+	<sql id="Base_Column_List">
+		id, uid, broker_id,account_id, account, asset_code,
+		channel_withdraw_id,
+		coin_address,
+		outer_order_no,
+		inner_order_no,
+		number, real_number,
+		status, dest_address_type, msg, create_date,
+		update_date,
+		tx_fee, admin_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_coin_order_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		withdraw_coin_order_user
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.WithdrawCoinOrderUser">
+		insert into
+		withdraw_coin_order_user (id, uid, broker_id,account_id, account,
+		asset_code,
+		channel_withdraw_id, coin_address,
+		outer_order_no,
+		inner_order_no,
+		number,
+		real_number, status, dest_address_type,
+		msg,
+		create_date,
+		update_date,
+		tx_fee, admin_id)
+		values (#{id,jdbcType=INTEGER},
+		#{uid,jdbcType=INTEGER},
+		#{brokerId,jdbcType=INTEGER},
+		#{accountId,jdbcType=INTEGER},
+		#{account,jdbcType=VARCHAR},
+		#{assetCode,jdbcType=VARCHAR}, #{channelWithdrawId,jdbcType=INTEGER},
+		#{coinAddress,jdbcType=VARCHAR},
+		#{outerOrderNo,jdbcType=CHAR},
+		#{innerOrderNo,jdbcType=CHAR}, #{number,jdbcType=DECIMAL},
+		#{realNumber,jdbcType=DECIMAL}, #{status,jdbcType=CHAR},
+		#{destAddressType,jdbcType=CHAR},
+		#{msg,jdbcType=CHAR},
+		#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP},
+		#{txFee,jdbcType=DECIMAL}, #{adminId,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.WithdrawCoinOrderUser">
+		insert into withdraw_coin_order_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="brokerId != null">
+				broker_id,
+			</if>
+			<if test="accountId != null">
+				account_id,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="assetCode != null">
+				asset_code,
+			</if>
+			<if test="channelWithdrawId != null">
+				channel_withdraw_id,
+			</if>
+			<if test="coinAddress != null">
+				coin_address,
+			</if>
+			<if test="outerOrderNo != null">
+				outer_order_no,
+			</if>
+			<if test="innerOrderNo != null">
+				inner_order_no,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="realNumber != null">
+				real_number,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="destAddressType != null">
+				dest_address_type,
+			</if>
+			<if test="msg != null">
+				msg,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="txFee != null">
+				tx_fee,
+			</if>
+			<if test="adminId != null">
+				admin_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="brokerId != null">
+				#{brokerId,jdbcType=INTEGER},
+			</if>
+			<if test="accountId != null">
+				#{accountId,jdbcType=INTEGER},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=VARCHAR},
+			</if>
+			<if test="assetCode != null">
+				#{assetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="channelWithdrawId != null">
+				#{channelWithdrawId,jdbcType=INTEGER},
+			</if>
+			<if test="coinAddress != null">
+				#{coinAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="outerOrderNo != null">
+				#{outerOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="innerOrderNo != null">
+				#{innerOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=DECIMAL},
+			</if>
+			<if test="realNumber != null">
+				#{realNumber,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="destAddressType != null">
+				#{destAddressType,jdbcType=CHAR},
+			</if>
+			<if test="msg != null">
+				#{msg,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="txFee != null">
+				#{txFee,jdbcType=DECIMAL},
+			</if>
+			<if test="adminId != null">
+				#{adminId,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.WithdrawCoinOrderUser">
+		update withdraw_coin_order_user
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="brokerId != null">
+				broker_id = #{brokerId,jdbcType=INTEGER},
+			</if>
+			<if test="accountId != null">
+				account_id = #{accountId,jdbcType=INTEGER},
+			</if>
+			<if test="account != null">
+				account = #{account,jdbcType=VARCHAR},
+			</if>
+			<if test="assetCode != null">
+				asset_code = #{assetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="channelWithdrawId != null">
+				channel_withdraw_id =
+				#{channelWithdrawId,jdbcType=INTEGER},
+			</if>
+			<if test="coinAddress != null">
+				coin_address = #{coinAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="outerOrderNo != null">
+				outer_order_no = #{outerOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="innerOrderNo != null">
+				inner_order_no = #{innerOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="number != null">
+				number = #{number,jdbcType=DECIMAL},
+			</if>
+			<if test="realNumber != null">
+				real_number = #{realNumber,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="destAddressType != null">
+				dest_address_type = #{destAddressType,jdbcType=CHAR},
+			</if>
+			<if test="msg != null">
+				msg = #{msg,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="txFee != null">
+				tx_fee = #{txFee,jdbcType=DECIMAL},
+			</if>
+			<if test="adminId != null">
+				admin_id = #{adminId,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.WithdrawCoinOrderUser">
+		update
+		withdraw_coin_order_user
+		set uid = #{uid,jdbcType=INTEGER},
+		account_id =
+		broker_id = #{brokerId,jdbcType=INTEGER},
+		account_id =
+		#{accountId,jdbcType=INTEGER},
+		account = #{account,jdbcType=VARCHAR},
+		asset_code =
+		#{assetCode,jdbcType=VARCHAR},
+		channel_withdraw_id =
+		#{channelWithdrawId,jdbcType=INTEGER},
+		coin_address =
+		#{coinAddress,jdbcType=VARCHAR},
+		outer_order_no =
+		#{outerOrderNo,jdbcType=CHAR},
+		inner_order_no =
+		#{innerOrderNo,jdbcType=CHAR},
+		number = #{number,jdbcType=DECIMAL},
+		real_number = #{realNumber,jdbcType=DECIMAL},
+		status =
+		#{status,jdbcType=CHAR},
+		dest_address_type =
+		#{destAddressType,jdbcType=CHAR},
+		msg = #{msg,jdbcType=CHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP},
+		tx_fee = #{txFee,jdbcType=DECIMAL},
+		admin_id = #{adminId,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+
+	<!-- 自定义方法 -->
+
+
+	<select id="selectForUpdate" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_coin_order_user
+		where id = #{id,jdbcType=INTEGER}
+		for update
+	</select>
+
+	<select id="selectListByUidAndAssetCode" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_coin_order_user
+		where uid = #{uid,jdbcType=INTEGER}
+		<if test="assetCode != null">
+			and asset_code = #{assetCode,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<select id="getWithdrawOrderList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_coin_order_user
+		<where>
+			<if test="brokerId != null">
+				and broker_id = #{brokerId}
+			</if>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="uid != null">
+				and uid = #{uid}
+			</if>
+			<if test="account != null">
+				and account = #{account}
+			</if>
+			<if test="assetCode != null">
+				and asset_code = #{assetCode}
+			</if>
+			<if test="beginTime != null">
+				and create_date &gt;= #{beginTime}
+			</if>
+			<if test="endTime != null">
+				and create_date &lt;= #{endTime}
+			</if>
+			<if test="email != null">
+				and account = #{email}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+			<if test="address != null">
+				and coin_address = #{address}
+			</if>
+			
+		</where>
+		order by id
+	</select>
+	<select id="queryWithdrawOrderList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_coin_order_user
+		<where>
+			<if test="brokerId != null">
+				and broker_id = #{brokerId}
+			</if>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="uid != null">
+				and uid = #{uid}
+			</if>
+			<if test="account != null">
+				and account = #{account}
+			</if>
+			<if test="assetCode != null">
+				and asset_code = #{assetCode}
+			</if>
+			<if test="beginTime != null">
+				and create_date &gt;= #{beginTime}
+			</if>
+			<if test="endTime != null">
+				and create_date &lt;= #{endTime}
+			</if>
+			<if test="email != null">
+				and account = #{email}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+			<if test="address != null">
+				and coin_address = #{address}
+			</if>
+			
+		</where>
+		order by id
+	</select>
+	
+	<select id="getWithdrawOrderAlreadyProcessedList" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from withdraw_coin_order_user
+		where (status = 'PROCESSING'  or status = 'FAILURE' or status = 'REFUSE' or status = 'SUCCESS')
+		<if test="brokerId != null">
+			and broker_id = #{brokerId}
+		</if>
+		<if test="id != null">
+			and id = #{id}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid}
+		</if>
+		<if test="account != null">
+			and account = #{account}
+		</if>
+		<if test="assetCode != null">
+			and asset_code = #{assetCode}
+		</if>
+		<if test="beginTime != null">
+			and create_date &gt;= #{beginTime}
+		</if>
+		<if test="endTime != null">
+			and create_date &lt;= #{endTime}
+		</if>
+		<if test="email != null">
+			and account = #{email}
+		</if>
+		<if test="address != null">
+			and coin_address = #{address}
+		</if>
+		order by id
+	</select>
+	<select id="getWithdrawOrderUntreatedList" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from withdraw_coin_order_user
+		where (status = 'WAIT'  or status = 'UNKNOWN')
+		<if test="brokerId != null">
+			and broker_id = #{brokerId}
+		</if>
+		<if test="id != null">
+			and id = #{id}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid}
+		</if>
+		<if test="account != null">
+			and account = #{account}
+		</if>
+		<if test="assetCode != null">
+			and asset_code = #{assetCode}
+		</if>
+		<if test="beginTime != null">
+			and create_date &gt;= #{beginTime}
+		</if>
+		<if test="endTime != null">
+			and create_date &lt;= #{endTime}
+		</if>
+		<if test="email != null">
+			and account = #{email}
+		</if>
+		<if test="address != null">
+			and coin_address = #{address}
+		</if>
+		order by id
+	</select>
+	
+	<select id="selectByInnerOrder" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_coin_order_user
+		where inner_order_no = #{innerOrder}
+	</select>
+	
+	<select id="selectByUidAndOutOrder" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_coin_order_user
+		where uid = #{uid} and outer_order_no = #{outOrder}
+	</select>
+	
+	<select id="getUserDailyWithdrawedCoinValue" resultType="java.math.BigDecimal">
+		select ifnull(sum(number),0)
+		from withdraw_coin_order_user
+		where uid = #{uid} and asset_code = #{assetCode} 
+		and create_date &gt;= #{beginDate} and create_date &lt;= #{endDate}
+		and
+		(
+		status = 'WAIT' or 
+		status = 'SUCCESS' or 
+		status = 'PROCESSING' or 
+		status = 'UNKNOWN'
+		)
+	</select>
+	<select id="getAmountOfAssetWithStatus" resultType="java.lang.Integer">
+		select
+		count(*)
+		from withdraw_coin_order_user
+		where 
+		asset_code = #{assetCode} 
+		and 
+		status = #{status}
+	</select>
+	<select id="getTotalWithdrawedCoinValue" resultMap="codeAndStatusMap">
+		select
+		<include refid="codeAndStatus_Column_List" />
+		from withdraw_coin_order_user
+		<where>
+			<if test="startDate != null">
+				and create_date &gt;= #{startDate}
+			</if>
+			<if test="endDate != null">
+				and create_date &lt;= #{endDate}
+			</if>
+			<if test="assetCode != null">
+				and asset_code = #{assetCode}
+			</if>
+		</where>
+		group by asset_code,status
+	</select>
+	<select id="getSuccessWithdrawedCoin" resultMap="withdrawStatisticeMap">
+		select
+		<include refid="withdraw_Column_List" />
+		from withdraw_coin_order_user
+		where uid = #{uid}
+		and status = 'SUCCESS'
+		group by asset_code
+	</select>
+	<select id="withdrawStaitstic" resultMap="withdrawStatisticeMap">
+		select
+		<include refid="withdraw_Column_List" />
+		from withdraw_coin_order_user
+		where status = 'SUCCESS'
+		and update_date <![CDATA[>]]> date_add(NOW(), interval -1 day)
+		group by asset_code
+	</select>
+</mapper>

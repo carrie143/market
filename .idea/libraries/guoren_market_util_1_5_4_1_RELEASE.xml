@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="guoren-market-util-1.5.4.1-RELEASE">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/guoren-market-util/target/guoren-market-util-1.5.4.1-RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

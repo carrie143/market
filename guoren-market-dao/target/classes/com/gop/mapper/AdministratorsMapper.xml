@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.AdministratorsMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.Administrators">
+		<id column="admin_id" property="adminId" jdbcType="INTEGER" />
+		<result column="op_name" property="opName" jdbcType="CHAR" />
+		<result column="mobile" property="mobile" jdbcType="CHAR" />
+		<result column="login_password" property="loginPassword"
+			jdbcType="CHAR" />
+		<result column="locked" property="locked" jdbcType="CHAR" />
+		<result column="role" property="role" jdbcType="CHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="createip" property="createip" jdbcType="CHAR" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="updateip" property="updateip" jdbcType="CHAR" />
+		<result column="create_admin_id" property="createAdminId"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		admin_id, op_name, mobile, login_password, locked, role,
+		create_date, createip,
+		update_date,
+		updateip, create_admin_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from administrators
+		where admin_id = #{adminId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		administrators
+		where admin_id = #{adminId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.Administrators">
+		insert into administrators
+		(admin_id, op_name, mobile,
+		login_password, locked, role,
+		create_date,
+		createip, update_date,
+		updateip, create_admin_id)
+		values
+		(#{adminId,jdbcType=INTEGER}, #{opName,jdbcType=CHAR},
+		#{mobile,jdbcType=CHAR},
+		#{loginPassword,jdbcType=CHAR},
+		#{locked,jdbcType=CHAR}, #{role,jdbcType=CHAR},
+		#{createDate,jdbcType=TIMESTAMP}, #{createip,jdbcType=CHAR},
+		#{updateDate,jdbcType=TIMESTAMP},
+		#{updateip,jdbcType=CHAR},
+		#{createAdminId,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.Administrators"  useGeneratedKeys="true" keyProperty="adminId" keyColumn="admin_id">
+
+		insert into administrators
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="adminId != null">
+				admin_id,
+			</if>
+			<if test="opName != null">
+				op_name,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="loginPassword != null">
+				login_password,
+			</if>
+			<if test="locked != null">
+				locked,
+			</if>
+			<if test="role != null">
+				role,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="createip != null">
+				createip,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="updateip != null">
+				updateip,
+			</if>
+			<if test="createAdminId != null">
+				create_admin_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="adminId != null">
+				#{adminId,jdbcType=INTEGER},
+			</if>
+			<if test="opName != null">
+				#{opName,jdbcType=CHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=CHAR},
+			</if>
+			<if test="loginPassword != null">
+				#{loginPassword,jdbcType=CHAR},
+			</if>
+			<if test="locked != null">
+				#{locked,jdbcType=CHAR},
+			</if>
+			<if test="role != null">
+				#{role,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createip != null">
+				#{createip,jdbcType=CHAR},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateip != null">
+				#{updateip,jdbcType=CHAR},
+			</if>
+			<if test="createAdminId != null">
+				#{createAdminId,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.Administrators">
+		update administrators
+		<set>
+			<if test="opName != null">
+				op_name = #{opName,jdbcType=CHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=CHAR},
+			</if>
+			<if test="loginPassword != null">
+				login_password = #{loginPassword,jdbcType=CHAR},
+			</if>
+			<if test="locked != null">
+				locked = #{locked,jdbcType=CHAR},
+			</if>
+			<if test="role != null">
+				role = #{role,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createip != null">
+				createip = #{createip,jdbcType=CHAR},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateip != null">
+				updateip = #{updateip,jdbcType=CHAR},
+			</if>
+			<if test="createAdminId != null">
+				create_admin_id = #{createAdminId,jdbcType=INTEGER},
+			</if>
+		</set>
+		where admin_id = #{adminId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.Administrators">
+		update
+		administrators
+		set op_name = #{opName,jdbcType=CHAR},
+		mobile =
+		#{mobile,jdbcType=CHAR},
+		login_password =
+		#{loginPassword,jdbcType=CHAR},
+		locked = #{locked,jdbcType=CHAR},
+		role =
+		#{role,jdbcType=CHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		createip = #{createip,jdbcType=CHAR},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP},
+		updateip = #{updateip,jdbcType=CHAR},
+		create_admin_id = #{createAdminId,jdbcType=INTEGER}
+		where admin_id =
+		#{adminId,jdbcType=INTEGER}
+	</update>
+
+
+	<select id="selectByAccount" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from administrators
+		where mobile = #{mobile,jdbcType=CHAR}
+	</select>
+
+	<select id="getAdministratorList" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from administrators
+		<where>
+			<if test="adminId != null">
+				and admin_id = #{adminId}
+			</if>
+			<if test="mobile != null">
+				and mobile = #{mobile}
+			</if>
+			<if test="locked != null">
+				and locked = #{locked}
+			</if>
+		</where>
+		order by
+		admin_id
+	</select>
+	<select id="getAdministratorCount" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select
+		count(admin_id) as num
+		from administrators
+		<where>
+			<if test="uid != null">
+				and admin_id = #{uid}
+			</if>
+			<if test="mobile != null">
+				and mobile = #{mobile}
+			</if>
+			<if test="locked != null">
+				and locked = #{locked}
+			</if>
+		</where>
+	</select>
+</mapper>

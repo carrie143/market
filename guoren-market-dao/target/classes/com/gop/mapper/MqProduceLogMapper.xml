@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.MqProduceLogMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.MqProduceLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="exchange_name" property="exchangeName" jdbcType="VARCHAR" />
+    <result column="router_key" property="routerKey" jdbcType="VARCHAR" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, exchange_name, router_key, message, status, create_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from mq_produce_log_${tableNum}
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<insert id="insertProduceLogs"  >
+		insert into mq_produce_log_${tableNum} (id,
+		exchange_name, router_key,
+		message, status)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			( #{item.id},
+			#{item.exchangeName},
+			#{item.routerKey},
+			#{item.message},
+			#{item.status})
+		</foreach>
+	</insert>
+	<update id="updateByPrimaryKeySelective" >
+		update mq_produce_log_${tableNum}
+		<set>
+			<if test="produceLog.exchangeName != null">
+				exchange_name = #{produceLog.exchangeName,jdbcType=VARCHAR},
+			</if>
+			<if test="produceLog.routerKey != null">
+				router_key = #{produceLog.routerKey,jdbcType=VARCHAR},
+			</if>
+			<if test="produceLog.message != null">
+				message = #{produceLog.message,jdbcType=VARCHAR},
+			</if>
+			<if test="produceLog.status != null">
+				status = #{produceLog.status,jdbcType=CHAR},
+			</if>
+			<if test="produceLog.createTime != null">
+				create_time = #{produceLog.createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{produceLog.id,jdbcType=INTEGER}
+	</update>
+  
+</mapper>

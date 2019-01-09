@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.QuantFundConfigMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.QuantFundConfig">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="fund_asset_code" property="fundAssetCode"
+			jdbcType="VARCHAR" />
+		<result column="profile_key" property="profileKey" jdbcType="VARCHAR"
+			typeHandler="com.gop.mapper.QuantFundConfigTypeHandler" />
+		<result column="profile_value" property="profileValue"
+			jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, fund_asset_code, profile_key, profile_value,
+		create_date, update_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from quant_fund_config
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		quant_fund_config
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.QuantFundConfig">
+		insert into quant_fund_config
+		(id, fund_asset_code, profile_key,
+		profile_value, create_date,
+		update_date
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{fundAssetCode,jdbcType=VARCHAR},
+		#{profileKey,jdbcType=VARCHAR,typeHandler=com.gop.mapper.QuantFundConfigTypeHandler},
+		#{profileValue,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.QuantFundConfig">
+		insert into quant_fund_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="fundAssetCode != null">
+				fund_asset_code,
+			</if>
+			<if test="profileKey != null">
+				profile_key,
+			</if>
+			<if test="profileValue != null">
+				profile_value,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="fundAssetCode != null">
+				#{fundAssetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="profileKey != null">
+				#{profileKey,jdbcType=VARCHAR},
+			</if>
+			<if test="profileValue != null">
+				#{profileValue,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.QuantFundConfig">
+		update quant_fund_config
+		<set>
+			<if test="fundAssetCode != null">
+				fund_asset_code = #{fundAssetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="profileKey != null">
+				profile_key = #{profileKey,jdbcType=VARCHAR},
+			</if>
+			<if test="profileValue != null">
+				profile_value = #{profileValue,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.QuantFundConfig">
+		update
+		quant_fund_config
+		set fund_asset_code =
+		#{fundAssetCode,jdbcType=VARCHAR},
+		profile_key =
+		#{profileKey,jdbcType=VARCHAR},
+		profile_value =
+		#{profileValue,jdbcType=VARCHAR},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByCodeAndKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from quant_fund_config
+		<where>
+			<if test="fundCode != null">
+				and fund_asset_code = #{fundCode,jdbcType=VARCHAR}
+			</if>
+			<if test="key != null">
+				and profile_key =
+				#{key,jdbcType=VARCHAR,typeHandler=com.gop.mapper.QuantFundConfigTypeHandler}
+			</if>
+		</where>
+	</select>
+	<insert id="insertOrUpdate" parameterType="com.gop.domain.QuantFundConfig">
+		insert into
+		quant_fund_config ( fund_asset_code, profile_key,
+		profile_value
+		)
+		values ( #{fundAssetCode,jdbcType=VARCHAR},
+		#{profileKey,jdbcType=VARCHAR,typeHandler=com.gop.mapper.QuantFundConfigTypeHandler},
+		#{profileValue,jdbcType=VARCHAR}
+		)
+		ON DUPLICATE KEY UPDATE
+		profile_value=#{profileValue,jdbcType=VARCHAR}
+	</insert>
+</mapper>

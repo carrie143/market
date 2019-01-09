@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.PlatAssetProessMapper">
+    <resultMap id="BaseResultMap" type="com.gop.domain.PlatAssetProcess">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+        <result column="begin_balance" property="beginBalance" jdbcType="DECIMAL" />
+        <result column="deposit_balance" property="depositBalance" jdbcType="DECIMAL" />
+        <result column="withdraw_total" property="withdrawTotal" jdbcType="DECIMAL" />
+        <result column="withdraw_unknow" property="withdrawUnknow" jdbcType="DECIMAL" />
+        <result column="withdraw_refuse" property="withdrawRefuse" jdbcType="DECIMAL" />
+        <result column="withdraw_success" property="withdrawSuccess" jdbcType="DECIMAL" />
+        <result column="withdraw_fee" property="withdrawFee" jdbcType="DECIMAL" />
+        <result column="broken_asset_balance" property="brokenAssetBalance" jdbcType="DECIMAL" />
+        <result column="trade_fee" property="tradeFee" jdbcType="DECIMAL" />
+        <result column="other" property="other" jdbcType="DECIMAL" />
+        <result column="end_balance" property="endBalance" jdbcType="DECIMAL" />
+        <result column="cul_balance" property="culBalance" jdbcType="DECIMAL" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, asset_code, begin_balance,deposit_balance, withdraw_total, withdraw_unknow,withdraw_refuse,withdraw_success,withdraw_fee,
+        broken_asset_balance,trade_fee,other,end_balance,cul_balance,status,create_date,update_date
+    </sql>
+    <select id="selectList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from plat_asset_proess
+        where date_format(create_date,'%Y-%m-%d') = date_format(#{endDate},'%Y-%m-%d')
+        and status = 1
+        <if test="assetCode != null">
+            and asset_code = #{assetCode}
+        </if>
+    </select>
+    <select id="selectCount" resultType="int">
+        select count(0)
+        from plat_asset_proess
+        where status = 1
+        and date_format(create_date,'%Y-%m-%d') = date_format(#{date},'%Y-%m-%d')
+    </select>
+    <insert id="insertBatch" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into plat_asset_proess (asset_code, begin_balance,deposit_balance, withdraw_total, withdraw_unknow,withdraw_refuse,withdraw_success,withdraw_fee,
+        broken_asset_balance,trade_fee,other,end_balance,cul_balance,status,create_date) values
+        <foreach collection="list" item="platAssetProess" index="index" separator=",">
+            (
+            #{platAssetProess.assetCode},
+            #{platAssetProess.beginBalance},
+            #{platAssetProess.depositBalance},
+            #{platAssetProess.withdrawTotal},
+            #{platAssetProess.withdrawUnknow},
+            #{platAssetProess.withdrawRefuse},
+            #{platAssetProess.withdrawSuccess},
+            #{platAssetProess.withdrawFee},
+            #{platAssetProess.brokenAssetBalance},
+            #{platAssetProess.tradeFee},
+            #{platAssetProess.other},
+            #{platAssetProess.endBalance},
+            #{platAssetProess.culBalance},
+            #{platAssetProess.status},
+            #{platAssetProess.createDate}
+            )
+        </foreach>
+    </insert>
+    <update id="updateStatus">
+        update plat_asset_proess
+        set status = 0
+        where date_format(create_date,'%Y-%m-%d') = date_format(#{date},'%Y-%m-%d')
+        and status = 1
+    </update>
+
+</mapper>

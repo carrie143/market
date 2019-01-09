@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.PublicNoticeMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.PublicNotice">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="top_status" property="topStatus" jdbcType="CHAR" />
+		<result column="top_time" property="topTime" jdbcType="TIME" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, nickname, top_status, top_time, 
+		create_time, title,
+		content,
+		status
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from public_notice
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		public_notice
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.PublicNotice">
+		insert into public_notice (id,
+		uid, nickname,
+		top_status, top_time, 
+		create_time, title,
+		content,
+		status)
+		values (#{id,jdbcType=INTEGER},
+		#{uid,jdbcType=INTEGER},
+		#{nickname,jdbcType=VARCHAR},
+		#{topStatus,jdbcType=CHAR}, #{topTime,jdbcType=TIME},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{title,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{status,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.PublicNotice">
+		insert into public_notice
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="nickname != null">
+				nickname,
+			</if>
+			<if test="topStatus != null">
+				top_status,
+			</if>
+			<if test="topTime != null">
+				top_time,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="nickname != null">
+				#{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="topStatus != null">
+				#{topStatus,jdbcType=CHAR},
+			</if>
+			<if test="topTime != null">
+				#{topTime,jdbcType=TIME},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.PublicNotice">
+		update public_notice
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="nickname != null">
+				nickname = #{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="topStatus != null">
+				top_status = #{topStatus,jdbcType=CHAR},
+			</if>
+			<if test="topTime != null">
+				top_time = #{topTime,jdbcType=TIME},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.PublicNotice">
+		update
+		public_notice
+		set uid = #{uid,jdbcType=INTEGER},
+		nickname =
+		#{nickname,jdbcType=VARCHAR},
+		top_status = #{topStatus,jdbcType=CHAR},
+		top_time = #{topTime,jdbcType=TIME},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		title = #{title,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		status = #{status,jdbcType=CHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updatePublicNoticeTopStatus">
+		update public_notice
+		<set>
+			<if test="topStatus != null">
+				top_status = #{topStatus,jdbcType=CHAR},
+			</if>
+			<if test="topTime != null">
+				top_time = now()
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="queryNoticeByTopStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from public_notice
+		where
+			status = 'VALID'
+			<if test="topStatus != null">
+				and top_status = #{topStatus,jdbcType=CHAR}
+			</if>
+		
+	</select>
+</mapper>

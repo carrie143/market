@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserResidenceMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.UserResidence">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="country_id" property="countryId" jdbcType="VARCHAR" />
+		<result column="full_name" property="fullName" jdbcType="VARCHAR" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="postcode" property="postcode" jdbcType="VARCHAR" />
+		<result column="residence_photo" property="residencePhoto"
+			jdbcType="VARCHAR" />
+		<result column="residence_translate" property="residenceTranslate"
+			jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="paper_type" property="paperType" jdbcType="TINYINT" />
+		<result column="audit_uid" property="auditUid" jdbcType="INTEGER" />
+		<result column="audit_date" property="auditDate" jdbcType="TIMESTAMP" />
+		<result column="audit_status" property="auditStatus" jdbcType="CHAR" />
+		<result column="audit_first" property="auditFirst" jdbcType="CHAR" />
+		<result column="audit_message_id" property="auditMessageId"
+			jdbcType="VARCHAR" />
+		<result column="audit_message" property="auditMessage"
+			jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, country_id, full_name,country, city, address, postcode,
+		residence_photo, residence_translate,
+		status, audit_uid, audit_date, audit_status, audit_first, audit_message_id,
+		audit_message,paper_type,
+		create_date, update_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_residence
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_residence
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.UserResidence">
+		insert into user_residence (id, uid, country_id
+		country, city, address,
+		postcode, residence_photo, residence_translate,
+		status, audit_uid, audit_date,
+		audit_status, audit_first, audit_message_id,paper_type,
+		audit_message, create_date, update_date, full_name
+		)
+		values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		#{countryId,jdbcType=VARCHAR},
+		#{country,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+		#{postcode,jdbcType=VARCHAR}, #{residencePhoto,jdbcType=VARCHAR},
+		#{residenceTranslate,jdbcType=VARCHAR},
+		#{status,jdbcType=CHAR}, #{auditUid,jdbcType=INTEGER}, #{auditDate,jdbcType=TIMESTAMP},
+		#{auditStatus,jdbcType=CHAR}, #{auditFirst,jdbcType=CHAR},
+		#{auditMessageId,jdbcType=VARCHAR},
+		#{paperType,jdbcType=TINYINT},
+		#{auditMessage,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP},
+		#{fullName,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.UserResidence">
+		insert into user_residence
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="countryId != null">
+				country_id,
+			</if>
+			<if test="fullName != null">
+				full_name,
+			</if>
+			<if test="country != null">
+				country,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="postcode != null">
+				postcode,
+			</if>
+			<if test="residencePhoto != null">
+				residence_photo,
+			</if>
+			<if test="residenceTranslate != null">
+				residence_translate,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="auditUid != null">
+				audit_uid,
+			</if>
+			<if test="auditDate != null">
+				audit_date,
+			</if>
+			<if test="auditStatus != null">
+				audit_status,
+			</if>
+			<if test="auditFirst != null">
+				audit_first,
+			</if>
+			<if test="auditMessageId != null">
+				audit_message_id,
+			</if>
+			<if test="paperType != null">
+				paper_type,
+			</if>
+			<if test="auditMessage != null">
+				audit_message,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="countryId != null">
+				#{countryId,jdbcType=VARCHAR},
+			</if>
+			<if test="fullName != null">
+				#{fullName,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				#{country,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="postcode != null">
+				#{postcode,jdbcType=VARCHAR},
+			</if>
+			<if test="residencePhoto != null">
+				#{residencePhoto,jdbcType=VARCHAR},
+			</if>
+			<if test="residenceTranslate != null">
+				#{residenceTranslate,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="auditUid != null">
+				#{auditUid,jdbcType=INTEGER},
+			</if>
+			<if test="auditDate != null">
+				#{auditDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditStatus != null">
+				#{auditStatus,jdbcType=CHAR},
+			</if>
+			<if test="auditFirst != null">
+				#{auditFirst,jdbcType=CHAR},
+			</if>
+			<if test="auditMessageId != null">
+				#{auditMessageId,jdbcType=VARCHAR},
+			</if>
+			<if test="paperType != null">
+				#{paperType,jdbcType=TINYINT},
+			</if>
+			<if test="auditMessage != null">
+				#{auditMessage,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserResidence">
+		update user_residence
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="countryId != null">
+				country_id = #{countryId,jdbcType=VARCHAR},
+			</if>
+			<if test="fullName != null">
+				full_name = #{fullName,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				country = #{country,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="postcode != null">
+				postcode = #{postcode,jdbcType=VARCHAR},
+			</if>
+			<if test="residencePhoto != null">
+				residence_photo = #{residencePhoto,jdbcType=VARCHAR},
+			</if>
+			<if test="residenceTranslate != null">
+				residence_translate = #{residenceTranslate,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="auditUid != null">
+				audit_uid = #{auditUid,jdbcType=INTEGER},
+			</if>
+			<if test="auditDate != null">
+				audit_date = #{auditDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditStatus != null">
+				audit_status = #{auditStatus,jdbcType=CHAR},
+			</if>
+			<if test="auditFirst != null">
+				audit_first = #{auditFirst,jdbcType=CHAR},
+			</if>
+			<if test="auditMessageId != null">
+				audit_message_id = #{auditMessageId,jdbcType=VARCHAR},
+			</if>
+			<if test="paperType != null">
+				paper_type = #{paperType,jdbcType=TINYINT},
+			</if>
+			<if test="auditMessage != null">
+				audit_message = #{auditMessage,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.UserResidence">
+		update user_residence
+		set uid = #{uid,jdbcType=INTEGER},
+		country_id = #{countryId,jdbcType=VARCHAR},
+		full_name = #{fullName,jdbcType=VARCHAR},
+		country = #{country,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		postcode = #{postcode,jdbcType=VARCHAR},
+		residence_photo = #{residencePhoto,jdbcType=VARCHAR},
+		residence_translate = #{residenceTranslate,jdbcType=VARCHAR},
+		status = #{status,jdbcType=CHAR},
+		audit_uid = #{auditUid,jdbcType=INTEGER},
+		audit_date = #{auditDate,jdbcType=TIMESTAMP},
+		audit_status = #{auditStatus,jdbcType=CHAR},
+		audit_first = #{auditFirst,jdbcType=CHAR},
+		audit_message_id = #{auditMessageId,jdbcType=VARCHAR},
+		paper_type = #{paperType,jdbcType=TINYINT},
+		audit_message = #{auditMessage,jdbcType=VARCHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date = #{updateDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+
+	<select id="getLastResidenceInfoByUid" resultMap="BaseResultMap">
+		select * from
+		user_residence
+		where id = (select max(id) from user_residence where uid
+		= #{userid})
+	</select>
+
+	<select id="getResidenceInfoList" resultMap="BaseResultMap">
+		select * from user_residence
+		<where>
+			<if test="uid != null">
+				and uid = #{uid}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+		</where>
+	</select>
+
+	<select id="getResidenceInfoById" resultMap="BaseResultMap">
+		select * from
+		user_residence where id = #{id}
+	</select>
+	<select id="getUserByUidAndStatusAndAuditStatus" resultMap="BaseResultMap">
+		select * from
+		user_residence
+		where
+		uid = #{uid} 
+		and
+		status = #{status}		
+		and
+		audit_status = #{auditStatus}
+	</select>
+
+
+	<update id="updateAudit" parameterType="com.gop.domain.UserResidence">
+		update user_residence
+		<set>
+			<if test="auditUid != null">
+				audit_uid = #{auditUid},
+			</if>
+			<if test="auditStatus != null">
+				audit_status = #{auditStatus},
+			</if>
+			<if test="auditMessageId != null">
+				audit_message_id = #{auditMessageId},
+			</if>
+			<if test="auditMessage != null">
+				audit_message = #{auditMessage},
+			</if>
+			<if test="auditDate != null">
+				update_date = #{auditDate},
+			</if>
+			<if test="auditDate != null">
+				audit_date = #{auditDate},
+			</if>
+			<if test="auditFirst != null">
+				audit_first = #{auditFirst},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<select id="getResidenceHistoryList" resultMap="BaseResultMap">
+		select * from
+		user_residence where
+		uid = #{uid} order by id desc limit 6
+	</select>
+	<select id="getIdentityHistoryListByLimitNo" resultMap="BaseResultMap">
+		select
+		*
+		from user_residence
+		where
+		uid = #{uid}
+		order by id desc
+		<if test="limitNo != null">
+			limit #{limitNo}
+		</if>
+	</select>
+	<select id="getResidenceHistoryCountList">
+		select count(1) from
+		user_residence where
+		uid = #{uid}
+	</select>
+	<select id="getAmountOfResidenceWithStatus" resultType="java.lang.Integer">
+		select 
+		count(1) 
+		from
+		user_residence 
+		where
+		audit_status = #{status}
+	</select>
+	<select id="countUserLevel" resultType="int">
+		select count(1) from
+		user_residence
+		where audit_status = 'OK'
+		and date_format(audit_date,'%Y-%m-%d') = date_format(#{date},'%Y-%m-%d')
+	</select>
+</mapper>

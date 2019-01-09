@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.UserInfo" >
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="user_no" property="userNo" jdbcType="VARCHAR" />
+  
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="id_number" property="idNumber" jdbcType="CHAR" />
+    <result column="id_type" property="idType" jdbcType="BIT" />
+    <result column="id_auth_date" property="idAuthDate" jdbcType="TIMESTAMP" />
+    <result column="id_authip" property="idAuthip" jdbcType="CHAR" />
+    <result column="mobile_bind_date" property="mobileBindDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, user_no, name, id_number, id_type, id_auth_date, id_authip, mobile_bind_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_info
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.UserInfo" >
+    insert into user_info (uid, user_no, name, 
+      id_number, id_type, id_auth_date, 
+      id_authip, mobile_bind_date)
+    values (#{uid,jdbcType=INTEGER}, #{userNo,jdbcType=VARCHAR}, #{name,jdbcType=CHAR}, 
+      #{idNumber,jdbcType=CHAR}, #{idType,jdbcType=BIT}, #{idAuthDate,jdbcType=TIMESTAMP}, 
+      #{idAuthip,jdbcType=CHAR}, #{mobileBindDate,jdbcType=TIMESTAMP}) ON DUPLICATE KEY UPDATE mobile_bind_date= #{mobileBindDate,jdbcType=TIMESTAMP}
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="userNo != null" >
+        user_no,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="idNumber != null" >
+        id_number,
+      </if>
+      <if test="idType != null" >
+        id_type,
+      </if>
+      <if test="idAuthDate != null" >
+        id_auth_date,
+      </if>
+      <if test="idAuthip != null" >
+        id_authip,
+      </if>
+      <if test="mobileBindDate != null" >
+        mobile_bind_date,
+      </if>
+       
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="userNo != null" >
+        #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="idNumber != null" >
+        #{idNumber,jdbcType=CHAR},
+      </if>
+      <if test="idType != null" >
+        #{idType,jdbcType=BIT},
+      </if>
+      <if test="idAuthDate != null" >
+        #{idAuthDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idAuthip != null" >
+        #{idAuthip,jdbcType=CHAR},
+      </if>
+      <if test="mobileBindDate != null" >
+        #{mobileBindDate,jdbcType=TIMESTAMP},
+      </if>
+      
+    </trim>
+     ON DUPLICATE KEY UPDATE mobile_bind_date= #{mobileBindDate,jdbcType=TIMESTAMP}
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserInfo" >
+    update user_info
+    <set >
+      <if test="userNo != null" >
+        user_no = #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="idNumber != null" >
+        id_number = #{idNumber,jdbcType=CHAR},
+      </if>
+      <if test="idType != null" >
+        id_type = #{idType,jdbcType=BIT},
+      </if>
+      <if test="idAuthDate != null" >
+        id_auth_date = #{idAuthDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idAuthip != null" >
+        id_authip = #{idAuthip,jdbcType=CHAR},
+      </if>
+      <if test="mobileBindDate != null" >
+        mobile_bind_date = #{mobileBindDate,jdbcType=TIMESTAMP},
+      </if>
+     
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.UserInfo" >
+    update user_info
+    set user_no = #{userNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=CHAR},
+      id_number = #{idNumber,jdbcType=CHAR},
+      id_type = #{idType,jdbcType=BIT},
+      id_auth_date = #{idAuthDate,jdbcType=TIMESTAMP},
+      id_authip = #{idAuthip,jdbcType=CHAR},
+      mobile_bind_date = #{mobileBindDate,jdbcType=TIMESTAMP}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

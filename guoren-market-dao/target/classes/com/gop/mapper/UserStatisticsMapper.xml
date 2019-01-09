@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserStatisticsMapper" >
+    <resultMap id="BaseResultMap" type="com.gop.domain.UserStatistics" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="totalUser" property="totalUser" jdbcType="DECIMAL" />
+        <result column="nativeUser" property="nativeUser" jdbcType="DECIMAL" />
+        <result column="advancedUser" property="advancedUser" jdbcType="DECIMAL" />
+        <result column="nativePresent" property="nativePresent" jdbcType="DECIMAL" />
+        <result column="advancedPresent" property="advancedPresent" jdbcType="DECIMAL" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, totalUser, nativeUser, advancedUser, nativePresent, advancedPresent, status,create_date, update_date
+    </sql>
+    <select id="selectUserStatistics" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user_statistics
+        where status = 1
+        group by create_date desc
+        limit 0,10
+    </select>
+    <insert id="insertStatistics" parameterType="com.gop.domain.UserStatistics">
+        insert into user_statistics
+        (totalUser, nativeUser, advancedUser, nativePresent, advancedPresent,status, create_date, update_date) values
+         (   #{totalUser,jdbcType=DECIMAL},
+            #{nativeUser,jdbcType=DECIMAL},
+            #{advancedUser,jdbcType=DECIMAL},
+            #{nativePresent,jdbcType=DECIMAL},
+            #{advancedPresent,jdbcType=DECIMAL},
+            #{status,jdbcType=INTEGER},
+            #{createDate,jdbcType=TIMESTAMP},
+            #{updateDate,jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <select id="countUserStatistics" resultType="Integer">
+        select count(1)
+        from user_statistics
+        where status = 1
+        and date_format(create_date,'%Y-%m-%d') = date_format(#{createDate},'%Y-%m-%d')
+    </select>
+    <update id="updateStatus">
+        update user_statistics
+        <set>
+            status = 0
+        </set>
+        where date_format(create_date,'%Y-%m-%d') = date_format(#{createDate},'%Y-%m-%d')
+    </update>
+</mapper>

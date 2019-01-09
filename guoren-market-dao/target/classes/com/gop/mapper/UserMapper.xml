@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.User">
+		<id column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="invite_uid" property="inviteUid" jdbcType="INTEGER" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="login_salt" property="loginSalt" jdbcType="VARCHAR" />
+		<result column="login_password" property="loginPassword"
+			jdbcType="VARCHAR" />
+		<result column="pay_salt" property="paySalt" jdbcType="VARCHAR" />
+		<result column="pay_password" property="payPassword" jdbcType="VARCHAR" />
+		<result column="lock_num" property="lockNum" jdbcType="TINYINT" />
+		<result column="role" property="role" jdbcType="CHAR" />
+		<result column="fullname" property="fullname" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="createip" property="createip" jdbcType="CHAR" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="updateip" property="updateip" jdbcType="CHAR" />
+		<result column="auth_level" property="authLevel" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="UserMap"   type="HashMap">
+		<result property="uid" column="uid" />
+		<result property="email" column="email" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		uid, invite_uid, nickname, mobile, email, login_salt,
+		login_password,
+		pay_salt, pay_password, lock_num, role, fullname, create_date, createip,
+		update_date,
+		updateip, auth_level
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where uid = #{uid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user
+		where uid = #{uid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.User">
+		insert into user (uid, invite_uid,
+		nickname, mobile, email,
+		login_salt, login_password, pay_salt,
+		pay_password, lock_num, role,
+		fullname, create_date, createip,
+		update_date, updateip, auth_level
+		)
+		values (#{uid,jdbcType=INTEGER}, #{inviteUid,jdbcType=INTEGER},
+		#{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{loginSalt,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR},
+		#{paySalt,jdbcType=VARCHAR},
+		#{payPassword,jdbcType=VARCHAR}, #{lockNum,jdbcType=TINYINT}, #{role,jdbcType=CHAR},
+		#{fullname,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+		#{createip,jdbcType=CHAR},
+		#{updateDate,jdbcType=TIMESTAMP}, #{updateip,jdbcType=CHAR}, #{authLevel,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.User" useGeneratedKeys="true" keyProperty="uid" >
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="inviteUid != null">
+				invite_uid,
+			</if>
+			<if test="nickname != null">
+				nickname,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="loginSalt != null">
+				login_salt,
+			</if>
+			<if test="loginPassword != null">
+				login_password,
+			</if>
+			<if test="paySalt != null">
+				pay_salt,
+			</if>
+			<if test="payPassword != null">
+				pay_password,
+			</if>
+			<if test="lockNum != null">
+				lock_num,
+			</if>
+			<if test="role != null">
+				role,
+			</if>
+			<if test="fullname != null">
+				fullname,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="createip != null">
+				createip,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="updateip != null">
+				updateip,
+			</if>
+			<if test="authLevel != null">
+				auth_level,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="inviteUid != null">
+				#{inviteUid,jdbcType=INTEGER},
+			</if>
+			<if test="nickname != null">
+				#{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="loginSalt != null">
+				#{loginSalt,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPassword != null">
+				#{loginPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="paySalt != null">
+				#{paySalt,jdbcType=VARCHAR},
+			</if>
+			<if test="payPassword != null">
+				#{payPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="lockNum != null">
+				#{lockNum,jdbcType=TINYINT},
+			</if>
+			<if test="role != null">
+				#{role,jdbcType=CHAR},
+			</if>
+			<if test="fullname != null">
+				#{fullname,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createip != null">
+				#{createip,jdbcType=CHAR},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateip != null">
+				#{updateip,jdbcType=CHAR},
+			</if>
+			<if test="authLevel != null">
+				#{authLevel,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.User">
+		update user
+		<set>
+			<if test="inviteUid != null">
+				invite_uid = #{inviteUid,jdbcType=INTEGER},
+			</if>
+			<if test="nickname != null">
+				nickname = #{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="loginSalt != null">
+				login_salt = #{loginSalt,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPassword != null">
+				login_password = #{loginPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="paySalt != null">
+				pay_salt = #{paySalt,jdbcType=VARCHAR},
+			</if>
+			<if test="payPassword != null">
+				pay_password = #{payPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="lockNum != null">
+				lock_num = #{lockNum,jdbcType=TINYINT},
+			</if>
+			<if test="role != null">
+				role = #{role,jdbcType=CHAR},
+			</if>
+			<if test="fullname != null">
+				fullname = #{fullname,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createip != null">
+				createip = #{createip,jdbcType=CHAR},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateip != null">
+				updateip = #{updateip,jdbcType=CHAR},
+			</if>
+			<if test="authLevel != null">
+				auth_level = #{authLevel,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where uid = #{uid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.User">
+		update user
+		set invite_uid = #{inviteUid,jdbcType=INTEGER},
+		nickname = #{nickname,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		login_salt = #{loginSalt,jdbcType=VARCHAR},
+		login_password = #{loginPassword,jdbcType=VARCHAR},
+		pay_salt = #{paySalt,jdbcType=VARCHAR},
+		pay_password = #{payPassword,jdbcType=VARCHAR},
+		lock_num = #{lockNum,jdbcType=TINYINT},
+		role = #{role,jdbcType=CHAR},
+		fullname = #{fullname,jdbcType=VARCHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		createip = #{createip,jdbcType=CHAR},
+		update_date = #{updateDate,jdbcType=TIMESTAMP},
+		updateip = #{updateip,jdbcType=CHAR},
+		auth_level = #{authLevel,jdbcType=VARCHAR}
+		where uid = #{uid,jdbcType=INTEGER}
+	</update>
+	<!--追加内容 -->
+	<!-- 查询手机号是否已经注册 begin -->
+	<select id="getCountByPhone" parameterType="java.lang.String"
+		resultType="int">
+		select count(1) from user where mobile =
+		#{phone,jdbcType=CHAR}
+	</select>
+	<!-- 查询手机号是否已经注册 end -->
+	<!-- 根据手机号查询用户 begin -->
+	<select id="selectUserByLoginPhone" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where mobile=#{phone ,jdbcType=CHAR}
+	</select>
+	<!-- 根据手机号查询用户 end -->
+	<!-- 根据邮箱查询用户 begin -->
+	<select id="selectUserByLoginEmail" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where email=#{email ,jdbcType=CHAR} or mobile=#{email,jdbcType=CHAR}
+	</select>
+	<!-- 根据邮箱查询用户end -->
+	<!-- 修改登录密码 start -->
+	<update id="resetPwd">
+		update user
+		set pw = #{newPwd}, loginsalt = #{salt}
+		where mobile = #{phone}
+	</update>
+	<!-- 修改登录密码 end -->
+
+	<!-- 邮箱：修改登录密码 start -->
+	<update id="resetEmailPwd">
+		update user
+		set pw = #{newPwd}, loginsalt = #{salt}
+		where email = #{email}
+	</update>
+	<!-- 邮箱：修改登录密码 end -->
+
+	<!-- 查找钱包地址是否存在 -->
+	<select id="getUserByAddress" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where address=#{address ,jdbcType=CHAR}
+	</select>
+	<select id="getUserList" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from user
+		<where>
+			<if test="uid != null">
+				uid = #{uid}
+			</if>
+			<if test="email != null">
+				and email = #{email}
+			</if>
+			<if test="phone != null">
+				and mobile = #{phone}
+			</if>
+			<if test="name != null">
+				and fullname = #{name}
+			</if>
+		</where>
+	</select>
+	<select id="getUserListWithDate" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from user
+		<where>
+			<if test="uid != null">
+				uid = #{uid}
+			</if>
+			<if test="email != null">
+				and email = #{email}
+			</if>
+			<if test="fullName != null">
+				and fullName like concat(concat('%',#{fullName},'%'))
+			</if>
+			<if test="phone != null">
+				and mobile = #{phone}
+			</if>
+			<if test="startDate != null">
+				and create_date &gt;= #{startDate}
+			</if>
+			<if test="endDate != null">
+				and create_date &lt;= #{endDate}
+			</if>
+		</where>
+	</select>
+	<update id="updateUserPhoneNumberByUid" >
+	update user
+	set
+		mobile = #{phone,jdbcType=VARCHAR}
+		where uid = #{uid,jdbcType=INTEGER}
+	</update>
+	
+	<update id="updateUserNickNameByUid">
+	update user
+	 set
+		nickname = #{nickName,jdbcType=VARCHAR}
+		where uid = #{uid,jdbcType=INTEGER}
+	</update>
+	
+	<update id="updateCreateIpByUid">
+	update user
+	 set
+		createip = #{createip,jdbcType=VARCHAR}
+		where uid = #{uid,jdbcType=INTEGER}
+	</update>
+	<select id="getDailyStatistic" resultType="com.gop.domain.UserStatistics" parameterType="java.util.Date">
+		select count(1) as totalUser
+		from user
+		where date_format(create_date,'%Y-%m-%d') = date_format(#{date},'%Y-%m-%d')
+	</select>
+</mapper>

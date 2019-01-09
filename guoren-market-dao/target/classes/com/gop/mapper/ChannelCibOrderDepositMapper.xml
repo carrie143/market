@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ChannelCibOrderDepositMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.ChannelCibOrderDeposit" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="transaction_no" property="transactionNo" jdbcType="VARCHAR" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="voucher_no" property="voucherNo" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="debit_amount" property="debitAmount" jdbcType="VARCHAR" />
+    <result column="credit_amount" property="creditAmount" jdbcType="VARCHAR" />
+    <result column="account_balance" property="accountBalance" jdbcType="VARCHAR" />
+    <result column="abstract_msg" property="abstractMsg" jdbcType="VARCHAR" />
+    <result column="reciprocal_account" property="reciprocalAccount" jdbcType="VARCHAR" />
+    <result column="reciprocal_name" property="reciprocalName" jdbcType="VARCHAR" />
+    <result column="reciprocal_bank" property="reciprocalBank" jdbcType="VARCHAR" />
+    <result column="reciproal_banking_firm" property="reciproalBankingFirm" jdbcType="VARCHAR" />
+    <result column="transaction_date" property="transactionDate" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, transaction_no, account_no, account_name, voucher_no, currency, type, debit_amount, 
+    credit_amount, account_balance, abstract_msg, reciprocal_account, reciprocal_name, 
+    reciprocal_bank, reciproal_banking_firm, transaction_date, remark, create_date, file_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from channel_cib_order_deposit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from channel_cib_order_deposit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.ChannelCibOrderDeposit" >
+    insert into channel_cib_order_deposit (id, transaction_no, account_no, 
+      account_name, voucher_no, currency, 
+      type, debit_amount, credit_amount, 
+      account_balance, abstract_msg, reciprocal_account, 
+      reciprocal_name, reciprocal_bank, reciproal_banking_firm, 
+      transaction_date, remark, create_date, 
+      file_name)
+    values (#{id,jdbcType=INTEGER}, #{transactionNo,jdbcType=VARCHAR}, #{accountNo,jdbcType=VARCHAR}, 
+      #{accountName,jdbcType=VARCHAR}, #{voucherNo,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{debitAmount,jdbcType=VARCHAR}, #{creditAmount,jdbcType=VARCHAR}, 
+      #{accountBalance,jdbcType=VARCHAR}, #{abstractMsg,jdbcType=VARCHAR}, #{reciprocalAccount,jdbcType=VARCHAR}, 
+      #{reciprocalName,jdbcType=VARCHAR}, #{reciprocalBank,jdbcType=VARCHAR}, #{reciproalBankingFirm,jdbcType=VARCHAR}, 
+      #{transactionDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{fileName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ChannelCibOrderDeposit" >
+    insert into channel_cib_order_deposit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="transactionNo != null" >
+        transaction_no,
+      </if>
+      <if test="accountNo != null" >
+        account_no,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+      <if test="voucherNo != null" >
+        voucher_no,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="debitAmount != null" >
+        debit_amount,
+      </if>
+      <if test="creditAmount != null" >
+        credit_amount,
+      </if>
+      <if test="accountBalance != null" >
+        account_balance,
+      </if>
+      <if test="abstractMsg != null" >
+        abstract_msg,
+      </if>
+      <if test="reciprocalAccount != null" >
+        reciprocal_account,
+      </if>
+      <if test="reciprocalName != null" >
+        reciprocal_name,
+      </if>
+      <if test="reciprocalBank != null" >
+        reciprocal_bank,
+      </if>
+      <if test="reciproalBankingFirm != null" >
+        reciproal_banking_firm,
+      </if>
+      <if test="transactionDate != null" >
+        transaction_date,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="transactionNo != null" >
+        #{transactionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherNo != null" >
+        #{voucherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="debitAmount != null" >
+        #{debitAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmount != null" >
+        #{creditAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBalance != null" >
+        #{accountBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="abstractMsg != null" >
+        #{abstractMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="reciprocalAccount != null" >
+        #{reciprocalAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="reciprocalName != null" >
+        #{reciprocalName,jdbcType=VARCHAR},
+      </if>
+      <if test="reciprocalBank != null" >
+        #{reciprocalBank,jdbcType=VARCHAR},
+      </if>
+      <if test="reciproalBankingFirm != null" >
+        #{reciproalBankingFirm,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionDate != null" >
+        #{transactionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ChannelCibOrderDeposit" >
+    update channel_cib_order_deposit
+    <set >
+      <if test="transactionNo != null" >
+        transaction_no = #{transactionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherNo != null" >
+        voucher_no = #{voucherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="debitAmount != null" >
+        debit_amount = #{debitAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmount != null" >
+        credit_amount = #{creditAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBalance != null" >
+        account_balance = #{accountBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="abstractMsg != null" >
+        abstract_msg = #{abstractMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="reciprocalAccount != null" >
+        reciprocal_account = #{reciprocalAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="reciprocalName != null" >
+        reciprocal_name = #{reciprocalName,jdbcType=VARCHAR},
+      </if>
+      <if test="reciprocalBank != null" >
+        reciprocal_bank = #{reciprocalBank,jdbcType=VARCHAR},
+      </if>
+      <if test="reciproalBankingFirm != null" >
+        reciproal_banking_firm = #{reciproalBankingFirm,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionDate != null" >
+        transaction_date = #{transactionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ChannelCibOrderDeposit" >
+    update channel_cib_order_deposit
+    set transaction_no = #{transactionNo,jdbcType=VARCHAR},
+      account_no = #{accountNo,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      voucher_no = #{voucherNo,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      debit_amount = #{debitAmount,jdbcType=VARCHAR},
+      credit_amount = #{creditAmount,jdbcType=VARCHAR},
+      account_balance = #{accountBalance,jdbcType=VARCHAR},
+      abstract_msg = #{abstractMsg,jdbcType=VARCHAR},
+      reciprocal_account = #{reciprocalAccount,jdbcType=VARCHAR},
+      reciprocal_name = #{reciprocalName,jdbcType=VARCHAR},
+      reciprocal_bank = #{reciprocalBank,jdbcType=VARCHAR},
+      reciproal_banking_firm = #{reciproalBankingFirm,jdbcType=VARCHAR},
+      transaction_date = #{transactionDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      file_name = #{fileName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

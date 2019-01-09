@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.InviteActivityConfigMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.InviteActivityConfig">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="activity_name" property="activityName"
+			jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, activity_name, status, create_date, update_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from invite_activity_config
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<insert id="insert" parameterType="com.gop.domain.InviteActivityConfig">
+		insert into invite_activity_config (id, activity_name, status,
+		create_date, update_date)
+		values (#{id,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR},
+		#{status,jdbcType=CHAR},
+		#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="createOrUpdate" parameterType="com.gop.domain.InviteActivityConfig">
+		insert into invite_activity_config (activity_name, status)
+		values ( #{activityName,jdbcType=VARCHAR}, #{status,jdbcType=CHAR})
+		ON DUPLICATE KEY UPDATE
+		status = #{status,jdbcType=CHAR}
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.InviteActivityConfig">
+		insert into invite_activity_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="activityName != null">
+				activity_name,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="activityName != null">
+				#{activityName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.InviteActivityConfig">
+		update invite_activity_config
+		<set>
+			<if test="activityName != null">
+				activity_name = #{activityName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.InviteActivityConfig">
+		update invite_activity_config
+		set activity_name = #{activityName,jdbcType=VARCHAR},
+		status = #{status,jdbcType=CHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date = #{updateDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getInviteActivityConfigByActivityName" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from invite_activity_config
+		where activity_name = #{activityName,jdbcType=VARCHAR}
+	</select>
+	<select id="queryConfig" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from invite_activity_config
+		<where>
+			<if test="activityName != null">
+			 	activity_name like concat(concat('%',#{activityName,jdbcType=VARCHAR},'%'))
+			</if>
+		</where>
+	</select>
+	<select id="countInviteActivityConfigByStatus" resultType="java.lang.Integer">
+		select
+		count(1)
+		from invite_activity_config
+		where status = #{status,jdbcType=CHAR}
+	</select>
+</mapper>

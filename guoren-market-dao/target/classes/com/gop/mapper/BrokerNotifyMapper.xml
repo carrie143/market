@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.BrokerNotifyMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.BrokerNotify">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="broker_id" property="brokerId" jdbcType="INTEGER" />
+		<result column="symbol" property="symbol" jdbcType="VARCHAR" />
+		<result column="coin_transferout" property="coinTransferout"
+			jdbcType="VARCHAR" />
+		<result column="coin_transferin" property="coinTransferin"
+			jdbcType="VARCHAR" />
+		<result column="currency_transferout" property="currencyTransferout"
+			jdbcType="VARCHAR" />
+		<result column="trade_callback" property="tradeCallback"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, broker_id, symbol, coin_transferout, coin_transferin,
+		currency_transferout, trade_callback
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from broker_notify
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByBrokerId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from broker_notify
+		where broker_id = #{borkerId,jdbcType=INTEGER}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		broker_notify
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.BrokerNotify">
+		insert into broker_notify (id,
+		broker_id, symbol,
+		coin_transferout, coin_transferin,
+		currency_transferout,
+		trade_callback)
+		values (#{id,jdbcType=INTEGER},
+		#{brokerId,jdbcType=INTEGER},
+		#{symbol,jdbcType=VARCHAR},
+		#{coinTransferout,jdbcType=VARCHAR},
+		#{coinTransferin,jdbcType=VARCHAR},
+		#{currencyTransferout,jdbcType=VARCHAR},
+		#{tradeCallback,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.BrokerNotify">
+		insert into broker_notify
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="brokerId != null">
+				broker_id,
+			</if>
+			<if test="symbol != null">
+				symbol,
+			</if>
+			<if test="coinTransferout != null">
+				coin_transferout,
+			</if>
+			<if test="coinTransferin != null">
+				coin_transferin,
+			</if>
+			<if test="currencyTransferout != null">
+				currency_transferout,
+			</if>
+			<if test="tradeCallback != null">
+				trade_callback,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="brokerId != null">
+				#{brokerId,jdbcType=INTEGER},
+			</if>
+			<if test="symbol != null">
+				#{symbol,jdbcType=VARCHAR},
+			</if>
+			<if test="coinTransferout != null">
+				#{coinTransferout,jdbcType=VARCHAR},
+			</if>
+			<if test="coinTransferin != null">
+				#{coinTransferin,jdbcType=VARCHAR},
+			</if>
+			<if test="currencyTransferout != null">
+				#{currencyTransferout,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeCallback != null">
+				#{tradeCallback,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.BrokerNotify">
+		update broker_notify
+		<set>
+			<if test="brokerId != null">
+				broker_id = #{brokerId,jdbcType=INTEGER},
+			</if>
+			<if test="symbol != null">
+				symbol = #{symbol,jdbcType=VARCHAR},
+			</if>
+			<if test="coinTransferout != null">
+				coin_transferout = #{coinTransferout,jdbcType=VARCHAR},
+			</if>
+			<if test="coinTransferin != null">
+				coin_transferin = #{coinTransferin,jdbcType=VARCHAR},
+			</if>
+			<if test="currencyTransferout != null">
+				currency_transferout =
+				#{currencyTransferout,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeCallback != null">
+				trade_callback = #{tradeCallback,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.BrokerNotify">
+		update
+		broker_notify
+		set broker_id = #{brokerId,jdbcType=INTEGER},
+		symbol =
+		#{symbol,jdbcType=VARCHAR},
+		coin_transferout =
+		#{coinTransferout,jdbcType=VARCHAR},
+		coin_transferin =
+		#{coinTransferin,jdbcType=VARCHAR},
+		currency_transferout =
+		#{currencyTransferout,jdbcType=VARCHAR},
+		trade_callback =
+		#{tradeCallback,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

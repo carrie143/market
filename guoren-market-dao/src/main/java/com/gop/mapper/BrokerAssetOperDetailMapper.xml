@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.BrokerAssetOperDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.BrokerAssetOperDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+    <result column="business_subject" property="businessSubject" jdbcType="VARCHAR" />
+    <result column="request_no" property="requestNo" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="oper_uid" property="operUid" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BrokerStatisticeMap" type="com.gop.domain.StatisticeResult">
+    <result column="symbol" property="symbol" jdbcType="VARCHAR" />
+    <result column="tradeNumber" property="tradeNumber" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Broker_Column_List">
+    asset_code as symbol,sum(amount) as tradeNumber
+  </sql>
+  <sql id="Base_Column_List" >
+    id, uid, asset_code, business_subject, request_no, amount, oper_uid, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from broker_asset_oper_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.gop.domain.BrokerAssetOperDetail" >
+    insert into broker_asset_oper_detail (id, uid, asset_code,
+      business_subject, request_no, amount,
+      oper_uid, create_date)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{assetCode,jdbcType=VARCHAR},
+      #{businessSubject,jdbcType=VARCHAR}, #{requestNo,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL},
+      #{operUid,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.BrokerAssetOperDetail" >
+    insert into broker_asset_oper_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="assetCode != null" >
+        asset_code,
+      </if>
+      <if test="businessSubject != null" >
+        business_subject,
+      </if>
+      <if test="requestNo != null" >
+        request_no,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="operUid != null" >
+        oper_uid,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessSubject != null" >
+        #{businessSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="operUid != null" >
+        #{operUid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.BrokerAssetOperDetail" >
+    update broker_asset_oper_detail
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        asset_code = #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessSubject != null" >
+        business_subject = #{businessSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        request_no = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="operUid != null" >
+        oper_uid = #{operUid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.BrokerAssetOperDetail" >
+    update broker_asset_oper_detail
+    set uid = #{uid,jdbcType=INTEGER},
+      asset_code = #{assetCode,jdbcType=VARCHAR},
+      business_subject = #{businessSubject,jdbcType=VARCHAR},
+      request_no = #{requestNo,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      oper_uid = #{operUid,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="addBrokerAssetOperDetail" parameterType="com.gop.domain.BrokerAssetOperDetail" >
+    insert into broker_asset_oper_detail (uid, asset_code,
+      business_subject, request_no, amount,
+      oper_uid)
+    values (#{uid,jdbcType=INTEGER}, #{assetCode,jdbcType=VARCHAR},
+      #{businessSubject,jdbcType=VARCHAR}, #{requestNo,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL},
+      #{operUid,jdbcType=INTEGER})
+  </insert>
+  <select id="selectSelective" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from broker_asset_oper_detail
+    <where>
+      <if test="uid != null">
+        uid = #{uid}
+      </if>
+      <if test="assetCode != null">
+        and asset_code = #{assetCode}
+      </if>
+      <if test="startDate != null">
+        and create_date &gt;= #{startDate}
+      </if>
+      <if test="endDate != null">
+        and create_date &lt;= #{endDate}
+      </if>
+    </where>
+  </select>
+
+  <select id="getBroketAssetByAsset" resultMap="BrokerStatisticeMap">
+    select
+    <include refid="Broker_Column_List" />
+    from broker_asset_oper_detail
+    <where>
+      <if test="startDate != null">
+        and create_date &gt;= #{startDate}
+      </if>
+      <if test="endDate != null">
+        and create_date &lt;= #{endDate}
+      </if>
+      <if test="assetCode != null">
+        and asset_code = #{assetCode}
+      </if>
+    </where>
+    group by asset_code
+  </select>
+</mapper>

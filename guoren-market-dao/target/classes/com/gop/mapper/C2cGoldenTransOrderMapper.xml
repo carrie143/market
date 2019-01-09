@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.C2cGoldenTransOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.C2cGoldenTransOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="golden_trade_order_no" property="goldenTradeOrderNo" jdbcType="VARCHAR" />
+    <result column="buy_uid" property="buyUid" jdbcType="INTEGER" />
+    <result column="sell_uid" property="sellUid" jdbcType="INTEGER" />
+    <result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="DECIMAL" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, golden_trade_order_no, buy_uid, sell_uid, asset_code, number, money, status, 
+    create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c2c_golden_trans_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c2c_golden_trans_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.C2cGoldenTransOrder" >
+    insert into c2c_golden_trans_order (id, golden_trade_order_no, buy_uid, 
+      sell_uid, asset_code, number, 
+      money, status, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{goldenTradeOrderNo,jdbcType=VARCHAR}, #{buyUid,jdbcType=INTEGER}, 
+      #{sellUid,jdbcType=INTEGER}, #{assetCode,jdbcType=VARCHAR}, #{number,jdbcType=DECIMAL}, 
+      #{money,jdbcType=DECIMAL}, #{status,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.C2cGoldenTransOrder" >
+    insert into c2c_golden_trans_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goldenTradeOrderNo != null" >
+        golden_trade_order_no,
+      </if>
+      <if test="buyUid != null" >
+        buy_uid,
+      </if>
+      <if test="sellUid != null" >
+        sell_uid,
+      </if>
+      <if test="assetCode != null" >
+        asset_code,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goldenTradeOrderNo != null" >
+        #{goldenTradeOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyUid != null" >
+        #{buyUid,jdbcType=INTEGER},
+      </if>
+      <if test="sellUid != null" >
+        #{sellUid,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.C2cGoldenTransOrder" >
+    update c2c_golden_trans_order
+    <set >
+      <if test="goldenTradeOrderNo != null" >
+        golden_trade_order_no = #{goldenTradeOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyUid != null" >
+        buy_uid = #{buyUid,jdbcType=INTEGER},
+      </if>
+      <if test="sellUid != null" >
+        sell_uid = #{sellUid,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        asset_code = #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.C2cGoldenTransOrder" >
+    update c2c_golden_trans_order
+    set golden_trade_order_no = #{goldenTradeOrderNo,jdbcType=VARCHAR},
+      buy_uid = #{buyUid,jdbcType=INTEGER},
+      sell_uid = #{sellUid,jdbcType=INTEGER},
+      asset_code = #{assetCode,jdbcType=VARCHAR},
+      number = #{number,jdbcType=DECIMAL},
+      money = #{money,jdbcType=DECIMAL},
+      status = #{status,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.TokenOrderIntentionMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.TokenOrderIntention">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="asset_name" property="assetName" jdbcType="VARCHAR" />
+		<result column="sell_num" property="sellNum" jdbcType="DECIMAL" />
+		<result column="success_trade_num" property="successTradeNum"
+			jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="wechat" property="wechat" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="CHAR" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, asset_name, sell_num, success_trade_num,
+		create_date,
+		update_date, qq, wechat,
+		phone, state,price
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from token_order_intention
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="getTokenOrderIntention" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from token_order_intention
+		<where>
+			<if test="uid !=null">
+				uid =#{uid}
+			</if>
+			<if test="status !=null">
+				and state =#{status}
+			</if>
+			<if test="assetName !=null">
+				and asset_name =#{assetName}
+			</if>
+		</where>
+
+	</select>
+	<update id="updateUserComplete">
+		update token_order_intention
+		set success_trade_num=
+		(select count(1) from token_order where
+		sell_uid=#{sellUid} and
+		state='COMPLETE' )
+		where uid =#{sellUid}
+	</update>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		token_order_intention
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="com.gop.domain.TokenOrderIntention">
+		insert into
+		token_order_intention (id, uid, asset_name,
+		sell_num,
+		success_trade_num, create_date,
+		update_date, qq, wechat,
+		phone,
+		state,price)
+		values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		#{assetName,jdbcType=VARCHAR},
+		#{sellNum,jdbcType=DECIMAL},
+		#{successTradeNum,jdbcType=INTEGER},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP}, #{qq,jdbcType=VARCHAR},
+		#{wechat,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{state,jdbcType=CHAR},
+		#{price,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.TokenOrderIntention">
+		insert into token_order_intention
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="assetName != null">
+				asset_name,
+			</if>
+			<if test="sellNum != null">
+				sell_num,
+			</if>
+			<if test="successTradeNum != null">
+				success_trade_num,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="qq != null">
+				qq,
+			</if>
+			<if test="wechat != null">
+				wechat,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="assetName != null">
+				#{assetName,jdbcType=VARCHAR},
+			</if>
+			<if test="sellNum != null">
+				#{sellNum,jdbcType=DECIMAL},
+			</if>
+			<if test="successTradeNum != null">
+				#{successTradeNum,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="qq != null">
+				#{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="wechat != null">
+				#{wechat,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=CHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.TokenOrderIntention">
+		update token_order_intention
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="assetName != null">
+				asset_name = #{assetName,jdbcType=VARCHAR},
+			</if>
+			<if test="sellNum != null">
+				sell_num = #{sellNum,jdbcType=DECIMAL},
+			</if>
+			<if test="successTradeNum != null">
+				success_trade_num = #{successTradeNum,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="qq != null">
+				qq = #{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="wechat != null">
+				wechat = #{wechat,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=CHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.TokenOrderIntention">
+		update
+		token_order_intention
+		set uid = #{uid,jdbcType=INTEGER},
+		asset_name =
+		#{assetName,jdbcType=VARCHAR},
+		sell_num = #{sellNum,jdbcType=DECIMAL},
+		success_trade_num = #{successTradeNum,jdbcType=INTEGER},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP},
+		qq = #{qq,jdbcType=VARCHAR},
+		wechat =
+		#{wechat,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		state =
+		#{state,jdbcType=CHAR},
+		price = #{price,jdbcType=DECIMAL}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+</mapper>

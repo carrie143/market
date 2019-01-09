@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.C2cTransOrderMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.C2cTransOrder">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="trans_order_id" property="transOrderId"
+			jdbcType="VARCHAR" />
+		<result column="advert_id" property="advertId" jdbcType="VARCHAR" />
+		<result column="order_id" property="orderId" jdbcType="VARCHAR" />
+		<result column="buy_uid" property="buyUid" jdbcType="INTEGER" />
+		<result column="sell_uid" property="sellUid" jdbcType="INTEGER" />
+		<result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+		<result column="buy_nickname" property="buyNickname" jdbcType="VARCHAR" />
+		<result column="sell_nickname" property="sellNickname"
+			jdbcType="VARCHAR" />
+		<result column="buy_pay_type" property="buyPayType" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="DECIMAL" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="buy_request_no" property="buyRequestNo"
+			jdbcType="VARCHAR" />
+		<result column="sell_request_no" property="sellRequestNo"
+			jdbcType="VARCHAR" />
+		<result column="lock_num" property="lockNum" jdbcType="DECIMAL" />
+		<result column="fee" property="fee" jdbcType="DECIMAL" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="trade_price" property="tradePrice" jdbcType="DECIMAL" />
+		<result column="remark" property="remark" jdbcType="CHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="flag" property="flag" jdbcType="CHAR" />
+		<result column="pay_code" property="payCode" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, trans_order_id, advert_id, order_id, buy_uid, sell_uid,
+		asset_code,
+		buy_nickname,
+		sell_nickname, buy_pay_type, number, money,
+		buy_request_no,
+		sell_request_no,
+		lock_num, fee, status,
+		trade_price,
+		remark,
+		create_date,
+		update_date,
+		flag,
+		pay_code
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from c2c_trans_order
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		c2c_trans_order
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.C2cTransOrder">
+		insert into c2c_trans_order
+		(id, trans_order_id, advert_id,
+		order_id, buy_uid, sell_uid,
+		asset_code, buy_nickname, sell_nickname,
+		buy_pay_type, number, money,
+		buy_request_no,
+		sell_request_no,
+		lock_num, fee,
+		status,
+		trade_price,
+		remark,
+		create_date, update_date,
+		flag,pay_code
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{transOrderId,jdbcType=VARCHAR},
+		#{advertId,jdbcType=VARCHAR},
+		#{orderId,jdbcType=VARCHAR},
+		#{buyUid,jdbcType=INTEGER}, #{sellUid,jdbcType=INTEGER},
+		#{assetCode,jdbcType=VARCHAR}, #{buyNickname,jdbcType=VARCHAR},
+		#{sellNickname,jdbcType=VARCHAR},
+		#{buyPayType,jdbcType=VARCHAR},
+		#{number,jdbcType=DECIMAL}, #{money,jdbcType=DECIMAL},
+		#{buyRequestNo,jdbcType=VARCHAR},
+		#{sellRequestNo,jdbcType=VARCHAR},
+		#{lockNum,jdbcType=DECIMAL},
+		#{fee,jdbcType=DECIMAL},
+		#{status,jdbcType=CHAR},
+		#{tradePrice,jdbcType=DECIMAL},
+		#{remark,jdbcType=CHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP}
+		#{flag,jdbcType=CHAR},
+		#{payCode,jdbcType=CHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.C2cTransOrder">
+		insert into c2c_trans_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="transOrderId != null">
+				trans_order_id,
+			</if>
+			<if test="advertId != null">
+				advert_id,
+			</if>
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="buyUid != null">
+				buy_uid,
+			</if>
+			<if test="sellUid != null">
+				sell_uid,
+			</if>
+			<if test="assetCode != null">
+				asset_code,
+			</if>
+			<if test="buyNickname != null">
+				buy_nickname,
+			</if>
+			<if test="sellNickname != null">
+				sell_nickname,
+			</if>
+			<if test="buyPayType != null">
+				buy_pay_type,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="buyRequestNo != null">
+				buy_request_no,
+			</if>
+			<if test="sellRequestNo != null">
+				sell_request_no,
+			</if>
+			<if test="lockNum != null">
+				lock_num,
+			</if>
+			<if test="fee != null">
+				fee,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="tradePrice != null">
+				trade_price,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="flag != null">
+				flag,
+			</if>
+			<if test="payCode != null">
+				pay_code,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="transOrderId != null">
+				#{transOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="advertId != null">
+				#{advertId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="buyUid != null">
+				#{buyUid,jdbcType=INTEGER},
+			</if>
+			<if test="sellUid != null">
+				#{sellUid,jdbcType=INTEGER},
+			</if>
+			<if test="assetCode != null">
+				#{assetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="buyNickname != null">
+				#{buyNickname,jdbcType=VARCHAR},
+			</if>
+			<if test="sellNickname != null">
+				#{sellNickname,jdbcType=VARCHAR},
+			</if>
+			<if test="buyPayType != null">
+				#{buyPayType,jdbcType=VARCHAR},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=DECIMAL},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="buyRequestNo != null">
+				#{buyRequestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sellRequestNo != null">
+				#{sellRequestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="lockNum != null">
+				#{lockNum,jdbcType=DECIMAL},
+			</if>
+			<if test="fee != null">
+				#{fee,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="tradePrice != null">
+				#{tradePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=CHAR},
+			</if>
+			<if test="payCode != null">
+				#{payCode,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.C2cTransOrder">
+		update c2c_trans_order
+		<set>
+			<if test="transOrderId != null">
+				trans_order_id = #{transOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="advertId != null">
+				advert_id = #{advertId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				order_id = #{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="buyUid != null">
+				buy_uid = #{buyUid,jdbcType=INTEGER},
+			</if>
+			<if test="sellUid != null">
+				sell_uid = #{sellUid,jdbcType=INTEGER},
+			</if>
+			<if test="assetCode != null">
+				asset_code = #{assetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="buyNickname != null">
+				buy_nickname = #{buyNickname,jdbcType=VARCHAR},
+			</if>
+			<if test="sellNickname != null">
+				sell_nickname = #{sellNickname,jdbcType=VARCHAR},
+			</if>
+			<if test="buyPayType != null">
+				buy_pay_type = #{buyPayType,jdbcType=VARCHAR},
+			</if>
+			<if test="number != null">
+				number = #{number,jdbcType=DECIMAL},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="buyRequestNo != null">
+				buy_request_no = #{buyRequestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sellRequestNo != null">
+				sell_request_no = #{sellRequestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="lockNum != null">
+				lock_num = #{lockNum,jdbcType=DECIMAL},
+			</if>
+			<if test="fee != null">
+				fee = #{fee,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="tradePrice != null">
+				trade_price = #{tradePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="flag != null">
+				flag = #{flag,jdbcType=CHAR},
+			</if>
+			<if test="payCode != null">
+				payCode = #{payCode,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.C2cTransOrder">
+		update
+		c2c_trans_order
+		set trans_order_id = #{transOrderId,jdbcType=VARCHAR},
+		advert_id = #{advertId,jdbcType=VARCHAR},
+		order_id =
+		#{orderId,jdbcType=VARCHAR},
+		buy_uid = #{buyUid,jdbcType=INTEGER},
+		sell_uid = #{sellUid,jdbcType=INTEGER},
+		asset_code =
+		#{assetCode,jdbcType=VARCHAR},
+		buy_nickname =
+		#{buyNickname,jdbcType=VARCHAR},
+		sell_nickname =
+		#{sellNickname,jdbcType=VARCHAR},
+		buy_pay_type =
+		#{buyPayType,jdbcType=VARCHAR},
+		number = #{number,jdbcType=DECIMAL},
+		money = #{money,jdbcType=DECIMAL},
+		buy_request_no =
+		#{buyRequestNo,jdbcType=VARCHAR},
+		sell_request_no =
+		#{sellRequestNo,jdbcType=VARCHAR},
+		lock_num =
+		#{lockNum,jdbcType=DECIMAL},
+		fee = #{fee,jdbcType=DECIMAL},
+		status =
+		#{status,jdbcType=CHAR},
+		trade_price = #{tradePrice,jdbcType=DECIMAL},
+		remark = #{remark,jdbcType=CHAR},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP}
+		flag = #{flag,jdbcType=CHAR},
+		pay_code
+		= #{payCode,jdbcType=CHAR},
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyAndStatus">
+		update c2c_trans_order
+		set
+		status = #{endStatus},
+		flag = #{flag}
+		where
+		id = #{id,jdbcType=INTEGER}
+		and
+		status =
+		#{preStatus}
+	</update>
+	<select id="selectByTransOrderId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from c2c_trans_order
+		where trans_order_id =
+		#{transOrderId,jdbcType=VARCHAR}
+	</select>
+	<select id="queryByflagAndPayTypeAndStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from c2c_trans_order
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="seller != null">
+				AND sell_uid = #{seller}
+			</if>
+			<if test="buyer != null">
+				AND buy_uid = #{buyer}
+			</if>
+			<if test="completed != null">
+				AND flag = #{completed}
+			</if>
+			<if test="completed == null">
+				AND status = #{status}
+			</if>
+		</trim>
+
+	</select>
+	<select id="queryBySellUidOrBuyUidAndStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from c2c_trans_order
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="sellUid != null">
+				AND sell_uid = #{sellUid}
+			</if>
+			<if test="sellUid == null">
+				AND buy_uid = #{buyUid}
+			</if>
+			<if test = "status != null">
+				AND status = #{status}
+			</if>
+			
+		</trim>
+
+	</select>
+	<select id="queryBuyerByUncompletedStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from c2c_trans_order
+		where buy_uid = #{uid}
+		and
+		status = #{status}
+	</select>
+	<select id="querySellerByUncompletedStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from c2c_trans_order
+		where sell_uid = #{uid}
+		and
+		status = #{status}
+	</select>
+	<select id="selectByStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from c2c_trans_order
+		where
+		status = #{status}
+	</select>
+</mapper>

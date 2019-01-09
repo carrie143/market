@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.MenuRoleMapper" >
+    <resultMap id="BaseResultMap" type="com.gop.domain.MenuRole" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <id column="menu_id" property="menuId" jdbcType="INTEGER" />
+        <result column="role_id" property="roleId" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, menu_id, role_id,status,create_date,update_date
+    </sql>
+    <select id="getMenuRoleList" resultMap="BaseResultMap"
+            parameterType="com.gop.domain.MenuRole">
+        select
+        <include refid="Base_Column_List" />
+        from menu_role
+        where role_id = #{roleId,jdbcType=INTEGER}
+        and status = #{status,jdbcType=INTEGER}
+    </select>
+
+    <insert id="addMenuRole" parameterType="com.gop.domain.MenuRole">
+        insert into menu_role (menu_id,role_id, status,create_date,update_date)
+        values (#{menuId,jdbcType=INTEGER},
+        #{roleId,jdbcType=INTEGER},
+        #{status,jdbcType=INTEGER},
+        #{createDate,jdbcType=TIMESTAMP},
+        #{updateDate,jdbcType=TIMESTAMP})
+    </insert>
+    <select id="getMenuRole" resultType="java.lang.Integer" parameterType="com.gop.domain.MenuRole">
+        select count(1)
+        from menu_role
+        where role_id = #{roleId,jdbcType=INTEGER}
+        and menu_id = #{menuId,jdbcType=INTEGER}
+    </select>
+    <update id="updateMenuRole" parameterType="com.gop.domain.MenuRole">
+        update menu_role
+        <set >
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="updateDate != null" >
+                update_date = #{updateDate,jdbcType=TIMESTAMP}
+            </if>
+        </set>
+        where role_id = #{roleId,jdbcType=INTEGER}
+        and menu_id = #{menuId,jdbcType=INTEGER}
+    </update>
+
+</mapper>

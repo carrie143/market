@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserPreRegistrationPoolMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.UserPreRegistrationPool" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="invite_uid" property="inviteUid" jdbcType="INTEGER" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="login_salt" property="loginSalt" jdbcType="VARCHAR" />
+    <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
+    <result column="pay_salt" property="paySalt" jdbcType="VARCHAR" />
+    <result column="pay_password" property="payPassword" jdbcType="VARCHAR" />
+    <result column="lock_num" property="lockNum" jdbcType="TINYINT" />
+    <result column="role" property="role" jdbcType="CHAR" />
+    <result column="fullname" property="fullname" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, invite_uid, nickname, mobile, email, login_salt, login_password, pay_salt,
+    pay_password, lock_num, role, fullname, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_pre_registration_pool
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.gop.domain.UserPreRegistrationPool" >
+    insert into user_pre_registration_pool (id, invite_uid,
+      nickname, mobile, email, 
+      login_salt, login_password, pay_salt, 
+      pay_password, lock_num, role, 
+      fullname, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{inviteUid,jdbcType=INTEGER},
+      #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{loginSalt,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, #{paySalt,jdbcType=VARCHAR}, 
+      #{payPassword,jdbcType=VARCHAR}, #{lockNum,jdbcType=TINYINT}, #{role,jdbcType=CHAR}, 
+      #{fullname,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.UserPreRegistrationPool"  useGeneratedKeys="true" keyProperty="id">
+    insert into user_pre_registration_pool
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="inviteUid != null" >
+        invite_uid,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="loginSalt != null" >
+        login_salt,
+      </if>
+      <if test="loginPassword != null" >
+        login_password,
+      </if>
+      <if test="paySalt != null" >
+        pay_salt,
+      </if>
+      <if test="payPassword != null" >
+        pay_password,
+      </if>
+      <if test="lockNum != null" >
+        lock_num,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="fullname != null" >
+        fullname,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="inviteUid != null" >
+        #{inviteUid,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="loginSalt != null" >
+        #{loginSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="paySalt != null" >
+        #{paySalt,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null" >
+        #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="lockNum != null" >
+        #{lockNum,jdbcType=TINYINT},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=CHAR},
+      </if>
+      <if test="fullname != null" >
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserPreRegistrationPool" >
+    update user_pre_registration_pool
+    <set >
+      <if test="inviteUid != null" >
+        invite_uid = #{inviteUid,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="loginSalt != null" >
+        login_salt = #{loginSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        login_password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="paySalt != null" >
+        pay_salt = #{paySalt,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null" >
+        pay_password = #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="lockNum != null" >
+        lock_num = #{lockNum,jdbcType=TINYINT},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=CHAR},
+      </if>
+      <if test="fullname != null" >
+        fullname = #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.UserPreRegistrationPool" >
+    update user_pre_registration_pool
+    set invite_uid = #{inviteUid,jdbcType=INTEGER},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      login_salt = #{loginSalt,jdbcType=VARCHAR},
+      login_password = #{loginPassword,jdbcType=VARCHAR},
+      pay_salt = #{paySalt,jdbcType=VARCHAR},
+      pay_password = #{payPassword,jdbcType=VARCHAR},
+      lock_num = #{lockNum,jdbcType=TINYINT},
+      role = #{role,jdbcType=CHAR},
+      fullname = #{fullname,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

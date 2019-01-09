@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.QuantFundAdmissionTicketBuyDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.QuantFundAdmissionTicketBuyDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ticket_id" property="ticketId" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="fund_asset_code" property="fundAssetCode" jdbcType="VARCHAR" />
+    <result column="lock_asset_code" property="lockAssetCode" jdbcType="VARCHAR" />
+    <result column="transfer_type" property="transferType" jdbcType="CHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="request_no" property="requestNo" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ticket_id, uid, fund_asset_code, lock_asset_code, transfer_type, amount, request_no, 
+    create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from quant_fund_admission_ticket_buy_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from quant_fund_admission_ticket_buy_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.QuantFundAdmissionTicketBuyDetail" >
+    insert into quant_fund_admission_ticket_buy_detail (id, ticket_id, uid, 
+      fund_asset_code, lock_asset_code, transfer_type, 
+      amount, request_no, create_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{ticketId,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{fundAssetCode,jdbcType=VARCHAR}, #{lockAssetCode,jdbcType=VARCHAR}, #{transferType,jdbcType=CHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{requestNo,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.QuantFundAdmissionTicketBuyDetail" >
+    insert into quant_fund_admission_ticket_buy_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ticketId != null" >
+        ticket_id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="fundAssetCode != null" >
+        fund_asset_code,
+      </if>
+      <if test="lockAssetCode != null" >
+        lock_asset_code,
+      </if>
+      <if test="transferType != null" >
+        transfer_type,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="requestNo != null" >
+        request_no,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ticketId != null" >
+        #{ticketId,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="fundAssetCode != null" >
+        #{fundAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lockAssetCode != null" >
+        #{lockAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="transferType != null" >
+        #{transferType,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="requestNo != null" >
+        #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.QuantFundAdmissionTicketBuyDetail" >
+    update quant_fund_admission_ticket_buy_detail
+    <set >
+      <if test="ticketId != null" >
+        ticket_id = #{ticketId,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="fundAssetCode != null" >
+        fund_asset_code = #{fundAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lockAssetCode != null" >
+        lock_asset_code = #{lockAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="transferType != null" >
+        transfer_type = #{transferType,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="requestNo != null" >
+        request_no = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.QuantFundAdmissionTicketBuyDetail" >
+    update quant_fund_admission_ticket_buy_detail
+    set ticket_id = #{ticketId,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      fund_asset_code = #{fundAssetCode,jdbcType=VARCHAR},
+      lock_asset_code = #{lockAssetCode,jdbcType=VARCHAR},
+      transfer_type = #{transferType,jdbcType=CHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      request_no = #{requestNo,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="addQuantFundAdmissionTicketBuyDetail" parameterType="com.gop.domain.QuantFundAdmissionTicketBuyDetail" >
+    insert into quant_fund_admission_ticket_buy_detail (ticket_id, uid, fund_asset_code, 
+      lock_asset_code, transfer_type, amount, request_no)
+    values (#{ticketId,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{fundAssetCode,jdbcType=VARCHAR}, 
+      #{lockAssetCode,jdbcType=VARCHAR},#{transferType,jdbcType=CHAR}, #{amount,jdbcType=DECIMAL}, #{requestNo,jdbcType=VARCHAR})
+  </insert>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.C2cGoldenTransOrderOperRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.C2cGoldenTransOrderOperRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="golden_trade_order_no" property="goldenTradeOrderNo" jdbcType="VARCHAR" />
+    <result column="buy_uid" property="buyUid" jdbcType="INTEGER" />
+    <result column="sell_uid" property="sellUid" jdbcType="INTEGER" />
+    <result column="begin_status" property="beginStatus" jdbcType="VARCHAR" />
+    <result column="end_status" property="endStatus" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, golden_trade_order_no, buy_uid, sell_uid, begin_status, end_status, remark, create_date, 
+    update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c2c_golden_trans_order_oper_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c2c_golden_trans_order_oper_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.C2cGoldenTransOrderOperRecord" >
+    insert into c2c_golden_trans_order_oper_record (id, golden_trade_order_no, buy_uid, 
+      sell_uid, begin_status, end_status, 
+      remark, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{goldenTradeOrderNo,jdbcType=VARCHAR}, #{buyUid,jdbcType=INTEGER}, 
+      #{sellUid,jdbcType=INTEGER}, #{beginStatus,jdbcType=VARCHAR}, #{endStatus,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.C2cGoldenTransOrderOperRecord" >
+    insert into c2c_golden_trans_order_oper_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goldenTradeOrderNo != null" >
+        golden_trade_order_no,
+      </if>
+      <if test="buyUid != null" >
+        buy_uid,
+      </if>
+      <if test="sellUid != null" >
+        sell_uid,
+      </if>
+      <if test="beginStatus != null" >
+        begin_status,
+      </if>
+      <if test="endStatus != null" >
+        end_status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goldenTradeOrderNo != null" >
+        #{goldenTradeOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyUid != null" >
+        #{buyUid,jdbcType=INTEGER},
+      </if>
+      <if test="sellUid != null" >
+        #{sellUid,jdbcType=INTEGER},
+      </if>
+      <if test="beginStatus != null" >
+        #{beginStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="endStatus != null" >
+        #{endStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.C2cGoldenTransOrderOperRecord" >
+    update c2c_golden_trans_order_oper_record
+    <set >
+      <if test="goldenTradeOrderNo != null" >
+        golden_trade_order_no = #{goldenTradeOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyUid != null" >
+        buy_uid = #{buyUid,jdbcType=INTEGER},
+      </if>
+      <if test="sellUid != null" >
+        sell_uid = #{sellUid,jdbcType=INTEGER},
+      </if>
+      <if test="beginStatus != null" >
+        begin_status = #{beginStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="endStatus != null" >
+        end_status = #{endStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.C2cGoldenTransOrderOperRecord" >
+    update c2c_golden_trans_order_oper_record
+    set golden_trade_order_no = #{goldenTradeOrderNo,jdbcType=VARCHAR},
+      buy_uid = #{buyUid,jdbcType=INTEGER},
+      sell_uid = #{sellUid,jdbcType=INTEGER},
+      begin_status = #{beginStatus,jdbcType=VARCHAR},
+      end_status = #{endStatus,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

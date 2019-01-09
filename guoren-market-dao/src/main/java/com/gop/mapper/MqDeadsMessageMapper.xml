@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.MqDeadsMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.MqDeadsMessage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="exchange" property="exchange" jdbcType="VARCHAR" />
+    <result column="router" property="router" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gop.domain.MqDeadsMessage" extends="BaseResultMap" >
+    <result column="error_desc" property="errorDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, message, exchange, router
+  </sql>
+  <sql id="Blob_Column_List" >
+    error_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mq_deads_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mq_deads_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.MqDeadsMessage" >
+    insert into mq_deads_message (id, message, exchange, 
+      router, error_desc)
+    values (#{id,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR}, #{exchange,jdbcType=VARCHAR}, 
+      #{router,jdbcType=VARCHAR}, #{errorDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.MqDeadsMessage" >
+    insert into mq_deads_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="exchange != null" >
+        exchange,
+      </if>
+      <if test="router != null" >
+        router,
+      </if>
+      <if test="errorDesc != null" >
+        error_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="exchange != null" >
+        #{exchange,jdbcType=VARCHAR},
+      </if>
+      <if test="router != null" >
+        #{router,jdbcType=VARCHAR},
+      </if>
+      <if test="errorDesc != null" >
+        #{errorDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.MqDeadsMessage" >
+    update mq_deads_message
+    <set >
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="exchange != null" >
+        exchange = #{exchange,jdbcType=VARCHAR},
+      </if>
+      <if test="router != null" >
+        router = #{router,jdbcType=VARCHAR},
+      </if>
+      <if test="errorDesc != null" >
+        error_desc = #{errorDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gop.domain.MqDeadsMessage" >
+    update mq_deads_message
+    set message = #{message,jdbcType=VARCHAR},
+      exchange = #{exchange,jdbcType=VARCHAR},
+      router = #{router,jdbcType=VARCHAR},
+      error_desc = #{errorDesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.MqDeadsMessage" >
+    update mq_deads_message
+    set message = #{message,jdbcType=VARCHAR},
+      exchange = #{exchange,jdbcType=VARCHAR},
+      router = #{router,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

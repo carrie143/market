@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.TokenOrderCompletionCountMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.TokenOrderCompletionCount">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="sell_count" property="sellCount" jdbcType="DECIMAL" />
+		<result column="buy_count" property="buyCount" jdbcType="DECIMAL" />
+		<result column="total_count" property="totalCount" jdbcType="DECIMAL" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap type="com.gop.mapper.dto.OrderRankOfSellDto" id="sellDtoResultMap">
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="sumSell" property="sumSell" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, uid, sell_count, buy_count, total_count, create_time,
+		update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from token_order_completion_count
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		token_order_completion_count
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.TokenOrderCompletionCount">
+		insert into
+		token_order_completion_count (id, uid, sell_count,
+		buy_count,
+		total_count, create_time,
+		update_time)
+		values (#{id,jdbcType=INTEGER},
+		#{uid,jdbcType=INTEGER},
+		#{sellCount,jdbcType=DECIMAL},
+		#{buyCount,jdbcType=DECIMAL}, #{totalCount,jdbcType=DECIMAL},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+
+	<insert id="insertOrIncrSellCompleted">
+		insert into
+		token_order_completion_count ( uid,
+		sell_count,
+		buy_count, total_count)
+		values (
+		#{uid,jdbcType=INTEGER},1,0, 1)
+		ON DUPLICATE KEY UPDATE
+		sell_count
+		=sell_count+1,
+		total_count=total_count+1
+	</insert>
+
+	<insert id="insertOrIncrBuyCompleted">
+		insert into
+		token_order_completion_count ( uid,
+		sell_count,
+		buy_count, total_count)
+		values (
+		#{uid,jdbcType=INTEGER},1,0, 1)
+		ON DUPLICATE KEY UPDATE
+		buy_count
+		=buy_count+1,
+		total_count=total_count+1
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.gop.domain.TokenOrderCompletionCount">
+		insert into token_order_completion_count
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="sellCount != null">
+				sell_count,
+			</if>
+			<if test="buyCount != null">
+				buy_count,
+			</if>
+			<if test="totalCount != null">
+				total_count,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="sellCount != null">
+				#{sellCount,jdbcType=DECIMAL},
+			</if>
+			<if test="buyCount != null">
+				#{buyCount,jdbcType=DECIMAL},
+			</if>
+			<if test="totalCount != null">
+				#{totalCount,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		ON DUPLICATE KEY UPDATE
+		sell_count = sell_count +  #{sellCount,jdbcType=DECIMAL},
+		buy_count = buy_count + 	 #{buyCount,jdbcType=DECIMAL},
+		total_count = total_count +  #{totalCount,jdbcType=DECIMAL}
+	</insert>
+
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.TokenOrderCompletionCount">
+		update token_order_completion_count
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="sellCount != null">
+				sell_count = #{sellCount,jdbcType=DECIMAL},
+			</if>
+			<if test="buyCount != null">
+				buy_count = #{buyCount,jdbcType=DECIMAL},
+			</if>
+			<if test="totalCount != null">
+				total_count = total_count +
+				#{totalCount,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.TokenOrderCompletionCount">
+		update
+		token_order_completion_count
+		set uid = #{uid,jdbcType=INTEGER},
+		sell_count = #{sellCount,jdbcType=DECIMAL},
+		buy_count =
+		#{buyCount,jdbcType=DECIMAL},
+		total_count =
+		#{totalCount,jdbcType=DECIMAL},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByUid" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		token_order_completion_count
+		where uid = #{uid}
+	</select>
+	<select id="getRankOfSell" resultMap="sellDtoResultMap">
+		select uid, total_count as
+		sumSell
+		from token_order_completion_count
+	</select>
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.MenuInterfaceMapper" >
+    <resultMap id="BaseResultMap" type="com.gop.domain.MenuInterface" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <id column="menu_id" property="menuId" jdbcType="INTEGER" />
+        <result column="interface_name" property="interfaceName" jdbcType="VARCHAR" />
+        <result column="uri" property="uri" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, menu_id, interface_name,uri
+    </sql>
+    <select id="checkInterface" resultType="java.lang.Integer">
+        select count(1)
+        from menu_role
+        left JOIN menu on menu.menu_id = menu_role.menu_id
+        LEFT JOIN menu_interface ON menu_role.menu_id = menu_interface.menu_id
+        where role_id = #{roleId} and menu.`level` = 1 and menu_interface.uri= #{uri}
+    </select>
+</mapper>

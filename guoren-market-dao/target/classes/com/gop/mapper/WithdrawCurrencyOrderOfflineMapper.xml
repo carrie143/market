@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.WithdrawCurrencyOrderOfflineMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.WithdrawCurrencyOrderOffline" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="account_id" property="accountId" jdbcType="INTEGER" />
+    <result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+    <result column="channel_withdraw_id" property="channelWithdrawId" jdbcType="INTEGER" />
+    <result column="inner_order_no" property="innerOrderNo" jdbcType="CHAR" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="pay" property="pay" jdbcType="DECIMAL" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="pay_mode" property="payMode" jdbcType="VARCHAR" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, account_id, asset_code, channel_withdraw_id, inner_order_no, money, pay, 
+    fee, status, pay_mode, admin_id, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from withdraw_currency_order_offline
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from withdraw_currency_order_offline
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.WithdrawCurrencyOrderOffline" >
+    insert into withdraw_currency_order_offline (id, uid, account_id, 
+      asset_code, channel_withdraw_id, inner_order_no, 
+      money, pay, fee, status, 
+      pay_mode, admin_id, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, 
+      #{assetCode,jdbcType=VARCHAR}, #{channelWithdrawId,jdbcType=INTEGER}, #{innerOrderNo,jdbcType=CHAR}, 
+      #{money,jdbcType=DECIMAL}, #{pay,jdbcType=DECIMAL}, #{fee,jdbcType=DECIMAL}, #{status,jdbcType=CHAR}, 
+      #{payMode,jdbcType=VARCHAR}, #{adminId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.WithdrawCurrencyOrderOffline" >
+    insert into withdraw_currency_order_offline
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="assetCode != null" >
+        asset_code,
+      </if>
+      <if test="channelWithdrawId != null" >
+        channel_withdraw_id,
+      </if>
+      <if test="innerOrderNo != null" >
+        inner_order_no,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="pay != null" >
+        pay,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="payMode != null" >
+        pay_mode,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelWithdrawId != null" >
+        #{channelWithdrawId,jdbcType=INTEGER},
+      </if>
+      <if test="innerOrderNo != null" >
+        #{innerOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="pay != null" >
+        #{pay,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="payMode != null" >
+        #{payMode,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.WithdrawCurrencyOrderOffline" >
+    update withdraw_currency_order_offline
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        asset_code = #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelWithdrawId != null" >
+        channel_withdraw_id = #{channelWithdrawId,jdbcType=INTEGER},
+      </if>
+      <if test="innerOrderNo != null" >
+        inner_order_no = #{innerOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="pay != null" >
+        pay = #{pay,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="payMode != null" >
+        pay_mode = #{payMode,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.WithdrawCurrencyOrderOffline" >
+    update withdraw_currency_order_offline
+    set uid = #{uid,jdbcType=INTEGER},
+      account_id = #{accountId,jdbcType=INTEGER},
+      asset_code = #{assetCode,jdbcType=VARCHAR},
+      channel_withdraw_id = #{channelWithdrawId,jdbcType=INTEGER},
+      inner_order_no = #{innerOrderNo,jdbcType=CHAR},
+      money = #{money,jdbcType=DECIMAL},
+      pay = #{pay,jdbcType=DECIMAL},
+      fee = #{fee,jdbcType=DECIMAL},
+      status = #{status,jdbcType=CHAR},
+      pay_mode = #{payMode,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

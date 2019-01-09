@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserInfoProfileMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.UserInfoProfile">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="profile_group" property="profileGroup"
+			jdbcType="VARCHAR" />
+		<result column="profile_key" property="profileKey" jdbcType="VARCHAR" />
+		<result column="profile_index" property="profileIndex"
+			jdbcType="VARCHAR" />
+		<result column="data_type" property="dataType" jdbcType="VARCHAR" />
+		<result column="profile_value" property="profileValue"
+			jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, profile_group, profile_key, profile_index,
+		data_type,
+		profile_value, create_date,
+		update_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_info_profile
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		user_info_profile
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.UserInfoProfile">
+		insert into user_info_profile
+		(id, uid, profile_group,
+		profile_key, profile_index, data_type,
+		profile_value, create_date, update_date
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		#{profileGroup,jdbcType=VARCHAR},
+		#{profileKey,jdbcType=VARCHAR},
+		#{profileIndex,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR},
+		#{profileValue,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP}
+		)
+
+		ON DUPLICATE KEY UPDATE
+		profile_value=#{profileValue,jdbcType=VARCHAR}
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.UserInfoProfile">
+		insert into user_info_profile
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="profileGroup != null">
+				profile_group,
+			</if>
+			<if test="profileKey != null">
+				profile_key,
+			</if>
+			<if test="profileIndex != null">
+				profile_index,
+			</if>
+			<if test="dataType != null">
+				data_type,
+			</if>
+			<if test="profileValue != null">
+				profile_value,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="profileGroup != null">
+				#{profileGroup,jdbcType=VARCHAR},
+			</if>
+			<if test="profileKey != null">
+				#{profileKey,jdbcType=VARCHAR},
+			</if>
+			<if test="profileIndex != null">
+				#{profileIndex,jdbcType=VARCHAR},
+			</if>
+			<if test="dataType != null">
+				#{dataType,jdbcType=VARCHAR},
+			</if>
+			<if test="profileValue != null">
+				#{profileValue,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		<trim>
+			<if test="profileValue != null">
+				ON DUPLICATE KEY UPDATE
+				profile_value=#{profileValue,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserInfoProfile">
+		update user_info_profile
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="profileGroup != null">
+				profile_group = #{profileGroup,jdbcType=VARCHAR},
+			</if>
+			<if test="profileKey != null">
+				profile_key = #{profileKey,jdbcType=VARCHAR},
+			</if>
+			<if test="profileIndex != null">
+				profile_index = #{profileIndex,jdbcType=VARCHAR},
+			</if>
+			<if test="dataType != null">
+				data_type = #{dataType,jdbcType=VARCHAR},
+			</if>
+			<if test="profileValue != null">
+				profile_value = #{profileValue,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.UserInfoProfile">
+		update
+		user_info_profile
+		set uid = #{uid,jdbcType=INTEGER},
+		profile_group =
+		#{profileGroup,jdbcType=VARCHAR},
+		profile_key =
+		#{profileKey,jdbcType=VARCHAR},
+		profile_index =
+		#{profileIndex,jdbcType=VARCHAR},
+		data_type =
+		#{dataType,jdbcType=VARCHAR},
+		profile_value =
+		#{profileValue,jdbcType=VARCHAR},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+	<!-- 自定义方法 -->
+	<select id="selectVerifyInfo" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_info_profile
+		where id = #{id,jdbcType=INTEGER}
+		and
+		profile_group='verify'
+		and profile_key='audit_status'
+		and
+		profile_value='YES'
+	</select>
+
+	<!-- 依据id及group获取列表 -->
+	<select id="getUserInfoProfileList" resultMap="BaseResultMap"
+		parameterType="com.gop.domain.UserInfoProfile">
+		select
+		<include refid="Base_Column_List" />
+		from user_info_profile where uid = #{uid}
+	</select>
+	
+</mapper>

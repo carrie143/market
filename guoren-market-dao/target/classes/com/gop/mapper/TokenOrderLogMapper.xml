@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.TokenOrderLogMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.TokenOrderLog">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="token_order_id" property="tokenOrderId"
+			jdbcType="INTEGER" />
+		<result column="operation_type" property="operationType"
+			jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+		<result column="change_state_from" property="changeStateFrom"
+			jdbcType="VARCHAR" />
+		<result column="change_state_to" property="changeStateTo"
+			jdbcType="VARCHAR" />
+		<result column="operation_uid" property="operationUid"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, token_order_id, operation_type, create_time,
+		updatetime,
+		change_state_from, change_state_to,
+		operation_uid
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from token_order_log
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="getTokenOrderLogByTokenOrderId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from token_order_log
+		where token_order_id =
+		#{tokenOrderId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		token_order_log
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="com.gop.domain.TokenOrderLog">
+		insert into token_order_log
+		(id, token_order_id, operation_type,
+		create_time, updatetime,
+		change_state_from,
+		change_state_to, operation_uid)
+		values
+		(#{id,jdbcType=INTEGER}, #{tokenOrderId,jdbcType=INTEGER},
+		#{operationType,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updatetime,jdbcType=TIMESTAMP},
+		#{changeStateFrom,jdbcType=VARCHAR},
+		#{changeStateTo,jdbcType=VARCHAR}, #{operationUid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.TokenOrderLog">
+		insert into token_order_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="tokenOrderId != null">
+				token_order_id,
+			</if>
+			<if test="operationType != null">
+				operation_type,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updatetime != null">
+				updatetime,
+			</if>
+			<if test="changeStateFrom != null">
+				change_state_from,
+			</if>
+			<if test="changeStateTo != null">
+				change_state_to,
+			</if>
+			<if test="operationUid != null">
+				operation_uid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="tokenOrderId != null">
+				#{tokenOrderId,jdbcType=INTEGER},
+			</if>
+			<if test="operationType != null">
+				#{operationType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatetime != null">
+				#{updatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="changeStateFrom != null">
+				#{changeStateFrom,jdbcType=VARCHAR},
+			</if>
+			<if test="changeStateTo != null">
+				#{changeStateTo,jdbcType=VARCHAR},
+			</if>
+			<if test="operationUid != null">
+				#{operationUid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.TokenOrderLog">
+		update token_order_log
+		<set>
+			<if test="tokenOrderId != null">
+				token_order_id = #{tokenOrderId,jdbcType=INTEGER},
+			</if>
+			<if test="operationType != null">
+				operation_type = #{operationType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="changeStateFrom != null">
+				change_state_from = #{changeStateFrom,jdbcType=VARCHAR},
+			</if>
+			<if test="changeStateTo != null">
+				change_state_to = #{changeStateTo,jdbcType=VARCHAR},
+			</if>
+			<if test="operationUid != null">
+				operation_uid = #{operationUid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.TokenOrderLog">
+		update
+		token_order_log
+		set token_order_id = #{tokenOrderId,jdbcType=INTEGER},
+		operation_type = #{operationType,jdbcType=CHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		updatetime =
+		#{updatetime,jdbcType=TIMESTAMP},
+		change_state_from =
+		#{changeStateFrom,jdbcType=VARCHAR},
+		change_state_to =
+		#{changeStateTo,jdbcType=VARCHAR},
+		operation_uid =
+		#{operationUid,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

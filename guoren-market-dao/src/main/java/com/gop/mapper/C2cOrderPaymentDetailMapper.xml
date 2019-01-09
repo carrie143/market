@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.C2cOrderPaymentDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.C2cOrderPaymentDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="advert_id" property="advertId" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="CHAR" />
+    <result column="pay_channel_id" property="payChannelId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, advert_id, pay_type, pay_channel_id, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c2c_order_payment_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c2c_order_payment_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.C2cOrderPaymentDetail" >
+    insert into c2c_order_payment_detail (id, uid, advert_id, 
+      pay_type, pay_channel_id, create_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{advertId,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=CHAR}, #{payChannelId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.C2cOrderPaymentDetail" >
+    insert into c2c_order_payment_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="advertId != null" >
+        advert_id,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="payChannelId != null" >
+        pay_channel_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="advertId != null" >
+        #{advertId,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=CHAR},
+      </if>
+      <if test="payChannelId != null" >
+        #{payChannelId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.C2cOrderPaymentDetail" >
+    update c2c_order_payment_detail
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="advertId != null" >
+        advert_id = #{advertId,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=CHAR},
+      </if>
+      <if test="payChannelId != null" >
+        pay_channel_id = #{payChannelId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.C2cOrderPaymentDetail" >
+    update c2c_order_payment_detail
+    set uid = #{uid,jdbcType=INTEGER},
+      advert_id = #{advertId,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=CHAR},
+      pay_channel_id = #{payChannelId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectDetailByAdvertId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from c2c_order_payment_detail
+    where advert_id = #{advertId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectDetailByAdvertIdAndPaytype" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from c2c_order_payment_detail
+    where 
+    advert_id = #{advertId,jdbcType=VARCHAR}
+    and 
+    pay_type = #{payType,jdbcType=CHAR}
+  </select>
+  
+  <insert id="addC2cOrderPaymentDetail" parameterType="com.gop.domain.C2cOrderPaymentDetail" >
+    insert into c2c_order_payment_detail (uid, advert_id, 
+      pay_type, pay_channel_id)
+    values (#{uid,jdbcType=INTEGER}, #{advertId,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=CHAR}, #{payChannelId,jdbcType=INTEGER})
+  </insert>
+  
+</mapper>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserRedeemActivityConfigMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.UserRedeemActivityConfig">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="activity_name" property="activityName"
+			jdbcType="VARCHAR" />
+		<result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+		<result column="begin_date" property="beginDate" jdbcType="TIMESTAMP" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, activity_name, asset_code, begin_date, end_date, status, create_date,
+		update_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_redeem_activity_config
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_redeem_activity_config
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.UserRedeemActivityConfig">
+		insert into user_redeem_activity_config (id, activity_name,
+		asset_code,
+		begin_date, end_date, status,
+		create_date, update_date)
+		values (#{id,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR},
+		#{assetCode,jdbcType=VARCHAR},
+		#{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR},
+		#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertOrUpdate" parameterType="com.gop.domain.UserRedeemActivityConfig">
+		insert into user_redeem_activity_config (id, activity_name,
+		asset_code,
+		begin_date, end_date, status,
+		create_date, update_date)
+		values (#{id,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR},
+		#{assetCode,jdbcType=VARCHAR},
+		#{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR},
+		#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+		ON DUPLICATE KEY UPDATE
+		status = #{status},
+		begin_date = #{beginDate,jdbcType=TIMESTAMP},
+		end_date = #{endDate,jdbcType=TIMESTAMP}
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.gop.domain.UserRedeemActivityConfig">
+		insert into user_redeem_activity_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="activityName != null">
+				activity_name,
+			</if>
+			<if test="assetCode != null">
+				asset_code,
+			</if>
+			<if test="beginDate != null">
+				begin_date,
+			</if>
+			<if test="endDate != null">
+				end_date,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="activityName != null">
+				#{activityName,jdbcType=VARCHAR},
+			</if>
+			<if test="assetCode != null">
+				#{assetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="beginDate != null">
+				#{beginDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				#{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserRedeemActivityConfig">
+		update user_redeem_activity_config
+		<set>
+			<if test="activityName != null">
+				activity_name = #{activityName,jdbcType=VARCHAR},
+			</if>
+			<if test="assetCode != null">
+				asset_code = #{assetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="beginDate != null">
+				begin_date = #{beginDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				end_date = #{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.UserRedeemActivityConfig">
+		update user_redeem_activity_config
+		set activity_name = #{activityName,jdbcType=VARCHAR},
+		asset_code = #{assetCode,jdbcType=VARCHAR},
+		begin_date = #{beginDate,jdbcType=TIMESTAMP},
+		end_date = #{endDate,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=CHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date = #{updateDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getConfigListByStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_redeem_activity_config
+		<where>
+			<if test="status!=null">
+				status = #{status}
+			</if>
+		</where>
+	</select>
+</mapper>

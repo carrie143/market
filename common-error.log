@@ -1,0 +1,1198 @@
+2018-12-10 13:43:43,498 ERROR org.springframework.boot.bind.PropertiesConfigurationFactory 370 Properties configuration failed validation
+2018-12-10 13:43:43,498 ERROR org.springframework.boot.bind.PropertiesConfigurationFactory 373 Field error in object 'spring.redis' on field 'database': rejected value []; codes [typeMismatch.spring.redis.database,typeMismatch.database,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.redis.database,database]; arguments []; default message [database]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'database'; nested exception is org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.String] to type [int]]
+2018-12-10 13:43:43,499 ERROR org.springframework.boot.bind.PropertiesConfigurationFactory 373 Field error in object 'spring.redis' on field 'port': rejected value []; codes [typeMismatch.spring.redis.port,typeMismatch.port,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.redis.port,port]; arguments []; default message [port]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'port'; nested exception is org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.String] to type [int]]
+2018-12-10 13:43:43,511 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter 42 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Binding to target org.springframework.boot.autoconfigure.data.redis.RedisProperties@4a9ff419 failed:
+
+    Property: spring.redis.database
+    Value: 
+    Reason: Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'database'; nested exception is org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.String] to type [int]
+
+    Property: spring.redis.port
+    Value: 
+    Reason: Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'port'; nested exception is org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.String] to type [int]
+
+
+Action:
+
+Update your application's configuration
+
+2018-12-10 14:44:46,235 ERROR org.springframework.boot.bind.PropertiesConfigurationFactory 370 Properties configuration failed validation
+2018-12-10 14:44:46,254 ERROR org.springframework.boot.bind.PropertiesConfigurationFactory 373 Field error in object 'spring.redis' on field 'database': rejected value []; codes [typeMismatch.spring.redis.database,typeMismatch.database,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.redis.database,database]; arguments []; default message [database]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'database'; nested exception is org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.String] to type [int]]
+2018-12-10 14:44:46,254 ERROR org.springframework.boot.bind.PropertiesConfigurationFactory 373 Field error in object 'spring.redis' on field 'port': rejected value []; codes [typeMismatch.spring.redis.port,typeMismatch.port,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.redis.port,port]; arguments []; default message [port]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'port'; nested exception is org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.String] to type [int]]
+2018-12-10 14:44:46,265 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter 42 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Binding to target org.springframework.boot.autoconfigure.data.redis.RedisProperties@5535e9 failed:
+
+    Property: spring.redis.database
+    Value: 
+    Reason: Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'database'; nested exception is org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.String] to type [int]
+
+    Property: spring.redis.port
+    Value: 
+    Reason: Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'port'; nested exception is org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.String] to type [int]
+
+
+Action:
+
+Update your application's configuration
+
+2018-12-10 15:39:04,634 ERROR org.springframework.boot.SpringApplication 840 Application startup failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'commonController': Unsatisfied dependency expressed through field 'userResourceManagerServiceqiNiu'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ImageQiniuServiceImpl': Unsatisfied dependency expressed through field 'MongoManagerService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'MongoManagerServiceImpl': Unsatisfied dependency expressed through field 'gridFsTemplate'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'gridFsTemplate' defined in class path resource [org/springframework/boot/autoconfigure/data/mongo/MongoDataAutoConfiguration.class]: Unsatisfied dependency expressed through method 'gridFsTemplate' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mongoDbFactory' defined in class path resource [org/springframework/boot/autoconfigure/data/mongo/MongoDataAutoConfiguration.class]: Unsatisfied dependency expressed through method 'mongoDbFactory' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mongo' defined in class path resource [org/springframework/boot/autoconfigure/mongo/MongoAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.mongodb.MongoClient]: Factory method 'mongo' threw exception; nested exception is java.lang.IllegalArgumentException: The connection string contains an invalid host 'localhost:port'. The port 'port' is not a valid, it must be an integer between 0 and 65535
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:372) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1187) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1176) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at com.gop.GdaeMarketWebSpringbootApplication.main(GdaeMarketWebSpringbootApplication.java:22) [classes/:?]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ImageQiniuServiceImpl': Unsatisfied dependency expressed through field 'MongoManagerService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'MongoManagerServiceImpl': Unsatisfied dependency expressed through field 'gridFsTemplate'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'gridFsTemplate' defined in class path resource [org/springframework/boot/autoconfigure/data/mongo/MongoDataAutoConfiguration.class]: Unsatisfied dependency expressed through method 'gridFsTemplate' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mongoDbFactory' defined in class path resource [org/springframework/boot/autoconfigure/data/mongo/MongoDataAutoConfiguration.class]: Unsatisfied dependency expressed through method 'mongoDbFactory' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mongo' defined in class path resource [org/springframework/boot/autoconfigure/mongo/MongoAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.mongodb.MongoClient]: Factory method 'mongo' threw exception; nested exception is java.lang.IllegalArgumentException: The connection string contains an invalid host 'localhost:port'. The port 'port' is not a valid, it must be an integer between 0 and 65535
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 19 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'MongoManagerServiceImpl': Unsatisfied dependency expressed through field 'gridFsTemplate'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'gridFsTemplate' defined in class path resource [org/springframework/boot/autoconfigure/data/mongo/MongoDataAutoConfiguration.class]: Unsatisfied dependency expressed through method 'gridFsTemplate' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mongoDbFactory' defined in class path resource [org/springframework/boot/autoconfigure/data/mongo/MongoDataAutoConfiguration.class]: Unsatisfied dependency expressed through method 'mongoDbFactory' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mongo' defined in class path resource [org/springframework/boot/autoconfigure/mongo/MongoAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.mongodb.MongoClient]: Factory method 'mongo' threw exception; nested exception is java.lang.IllegalArgumentException: The connection string contains an invalid host 'localhost:port'. The port 'port' is not a valid, it must be an integer between 0 and 65535
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 19 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'gridFsTemplate' defined in class path resource [org/springframework/boot/autoconfigure/data/mongo/MongoDataAutoConfiguration.class]: Unsatisfied dependency expressed through method 'gridFsTemplate' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mongoDbFactory' defined in class path resource [org/springframework/boot/autoconfigure/data/mongo/MongoDataAutoConfiguration.class]: Unsatisfied dependency expressed through method 'mongoDbFactory' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mongo' defined in class path resource [org/springframework/boot/autoconfigure/mongo/MongoAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.mongodb.MongoClient]: Factory method 'mongo' threw exception; nested exception is java.lang.IllegalArgumentException: The connection string contains an invalid host 'localhost:port'. The port 'port' is not a valid, it must be an integer between 0 and 65535
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:749) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:467) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 19 more
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mongoDbFactory' defined in class path resource [org/springframework/boot/autoconfigure/data/mongo/MongoDataAutoConfiguration.class]: Unsatisfied dependency expressed through method 'mongoDbFactory' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mongo' defined in class path resource [org/springframework/boot/autoconfigure/mongo/MongoAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.mongodb.MongoClient]: Factory method 'mongo' threw exception; nested exception is java.lang.IllegalArgumentException: The connection string contains an invalid host 'localhost:port'. The port 'port' is not a valid, it must be an integer between 0 and 65535
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:749) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:467) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:835) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:741) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:467) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 19 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mongo' defined in class path resource [org/springframework/boot/autoconfigure/mongo/MongoAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.mongodb.MongoClient]: Factory method 'mongo' threw exception; nested exception is java.lang.IllegalArgumentException: The connection string contains an invalid host 'localhost:port'. The port 'port' is not a valid, it must be an integer between 0 and 65535
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:835) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:741) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:467) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:835) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:741) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:467) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 19 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.mongodb.MongoClient]: Factory method 'mongo' threw exception; nested exception is java.lang.IllegalArgumentException: The connection string contains an invalid host 'localhost:port'. The port 'port' is not a valid, it must be an integer between 0 and 65535
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:835) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:741) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:467) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:835) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:741) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:467) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 19 more
+Caused by: java.lang.IllegalArgumentException: The connection string contains an invalid host 'localhost:port'. The port 'port' is not a valid, it must be an integer between 0 and 65535
+	at com.mongodb.ConnectionString.validatePort(ConnectionString.java:676) ~[mongodb-driver-core-3.2.2.jar:?]
+	at com.mongodb.ConnectionString.parseHosts(ConnectionString.java:656) ~[mongodb-driver-core-3.2.2.jar:?]
+	at com.mongodb.ConnectionString.<init>(ConnectionString.java:249) ~[mongodb-driver-core-3.2.2.jar:?]
+	at com.mongodb.MongoClientURI.<init>(MongoClientURI.java:176) ~[mongodb-driver-3.2.2.jar:?]
+	at org.springframework.boot.autoconfigure.mongo.MongoProperties.createMongoClient(MongoProperties.java:217) ~[spring-boot-autoconfigure-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration.mongo(MongoAutoConfiguration.java:73) ~[spring-boot-autoconfigure-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration$$EnhancerBySpringCGLIB$$4d38b734.CGLIB$mongo$1(<generated>) ~[spring-boot-autoconfigure-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration$$EnhancerBySpringCGLIB$$4d38b734$$FastClassBySpringCGLIB$$5706b34b.invoke(<generated>) ~[spring-boot-autoconfigure-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228) ~[spring-core-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:358) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration$$EnhancerBySpringCGLIB$$4d38b734.mongo(<generated>) ~[spring-boot-autoconfigure-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_111]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_111]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_111]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_111]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:835) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:741) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:467) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:835) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:741) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:467) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1173) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1067) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 19 more
+2018-12-10 16:04:26,967 ERROR com.gop.common.CommonController 84 查询usdbtc异常
+org.springframework.web.client.ResourceAccessException: I/O error on GET request for "https://api.bitfinex.com/v1/pubticker/BTCUSD": connect timed out; nested exception is java.net.SocketTimeoutException: connect timed out
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:666) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:613) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.client.RestTemplate.getForEntity(RestTemplate.java:312) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at com.gop.common.CommonController.lambda$init$0(CommonController.java:81) ~[classes/:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:308) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java) [?:1.8.0_111]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_111]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_111]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_111]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_111]
+	at sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:668) ~[?:1.8.0_111]
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175) ~[?:1.8.0_111]
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:432) ~[?:1.8.0_111]
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:527) ~[?:1.8.0_111]
+	at sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:264) ~[?:1.8.0_111]
+	at sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:367) ~[?:1.8.0_111]
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:191) ~[?:1.8.0_111]
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1138) ~[?:1.8.0_111]
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1032) ~[?:1.8.0_111]
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:177) ~[?:1.8.0_111]
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.connect(HttpsURLConnectionImpl.java:153) ~[?:1.8.0_111]
+	at org.springframework.http.client.SimpleBufferingClientHttpRequest.executeInternal(SimpleBufferingClientHttpRequest.java:78) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:53) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:652) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 11 more
+2018-12-10 16:04:42,095 ERROR org.springframework.boot.SpringApplication 840 Application startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'enableRedisKeyspaceNotificationsInitializer' defined in class path resource [org/springframework/boot/autoconfigure/session/RedisSessionConfiguration$SpringBootRedisHttpSessionConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:372) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1187) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1176) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at com.gop.GdaeMarketWebSpringbootApplication.main(GdaeMarketWebSpringbootApplication.java:22) [classes/:?]
+Caused by: org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:198) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at redis.clients.util.Pool.getResource(Pool.java:53) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: java.net.ConnectException: Connection refused (Connection refused)
+	at redis.clients.jedis.Connection.connect(Connection.java:164) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryClient.connect(BinaryClient.java:80) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.connect(BinaryJedis.java:1677) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:87) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_111]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_111]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_111]
+	at redis.clients.jedis.Connection.connect(Connection.java:158) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryClient.connect(BinaryClient.java:80) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.connect(BinaryJedis.java:1677) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:87) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+2018-12-10 19:07:52,167 ERROR com.gop.common.CommonController 84 查询usdbtc异常
+org.springframework.web.client.ResourceAccessException: I/O error on GET request for "https://api.bitfinex.com/v1/pubticker/BTCUSD": connect timed out; nested exception is java.net.SocketTimeoutException: connect timed out
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:666) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:613) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.client.RestTemplate.getForEntity(RestTemplate.java:312) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at com.gop.common.CommonController.lambda$init$0(CommonController.java:81) ~[classes/:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:308) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java) [?:1.8.0_111]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_111]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_111]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_111]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_111]
+	at sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:668) ~[?:1.8.0_111]
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175) ~[?:1.8.0_111]
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:432) ~[?:1.8.0_111]
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:527) ~[?:1.8.0_111]
+	at sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:264) ~[?:1.8.0_111]
+	at sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:367) ~[?:1.8.0_111]
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:191) ~[?:1.8.0_111]
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1138) ~[?:1.8.0_111]
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1032) ~[?:1.8.0_111]
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:177) ~[?:1.8.0_111]
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.connect(HttpsURLConnectionImpl.java:153) ~[?:1.8.0_111]
+	at org.springframework.http.client.SimpleBufferingClientHttpRequest.executeInternal(SimpleBufferingClientHttpRequest.java:78) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:53) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:652) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 11 more
+2018-12-10 19:07:56,982 ERROR org.springframework.boot.SpringApplication 840 Application startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'enableRedisKeyspaceNotificationsInitializer' defined in class path resource [org/springframework/boot/autoconfigure/session/RedisSessionConfiguration$SpringBootRedisHttpSessionConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:372) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1187) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1176) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at com.gop.GdaeMarketWebSpringbootApplication.main(GdaeMarketWebSpringbootApplication.java:22) [classes/:?]
+Caused by: org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:198) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at redis.clients.util.Pool.getResource(Pool.java:53) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: connect timed out
+	at redis.clients.jedis.Connection.connect(Connection.java:164) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryClient.connect(BinaryClient.java:80) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.connect(BinaryJedis.java:1677) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:87) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_111]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_111]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_111]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_111]
+	at redis.clients.jedis.Connection.connect(Connection.java:158) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryClient.connect(BinaryClient.java:80) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.connect(BinaryJedis.java:1677) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:87) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+2018-12-12 10:28:06,380 ERROR org.springframework.boot.SpringApplication 840 Application startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'enableRedisKeyspaceNotificationsInitializer' defined in class path resource [org/springframework/boot/autoconfigure/session/RedisSessionConfiguration$SpringBootRedisHttpSessionConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:372) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1187) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1176) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at com.gop.GdaeMarketWebSpringbootApplication.main(GdaeMarketWebSpringbootApplication.java:22) [classes/:?]
+Caused by: org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:198) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at redis.clients.util.Pool.getResource(Pool.java:53) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: Unexpected end of stream.
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:199) ~[jedis-2.8.2.jar:?]
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.process(Protocol.java:147) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.read(Protocol.java:211) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:297) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.getStatusCodeReply(Connection.java:196) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.auth(BinaryJedis.java:2049) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:89) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+2018-12-12 10:53:43,006 ERROR org.springframework.boot.SpringApplication 840 Application startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'enableRedisKeyspaceNotificationsInitializer' defined in class path resource [org/springframework/boot/autoconfigure/session/RedisSessionConfiguration$SpringBootRedisHttpSessionConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:372) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1187) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1176) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at com.gop.GdaeMarketWebSpringbootApplication.main(GdaeMarketWebSpringbootApplication.java:22) [classes/:?]
+Caused by: org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:198) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at redis.clients.util.Pool.getResource(Pool.java:53) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: Unexpected end of stream.
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:199) ~[jedis-2.8.2.jar:?]
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.process(Protocol.java:147) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.read(Protocol.java:211) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:297) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.getStatusCodeReply(Connection.java:196) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.auth(BinaryJedis.java:2049) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:89) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+2018-12-12 10:56:28,956 ERROR org.springframework.boot.SpringApplication 840 Application startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'enableRedisKeyspaceNotificationsInitializer' defined in class path resource [org/springframework/boot/autoconfigure/session/RedisSessionConfiguration$SpringBootRedisHttpSessionConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1628) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:372) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1187) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1176) [spring-boot-1.4.5.RELEASE.jar:1.4.5.RELEASE]
+	at com.gop.GdaeMarketWebSpringbootApplication.main(GdaeMarketWebSpringbootApplication.java:22) [classes/:?]
+Caused by: org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:198) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at redis.clients.util.Pool.getResource(Pool.java:53) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: Unexpected end of stream.
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:199) ~[jedis-2.8.2.jar:?]
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.process(Protocol.java:147) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.read(Protocol.java:211) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:297) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.getStatusCodeReply(Connection.java:196) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.auth(BinaryJedis.java:2049) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:89) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration$EnableRedisKeyspaceNotificationsInitializer.afterPropertiesSet(RedisHttpSessionConfiguration.java:223) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1687) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624) ~[spring-beans-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 16 more
+2018-12-12 14:31:40,636 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:32:46,258 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:33:51,800 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:34:57,370 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:36:03,030 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:37:08,733 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:38:14,392 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:39:20,059 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:40:25,594 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:41:31,143 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:42:37,007 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:43:42,769 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:44:49,799 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:45:55,748 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:47:02,340 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:48:07,845 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:49:13,406 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:50:18,998 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:51:02,013 ERROR org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler 95 Unexpected error occurred in scheduled task.
+org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:198) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:129) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:92) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:79) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:166) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:88) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.DefaultSetOperations.members(DefaultSetOperations.java:126) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.DefaultBoundSetOperations.members(DefaultBoundSetOperations.java:91) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.RedisSessionExpirationPolicy.cleanExpiredSessions(RedisSessionExpirationPolicy.java:123) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.session.data.redis.RedisOperationsSessionRepository.cleanupExpiredSessions(RedisOperationsSessionRepository.java:398) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at sun.reflect.GeneratedMethodAccessor88.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_111]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_111]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81) [spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_111]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_111]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at redis.clients.util.Pool.getResource(Pool.java:53) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	... 25 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: Read timed out
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:202) ~[jedis-2.8.2.jar:?]
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.process(Protocol.java:147) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.read(Protocol.java:211) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:297) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.getStatusCodeReply(Connection.java:196) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.auth(BinaryJedis.java:2049) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:89) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	... 25 more
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_111]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_111]
+	at java.net.SocketInputStream.read(SocketInputStream.java:170) ~[?:1.8.0_111]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_111]
+	at java.net.SocketInputStream.read(SocketInputStream.java:127) ~[?:1.8.0_111]
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:196) ~[jedis-2.8.2.jar:?]
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.process(Protocol.java:147) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.read(Protocol.java:211) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:297) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.getStatusCodeReply(Connection.java:196) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.auth(BinaryJedis.java:2049) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:89) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	... 25 more
+2018-12-12 14:51:24,556 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:52:31,762 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:53:37,385 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:54:44,436 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:55:49,975 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:56:55,594 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:58:02,089 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 14:59:15,145 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:00:21,829 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:01:27,464 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:02:33,031 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:03:38,629 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:04:34,426 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:04:44,165 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:05:40,009 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:05:49,675 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:06:45,688 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:06:55,227 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:07:51,311 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:08:01,863 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:08:56,931 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:09:07,357 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:10:02,533 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:10:12,904 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:11:08,176 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:11:18,509 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:12:13,747 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:12:24,083 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:13:19,319 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:13:29,610 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:14:24,900 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:14:35,214 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:15:30,533 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:15:40,808 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:16:36,120 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:16:46,401 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:20:07,748 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:20:08,252 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:21:13,353 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:21:13,795 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:22:18,935 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:22:19,308 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:23:24,700 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:23:24,979 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:24:30,448 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:24:30,668 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:25:36,257 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:25:36,376 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:26:02,007 ERROR org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler 95 Unexpected error occurred in scheduled task.
+org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:198) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.getConnection(JedisConnectionFactory.java:345) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:129) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:92) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:79) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:166) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:88) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.DefaultSetOperations.members(DefaultSetOperations.java:126) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.data.redis.core.DefaultBoundSetOperations.members(DefaultBoundSetOperations.java:91) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	at org.springframework.session.data.redis.RedisSessionExpirationPolicy.cleanExpiredSessions(RedisSessionExpirationPolicy.java:123) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at org.springframework.session.data.redis.RedisOperationsSessionRepository.cleanupExpiredSessions(RedisOperationsSessionRepository.java:398) ~[spring-session-1.2.2.RELEASE.jar:?]
+	at sun.reflect.GeneratedMethodAccessor88.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_111]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_111]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65) ~[spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81) [spring-context-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_111]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_111]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+	at redis.clients.util.Pool.getResource(Pool.java:53) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	... 25 more
+Caused by: redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: Read timed out
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:202) ~[jedis-2.8.2.jar:?]
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.process(Protocol.java:147) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.read(Protocol.java:211) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:297) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.getStatusCodeReply(Connection.java:196) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.auth(BinaryJedis.java:2049) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:89) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	... 25 more
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_111]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_111]
+	at java.net.SocketInputStream.read(SocketInputStream.java:170) ~[?:1.8.0_111]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_111]
+	at java.net.SocketInputStream.read(SocketInputStream.java:127) ~[?:1.8.0_111]
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:196) ~[jedis-2.8.2.jar:?]
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.process(Protocol.java:147) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Protocol.read(Protocol.java:211) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:297) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.Connection.getStatusCodeReply(Connection.java:196) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.BinaryJedis.auth(BinaryJedis.java:2049) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisFactory.makeObject(JedisFactory.java:89) ~[jedis-2.8.2.jar:?]
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:868) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:435) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:363) ~[commons-pool2-2.4.2.jar:2.4.2]
+	at redis.clients.util.Pool.getResource(Pool.java:49) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:99) ~[jedis-2.8.2.jar:?]
+	at redis.clients.jedis.JedisPool.getResource(JedisPool.java:12) ~[jedis-2.8.2.jar:?]
+	at org.springframework.data.redis.connection.jedis.JedisConnectionFactory.fetchJedisConnector(JedisConnectionFactory.java:191) ~[spring-data-redis-1.7.8.RELEASE.jar:?]
+	... 25 more
+2018-12-12 15:26:54,883 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:26:54,883 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:28:00,458 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:28:01,405 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:29:05,954 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:29:06,973 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:30:11,451 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:30:12,667 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:31:17,076 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:31:18,253 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:32:22,663 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:32:23,853 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:33:28,439 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:33:29,575 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:34:34,095 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:34:35,271 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:35:39,987 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:35:40,873 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:36:45,552 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:36:46,446 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:37:51,116 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:37:52,013 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:38:56,695 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:38:57,502 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:40:02,269 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:40:03,012 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:41:07,785 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:41:08,652 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:42:36,344 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:42:36,344 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:43:42,006 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:43:42,006 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:44:47,659 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:44:47,659 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:47:14,942 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:47:14,942 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:48:20,510 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:48:20,510 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:51:13,249 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:51:13,249 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:52:18,814 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:52:18,815 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:53:24,475 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:53:24,475 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:54:30,039 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:54:30,040 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:55:35,600 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:55:35,600 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:56:41,162 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:56:41,162 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:57:46,652 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 15:57:46,666 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:33:37,861 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:34:43,446 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:35:49,021 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:36:54,579 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:38:00,131 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:39:53,623 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:42:03,210 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:43:08,890 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:44:14,486 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:45:20,064 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:46:25,662 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:47:31,231 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:48:36,785 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:49:42,383 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:50:48,003 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:51:53,626 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:52:59,244 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:55:17,647 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:56:23,223 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:57:28,776 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:58:34,385 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 16:59:39,981 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:00:45,569 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:01:51,153 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:02:56,917 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:04:02,538 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:05:08,195 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:06:14,435 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:07:19,951 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:08:25,628 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:09:31,323 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:11:08,099 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:12:13,741 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:13:19,462 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:14:25,013 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:48:21,749 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:49:27,317 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:50:32,879 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:51:38,486 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:52:44,058 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:53:49,638 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:54:55,206 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:56:01,713 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:57:07,283 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:58:12,888 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 17:59:18,404 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 18:53:17,629 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 18:54:21,850 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 18:55:27,436 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 18:56:33,052 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 18:57:38,618 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 18:58:44,247 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 18:59:49,900 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 19:00:55,549 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 19:02:02,050 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 19:03:07,609 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-12 19:04:13,188 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:04:24,224 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:05:29,925 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:06:35,602 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:08:07,450 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:09:13,056 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:10:18,733 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:11:24,317 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:12:50,310 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:13:55,995 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:15:02,703 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:16:08,407 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:17:14,125 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:18:19,842 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:19:25,596 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:20:31,201 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:21:36,959 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:22:42,804 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:23:48,574 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:24:54,147 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:25:59,748 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:27:05,350 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:28:11,051 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:29:18,060 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:30:59,749 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:32:05,439 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:33:11,154 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:34:18,044 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:35:23,632 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:36:29,237 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:37:34,938 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:38:40,603 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:39:46,247 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:40:51,841 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:41:57,526 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:43:03,127 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:44:08,802 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:45:14,436 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:46:19,985 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms
+2018-12-14 10:47:25,562 ERROR org.springframework.data.redis.listener.RedisMessageListenerContainer 647 Connection failure occurred. Restarting subscription task after 5000 ms

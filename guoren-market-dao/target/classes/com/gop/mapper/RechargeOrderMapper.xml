@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gop.mapper.RechargeOrderMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.RechargeOrder">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="pay_money" property="payMoney" jdbcType="DECIMAL" />
+		<result column="fee" property="fee" jdbcType="DECIMAL" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="asset" property="asset" jdbcType="CHAR" />
+		<result column="pay_channel" property="payChannel" jdbcType="VARCHAR" />
+		<result column="pay_type" property="payType" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="asset_amount" property="assetAmount" jdbcType="DECIMAL" />
+		<result column="extra_info" property="extraInfo" jdbcType="VARCHAR" />
+		<result column="request_no" property="request_no" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, pay_money, fee, user_id, asset,request_no
+		pay_channel,
+		pay_type, create_time,status,asset_amount,extra_info
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from recharge_order
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<insert id="insert" parameterType="com.gop.domain.RechargeOrder" useGeneratedKeys="true" keyProperty="id">
+		insert into recharge_order (pay_money, fee, user_id, asset,request_no,
+		pay_channel,pay_type, create_time,status,asset_amount,extra_info)
+		values (#{payMoney,jdbcType=DECIMAL}, #{fee,jdbcType=DECIMAL},
+		#{userId,jdbcType=INTEGER},
+		#{asset,jdbcType=VARCHAR},#{requestNo,jdbcType=VARCHAR},
+		#{payChannel,jdbcType=VARCHAR}, #{payType,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER},
+		#{assetAmount,jdbcType=TIMESTAMP}, #{extraInfo,jdbcType=VARCHAR})
+	</insert>
+
+	
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.RechargeOrder">
+		update recharge_order
+		<set>
+			<if test="payMoney != null">
+				pay_money = #{payMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="fee != null">
+				fee = #{fee,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="assetAmount != null">
+				asset_amount = #{assetAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="requestNo != null">
+				request_no = #{requestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="extraInfo != null">
+				extra_info = #{extraInfo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+</mapper>

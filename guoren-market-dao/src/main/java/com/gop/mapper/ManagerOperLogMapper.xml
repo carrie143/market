@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ManagerOperLogMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.ManagerOperLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <result column="ip_address" property="ipAddress" jdbcType="VARCHAR" />
+    <result column="ip_country" property="ipCountry" jdbcType="VARCHAR" />
+    <result column="ip_city" property="ipCity" jdbcType="VARCHAR" />
+    <result column="oper_type" property="operType" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, admin_id, ip_address, ip_country, ip_city, oper_type, remark, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from manager_oper_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.gop.domain.ManagerOperLog" >
+    insert into manager_oper_log (id, admin_id, ip_address, 
+      ip_country, ip_city, oper_type, 
+      remark, create_date)
+    values (#{id,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{ipAddress,jdbcType=VARCHAR}, 
+      #{ipCountry,jdbcType=VARCHAR}, #{ipCity,jdbcType=VARCHAR}, #{operType,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ManagerOperLog" >
+    insert into manager_oper_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="ipAddress != null" >
+        ip_address,
+      </if>
+      <if test="ipCountry != null" >
+        ip_country,
+      </if>
+      <if test="ipCity != null" >
+        ip_city,
+      </if>
+      <if test="operType != null" >
+        oper_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddress != null" >
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ipCountry != null" >
+        #{ipCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="ipCity != null" >
+        #{ipCity,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ManagerOperLog" >
+    update manager_oper_log
+    <set >
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddress != null" >
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ipCountry != null" >
+        ip_country = #{ipCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="ipCity != null" >
+        ip_city = #{ipCity,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        oper_type = #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ManagerOperLog" >
+    update manager_oper_log
+    set admin_id = #{adminId,jdbcType=INTEGER},
+      ip_address = #{ipAddress,jdbcType=VARCHAR},
+      ip_country = #{ipCountry,jdbcType=VARCHAR},
+      ip_city = #{ipCity,jdbcType=VARCHAR},
+      oper_type = #{operType,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="addManagerOperLog" parameterType="com.gop.domain.ManagerOperLog" >
+    insert into manager_oper_log (admin_id, ip_address, 
+      ip_country, ip_city, oper_type, 
+      remark)
+    values (#{adminId,jdbcType=INTEGER}, #{ipAddress,jdbcType=VARCHAR}, 
+      #{ipCountry,jdbcType=VARCHAR}, #{ipCity,jdbcType=VARCHAR}, #{operType,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectManagerOperLogByAdminId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from manager_oper_log
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </select>
+</mapper>

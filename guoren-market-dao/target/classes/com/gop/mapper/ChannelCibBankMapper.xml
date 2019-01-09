@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ChannelCibBankMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.ChannelCibBank">
+		<id column="bank_no" property="bankNo" jdbcType="CHAR" />
+		<result column="bank_type" property="bankType" jdbcType="CHAR" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="bank_short_name" property="bankShortName"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		bank_no, bank_type, bank_name, bank_short_name
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from channel_cib_bank
+		where bank_no = #{bankNo,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from channel_cib_bank
+		where bank_no = #{bankNo,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.ChannelCibBank">
+		insert into channel_cib_bank (bank_no, bank_type, bank_name,
+		bank_short_name)
+		values (#{bankNo,jdbcType=CHAR}, #{bankType,jdbcType=CHAR},
+		#{bankName,jdbcType=VARCHAR},
+		#{bankShortName,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.ChannelCibBank">
+		insert into channel_cib_bank
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="bankNo != null">
+				bank_no,
+			</if>
+			<if test="bankType != null">
+				bank_type,
+			</if>
+			<if test="bankName != null">
+				bank_name,
+			</if>
+			<if test="bankShortName != null">
+				bank_short_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="bankNo != null">
+				#{bankNo,jdbcType=CHAR},
+			</if>
+			<if test="bankType != null">
+				#{bankType,jdbcType=CHAR},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankShortName != null">
+				#{bankShortName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ChannelCibBank">
+		update channel_cib_bank
+		<set>
+			<if test="bankType != null">
+				bank_type = #{bankType,jdbcType=CHAR},
+			</if>
+			<if test="bankName != null">
+				bank_name = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankShortName != null">
+				bank_short_name = #{bankShortName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where bank_no = #{bankNo,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.ChannelCibBank">
+		update channel_cib_bank
+		set bank_type = #{bankType,jdbcType=CHAR},
+		bank_name = #{bankName,jdbcType=VARCHAR},
+		bank_short_name = #{bankShortName,jdbcType=VARCHAR}
+		where bank_no = #{bankNo,jdbcType=CHAR}
+	</update>
+
+
+
+	<select id="getCibBankByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from channel_cib_bank
+		where bank_name = #{bankName,jdbcType=VARCHAR}
+	</select>
+	<select id="getCibBankByShortName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from channel_cib_bank
+		where bank_short_name =
+		#{shortName,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getBankNoByName" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select
+		bank_no
+		from channel_cib_bank
+		where bank_name = #{name,jdbcType=CHAR}
+	</select>
+	<delete id="clearCibBank" parameterType="java.lang.String">
+		delete from
+		channel_cib_bank
+	</delete>
+	<select id="getBankNoByShortName" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select
+		bank_no
+		from channel_cib_bank
+		where bank_short_name =
+		#{shortName,jdbcType=CHAR}
+	</select>
+</mapper>

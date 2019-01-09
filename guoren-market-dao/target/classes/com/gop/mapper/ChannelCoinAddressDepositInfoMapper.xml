@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ChannelCoinAddressDepositInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.ChannelCoinAddressDepositInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="address_asset_code" property="addressAssetCode" jdbcType="VARCHAR" />
+    <result column="target_asset_code" property="targetAssetCode" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, address_asset_code, target_asset_code, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from channel_coin_address_deposit_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from channel_coin_address_deposit_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.ChannelCoinAddressDepositInfo" >
+    insert into channel_coin_address_deposit_info (id, address_asset_code, target_asset_code, 
+      create_date)
+    values (#{id,jdbcType=INTEGER}, #{addressAssetCode,jdbcType=VARCHAR}, #{targetAssetCode,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ChannelCoinAddressDepositInfo" >
+    insert into channel_coin_address_deposit_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="addressAssetCode != null" >
+        address_asset_code,
+      </if>
+      <if test="targetAssetCode != null" >
+        target_asset_code,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="addressAssetCode != null" >
+        #{addressAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetAssetCode != null" >
+        #{targetAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ChannelCoinAddressDepositInfo" >
+    update channel_coin_address_deposit_info
+    <set >
+      <if test="addressAssetCode != null" >
+        address_asset_code = #{addressAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetAssetCode != null" >
+        target_asset_code = #{targetAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ChannelCoinAddressDepositInfo" >
+    update channel_coin_address_deposit_info
+    set address_asset_code = #{addressAssetCode,jdbcType=VARCHAR},
+      target_asset_code = #{targetAssetCode,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getChannelCoinAddressDepositInfoByTargetAssetCode" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from channel_coin_address_deposit_info
+    where target_asset_code = #{targetAssetCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

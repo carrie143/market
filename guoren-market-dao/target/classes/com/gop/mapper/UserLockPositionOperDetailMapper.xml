@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserLockPositionOperDetailMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.UserLockPositionOperDetail">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="oper_id" property="operId" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+		<result column="total_lock_amount" property="totalLockAmount"
+			jdbcType="DECIMAL" />
+		<result column="lock_amount" property="lockAmount" jdbcType="DECIMAL" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="request_no" property="requestNo" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, oper_id, uid, asset_code, total_lock_amount,
+		lock_amount, status,
+		request_no,
+		create_date
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_lock_position_oper_detail
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<insert id="insert" parameterType="com.gop.domain.UserLockPositionOperDetail">
+		insert into
+		user_lock_position_oper_detail (id, oper_id, uid,
+		asset_code,
+		total_lock_amount, lock_amount,
+		status, request_no, create_date
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{operId,jdbcType=INTEGER},
+		#{uid,jdbcType=INTEGER},
+		#{assetCode,jdbcType=VARCHAR},
+		#{totalLockAmount,jdbcType=DECIMAL}, #{lockAmount,jdbcType=DECIMAL},
+		#{status,jdbcType=CHAR}, #{requestNo,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.UserLockPositionOperDetail">
+		insert into user_lock_position_oper_detail
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="operId != null">
+				oper_id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="assetCode != null">
+				asset_code,
+			</if>
+			<if test="totalLockAmount != null">
+				total_lock_amount,
+			</if>
+			<if test="lockAmount != null">
+				lock_amount,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="requestNo != null">
+				request_no,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="operId != null">
+				#{operId,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="assetCode != null">
+				#{assetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="totalLockAmount != null">
+				#{totalLockAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="lockAmount != null">
+				#{lockAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="requestNo != null">
+				#{requestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserLockPositionOperDetail">
+		update user_lock_position_oper_detail
+		<set>
+			<if test="operId != null">
+				oper_id = #{operId,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="assetCode != null">
+				asset_code = #{assetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="totalLockAmount != null">
+				total_lock_amount = #{totalLockAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="lockAmount != null">
+				lock_amount = #{lockAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="requestNo != null">
+				request_no = #{requestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.UserLockPositionOperDetail">
+		update
+		user_lock_position_oper_detail
+		set oper_id =
+		#{operId,jdbcType=INTEGER},
+		uid = #{uid,jdbcType=INTEGER},
+		asset_code =
+		#{assetCode,jdbcType=VARCHAR},
+		total_lock_amount =
+		#{totalLockAmount,jdbcType=DECIMAL},
+		lock_amount =
+		#{lockAmount,jdbcType=DECIMAL},
+		status = #{status,jdbcType=CHAR},
+		request_no = #{requestNo,jdbcType=VARCHAR},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="getUserOperationList" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM user_lock_position_oper_detail
+		<where>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER}
+			</if>
+			<if test="assetCode != null and assetCode != ''">
+				and asset_code =	#{assetCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+		ORDER BY id DESC LIMIT #{start}, #{pageSize}
+	</select>
+
+	<select id="countUserOperation" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		SELECT count(*)
+		FROM user_lock_position_oper_detail
+		<where>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+	<insert id="addUserLockPositionOperDetail" parameterType="com.gop.domain.UserLockPositionOperDetail">
+		insert
+		into user_lock_position_oper_detail (oper_id, uid,
+		asset_code,
+		total_lock_amount, lock_amount,
+		status, request_no)
+		values
+		(#{operId,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		#{assetCode,jdbcType=VARCHAR}, #{totalLockAmount,jdbcType=DECIMAL},
+		#{lockAmount,jdbcType=DECIMAL},
+		#{status,jdbcType=CHAR},
+		#{requestNo,jdbcType=VARCHAR})
+	</insert>
+</mapper>

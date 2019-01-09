@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ChannelCoinAddressWithdrawMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.ChannelCoinAddressWithdraw">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="auth_status" property="authStatus" jdbcType="CHAR" />
+		<result column="coin_address" property="coinAddress" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="create_ip" property="createIp" jdbcType="CHAR" />
+		<result column="inner_address" property="innerAddress"
+			jdbcType="CHAR" />
+		<result column="del_flag" property="delFlag" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, asset_code, name,auth_status, coin_address, create_date,
+		update_date,
+		create_ip, inner_address,
+		del_flag
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from channel_coin_address_withdraw
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		channel_coin_address_withdraw
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.ChannelCoinAddressWithdraw">
+		insert into
+		channel_coin_address_withdraw (id, uid, asset_code,
+		name,auth_status, coin_address,
+		create_date,
+		update_date, create_ip, inner_address,
+		del_flag)
+		values
+		(#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		#{assetCode,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},#{authStatus,jdbcType=CHAR},
+		#{coinAddress,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP}, #{createIp,jdbcType=CHAR},
+		#{innerAddress,jdbcType=CHAR},
+		#{delFlag,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.ChannelCoinAddressWithdraw">
+		insert into channel_coin_address_withdraw
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="assetCode != null">
+				asset_code,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="authStatus != null">
+				auth_status,
+			</if>
+			<if test="coinAddress != null">
+				coin_address,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="createIp != null">
+				create_ip,
+			</if>
+			<if test="innerAddress != null">
+				inner_address,
+			</if>
+			<if test="delFlag != null">
+				del_flag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="assetCode != null">
+				#{assetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="authStatus != null">
+				#{authStatus,jdbcType=CHAR},
+			</if>
+			<if test="coinAddress != null">
+				#{coinAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createIp != null">
+				#{createIp,jdbcType=CHAR},
+			</if>
+			<if test="innerAddress != null">
+				#{innerAddress,jdbcType=CHAR},
+			</if>
+			<if test="delFlag != null">
+				#{delFlag,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ChannelCoinAddressWithdraw">
+		update channel_coin_address_withdraw
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="assetCode != null">
+				asset_code = #{assetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="authStatus != null">
+				auth_status = #{authStatus,jdbcType=CHAR},
+			</if>
+			<if test="coinAddress != null">
+				coin_address = #{coinAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createIp != null">
+				create_ip = #{createIp,jdbcType=CHAR},
+			</if>
+			<if test="innerAddress != null">
+				inner_address = #{innerAddress,jdbcType=CHAR},
+			</if>
+			<if test="delFlag != null">
+				del_flag = #{delFlag,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.ChannelCoinAddressWithdraw">
+		update
+		channel_coin_address_withdraw
+		set uid = #{uid,jdbcType=INTEGER},
+		asset_code = #{assetCode,jdbcType=VARCHAR},
+		name =
+		#{name,jdbcType=VARCHAR},
+		auth_status =
+		#{authStatus,jdbcType=CHAR},
+		coin_address =
+		#{coinAddress,jdbcType=VARCHAR},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP},
+		create_ip =
+		#{createIp,jdbcType=CHAR},
+		inner_address =
+		#{innerAddress,jdbcType=CHAR},
+		del_flag = #{delFlag,jdbcType=CHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+
+	<!-- 自定义方法 -->
+
+	<select id="selectForUpdate" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from channel_coin_address_withdraw
+		where id = #{id,jdbcType=INTEGER}
+		for update
+	</select>
+
+
+	<select id="selectByUidCoinAddress" resultMap="BaseResultMap">
+		select 
+			<include refid="Base_Column_List" /> 
+		from
+			channel_coin_address_withdraw 
+		where 
+			uid = #{uid} 
+			and coin_address= #{coinAddress}
+			and asset_code= #{assetCode}
+	</select>
+
+	<select id="getAddress" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from channel_coin_address_withdraw
+		where
+		uid = #{uid,jdbcType=INTEGER}
+		and del_flag = 'false'
+		and asset_code = #{assetCode,jdbcType=VARCHAR}
+
+	</select>
+	
+	<select id="selectByAddressAndAssetCodeNotDel" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from channel_coin_address_withdraw
+		where
+		uid = #{uid}
+		and coin_address = #{address,jdbcType=VARCHAR}
+		and del_flag = 'false'
+		and asset_code = #{assetCode,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="countMemoByUidAndAssetCodeAndStatus" resultType="java.lang.Integer">
+		select
+		count(1)
+		from channel_coin_address_withdraw
+		where
+		uid = #{uid}
+		and del_flag = 'false'
+		and asset_code = #{assetCode,jdbcType=VARCHAR}
+		and name = #{memo,jdbcType=VARCHAR}
+	</select>
+
+
+</mapper>

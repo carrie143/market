@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserRedeemActivityDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.UserRedeemActivityDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="redeem_id" property="redeemId" jdbcType="INTEGER" />
+    <result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="request_no" property="requestNo" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, redeem_id, asset_code, amount, request_no, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_redeem_activity_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.gop.domain.UserRedeemActivityDetail" >
+    insert into user_redeem_activity_detail (id, uid, redeem_id, 
+      asset_code, amount, request_no, 
+      create_date)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{redeemId,jdbcType=INTEGER}, 
+      #{assetCode,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{requestNo,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.UserRedeemActivityDetail" >
+    insert into user_redeem_activity_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="redeemId != null" >
+        redeem_id,
+      </if>
+      <if test="assetCode != null" >
+        asset_code,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="requestNo != null" >
+        request_no,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="redeemId != null" >
+        #{redeemId,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="requestNo != null" >
+        #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserRedeemActivityDetail" >
+    update user_redeem_activity_detail
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="redeemId != null" >
+        redeem_id = #{redeemId,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        asset_code = #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="requestNo != null" >
+        request_no = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.UserRedeemActivityDetail" >
+    update user_redeem_activity_detail
+    set uid = #{uid,jdbcType=INTEGER},
+      redeem_id = #{redeemId,jdbcType=INTEGER},
+      asset_code = #{assetCode,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      request_no = #{requestNo,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="addUserRedeemActivityDetail" parameterType="com.gop.domain.UserRedeemActivityDetail" >
+    insert into user_redeem_activity_detail (uid, redeem_id, 
+      asset_code, amount, request_no)
+    values (#{uid,jdbcType=INTEGER}, #{redeemId,jdbcType=INTEGER}, 
+      #{assetCode,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{requestNo,jdbcType=VARCHAR})
+  </insert>
+</mapper>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.InviteUserRewardRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.InviteUserRewardRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="invite_type" property="inviteType" jdbcType="CHAR" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="reward_asset_code" property="rewardAssetCode" jdbcType="VARCHAR" />
+    <result column="reward_amount" property="rewardAmount" jdbcType="DECIMAL" />
+    <result column="request_no" property="requestNo" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, invite_type, activity_id, reward_asset_code, reward_amount, request_no, 
+    create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from invite_user_reward_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from invite_user_reward_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.InviteUserRewardRecord" >
+    insert into invite_user_reward_record (id, uid, invite_type, 
+      activity_id, reward_asset_code, reward_amount, 
+      request_no, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{inviteType,jdbcType=CHAR}, 
+      #{activityId,jdbcType=INTEGER}, #{rewardAssetCode,jdbcType=VARCHAR}, #{rewardAmount,jdbcType=DECIMAL}, 
+      #{requestNo,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.InviteUserRewardRecord" >
+    insert into invite_user_reward_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="inviteType != null" >
+        invite_type,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="rewardAssetCode != null" >
+        reward_asset_code,
+      </if>
+      <if test="rewardAmount != null" >
+        reward_amount,
+      </if>
+      <if test="requestNo != null" >
+        request_no,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="inviteType != null" >
+        #{inviteType,jdbcType=CHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="rewardAssetCode != null" >
+        #{rewardAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardAmount != null" >
+        #{rewardAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="requestNo != null" >
+        #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.InviteUserRewardRecord" >
+    update invite_user_reward_record
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="inviteType != null" >
+        invite_type = #{inviteType,jdbcType=CHAR},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="rewardAssetCode != null" >
+        reward_asset_code = #{rewardAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardAmount != null" >
+        reward_amount = #{rewardAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="requestNo != null" >
+        request_no = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.InviteUserRewardRecord" >
+    update invite_user_reward_record
+    set uid = #{uid,jdbcType=INTEGER},
+      invite_type = #{inviteType,jdbcType=CHAR},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      reward_asset_code = #{rewardAssetCode,jdbcType=VARCHAR},
+      reward_amount = #{rewardAmount,jdbcType=DECIMAL},
+      request_no = #{requestNo,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getInviteUserRewardRecordListByUidAndActivityId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from invite_user_reward_record
+    where uid = #{uid,jdbcType=INTEGER}
+    and activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  <select id="getInviteUserRewardRecordListByUidAndActivityIdAndType" resultMap="BaseResultMap">
+    select 
+    reward_asset_code,(SUM(reward_amount)) as reward_amount
+    from invite_user_reward_record
+    where uid = #{uid,jdbcType=INTEGER}
+    and activity_id = #{activityId,jdbcType=INTEGER}
+    and invite_type = #{inviteType,jdbcType=CHAR}
+    group by reward_asset_code
+  </select>
+  <select id="countInviteUserRewardRecordByUidAndActivityIdAndType" resultType="java.lang.Integer">
+    select 
+    count(1)
+    from invite_user_reward_record
+    where uid = #{uid,jdbcType=INTEGER}
+    and activity_id = #{activityId,jdbcType=INTEGER}
+    and invite_type = #{inviteType,jdbcType=CHAR}
+  </select>
+  
+</mapper>

@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.TradeMatchResultMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.TradeMatchResult">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="symbol" property="symbol" jdbcType="VARCHAR" />
+		<result column="buy_inner_order_no" property="buyInnerOrderNo"
+			jdbcType="CHAR" />
+		<result column="sell_inner_order_no" property="sellInnerOrderNo"
+			jdbcType="CHAR" />
+		<result column="buy_request_no" property="buyRequestNo"
+			jdbcType="CHAR" />
+		<result column="sell_request_no" property="sellRequestNo"
+			jdbcType="CHAR" />
+		<result column="sell_broker_id" property="sellBrokerId"
+			jdbcType="CHAR" />
+		<result column="buy_broker_id" property="buyBrokerId" jdbcType="CHAR" />
+		<result column="number" property="number" jdbcType="DECIMAL" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+
+		<result column="buy_fee" property="buyFee" jdbcType="DECIMAL" />
+		<result column="sell_fee" property="sellFee" jdbcType="DECIMAL" />
+		<result column="buy_uid" property="buyUid" jdbcType="INTEGER" />
+		<result column="sell_uid" property="sellUid" jdbcType="INTEGER" />
+
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="countResultMap" type="com.gop.domain.TradeCountResult">
+		<result column="number" property="number" jdbcType="DECIMAL" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="total" property="total" jdbcType="INTEGER" />
+		<result column="buy_fee" property="buyFee" jdbcType="DECIMAL" />
+		<result column="sell_fee" property="sellFee" jdbcType="DECIMAL" />
+	</resultMap>
+	<resultMap id="tradeStatisticeMap" type="com.gop.domain.StatisticeResult">
+		<result column="symbol" property="symbol" jdbcType="VARCHAR" />
+		<result column="tradeNumber" property="tradeNumber" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="trade_Column_List">
+		symbol,sum(number) as tradeNumber
+	</sql>
+	<sql id="buy_Column_List">
+		symbol,sum(buy_fee) as tradeNumber
+	</sql>
+	<sql id="sell_Column_List">
+		symbol,sum(sell_fee) as tradeNumber
+	</sql>
+	<sql id="Base_Column_List">
+		id, symbol, buy_inner_order_no, sell_inner_order_no,
+		buy_request_no, sell_request_no,
+		number, price,buy_fee,sell_fee,
+		buy_uid,
+		sell_uid,buy_broker_id,sell_broker_id,
+		create_time
+	</sql>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		trade_match_result
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.gop.domain.TradeMatchResult">
+		insert into trade_match_result
+		(id, symbol, buy_inner_order_no,
+		sell_inner_order_no, buy_request_no,
+		sell_request_no,
+		number, price, buy_uid, sell_uid,
+		create_time)
+		values
+		(#{id,jdbcType=BIGINT},
+		#{symbol,jdbcType=VARCHAR},
+		#{buyInnerOrderNo,jdbcType=CHAR},
+		#{sellInnerOrderNo,jdbcType=CHAR},
+		#{buyRequestNo,jdbcType=CHAR},
+		#{sellRequestNo,jdbcType=CHAR},
+		#{number,jdbcType=DECIMAL},
+		#{price,jdbcType=DECIMAL},
+		#{buyUid,jdbcType=INTEGER},
+		#{sellUid,jdbcType=INTEGER},
+
+		#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gop.domain.TradeMatchResult">
+		insert into trade_match_result
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="symbol != null">
+				symbol,
+			</if>
+			<if test="buyInnerOrderNo != null">
+				buy_inner_order_no,
+			</if>
+			<if test="sellInnerOrderNo != null">
+				sell_inner_order_no,
+			</if>
+			<if test="buyRequestNo != null">
+				buy_request_no,
+			</if>
+			<if test="sellRequestNo != null">
+				sell_request_no,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="buyFee != null">
+				buy_fee,
+			</if>
+			<if test="sellFee != null">
+				sell_fee,
+			</if>
+			<if test="buyUid != null">
+				buy_uid,
+			</if>
+			<if test="sellUid != null">
+				sell_uid,
+			</if>
+			<if test="buyBrokerId != null">
+				buy_broker_id,
+			</if>
+			<if test="sellBrokerId != null">
+				sell_broker_id,
+			</if>
+
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="symbol != null">
+				#{symbol,jdbcType=VARCHAR},
+			</if>
+			<if test="buyInnerOrderNo != null">
+				#{buyInnerOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="sellInnerOrderNo != null">
+				#{sellInnerOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="buyRequestNo != null">
+				#{buyRequestNo,jdbcType=CHAR},
+			</if>
+			<if test="sellRequestNo != null">
+				#{sellRequestNo,jdbcType=CHAR},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="buyFee != null">
+				#{buyFee,jdbcType=DECIMAL},
+			</if>
+			<if test="sellFee != null">
+				#{sellFee,jdbcType=DECIMAL},
+			</if>
+
+			<if test="buyUid != null">
+				#{buyUid,jdbcType=INTEGER},
+			</if>
+			<if test="sellUid != null">
+				#{sellUid,jdbcType=INTEGER},
+			</if>
+			<if test="buyBrokerId != null">
+				#{buyBrokerId,jdbcType=INTEGER},
+			</if>
+			<if test="sellBrokerId != null">
+				#{sellBrokerId,jdbcType=INTEGER},
+			</if>
+
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.TradeMatchResult">
+		update trade_match_result
+		<set>
+			<if test="symbol != null">
+				symbol = #{symbol,jdbcType=VARCHAR},
+			</if>
+			<if test="buyInnerOrderNo != null">
+				buy_inner_order_no = #{buyInnerOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="sellInnerOrderNo != null">
+				sell_inner_order_no = #{sellInnerOrderNo,jdbcType=CHAR},
+			</if>
+			<if test="buyRequestNo != null">
+				buy_request_no = #{buyRequestNo,jdbcType=CHAR},
+			</if>
+			<if test="sellRequestNo != null">
+				sell_request_no = #{sellRequestNo,jdbcType=CHAR},
+			</if>
+			<if test="number != null">
+				number = #{number,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+
+			<if test="buyFee != null">
+				buy_fee = #{buyFee,jdbcType=DECIMAL},
+			</if>
+			<if test="sellFee != null">
+				sell_fee = #{sellFee,jdbcType=DECIMAL},
+			</if>
+			<if test="buyUid != null">
+				buy_uid = #{buyUid,jdbcType=INTEGER},
+			</if>
+			<if test="sellUid != null">
+				sell_uid = #{sellUid,jdbcType=INTEGER},
+			</if>
+			<if test="buyBrokerId != null">
+				buy_broker_id= #{buyBrokerId,jdbcType=INTEGER},
+			</if>
+			<if test="sellBrokerId != null">
+				sell_broker_id=#{sellBrokerId,jdbcType=INTEGER},
+			</if>
+
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.TradeMatchResult">
+		update
+		trade_match_result
+		set symbol = #{symbol,jdbcType=VARCHAR},
+		buy_inner_order_no = #{buyInnerOrderNo,jdbcType=CHAR},
+		sell_inner_order_no = #{sellInnerOrderNo,jdbcType=CHAR},
+		buy_request_no = #{buyRequestNo,jdbcType=CHAR},
+		sell_request_no =
+		#{sellRequestNo,jdbcType=CHAR},
+		number = #{number,jdbcType=DECIMAL},
+		price = #{price,jdbcType=DECIMAL},
+		buy_uid =
+		#{buyUid,jdbcType=INTEGER},
+		sell_uid = #{sellUid,jdbcType=INTEGER},
+
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP}
+		where id =
+		#{id,jdbcType=BIGINT}
+	</update>
+
+
+
+	<!-- 自定义方法实现 -->
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="com.gop.domain.TradeRecordKey">
+		select
+		<include refid="Base_Column_List" />
+		from trade_match_result
+		where buy_inner_order_no =
+		#{buyTradeNo,jdbcType=CHAR}
+		and sell_inner_order_no =
+		#{sellTradeNo,jdbcType=CHAR}
+	</select>
+
+	<select id="getRecordByBuyUid" resultMap="BaseResultMap"
+		parameterType="com.gop.domain.TradeRecordKey">
+		select
+		<include refid="Base_Column_List" />
+		from trade_match_result
+		where buy_uid =#{buyUid}
+	</select>
+
+	<select id="getRecordBySellUid" resultMap="BaseResultMap"
+		parameterType="com.gop.domain.TradeRecordKey">
+		select
+		<include refid="Base_Column_List" />
+		from trade_match_result
+		where sell_uid =#{sellUid}
+	</select>
+
+	<select id="getTradeByBuyInnerOrderNo" resultMap="BaseResultMap"
+		parameterType="com.gop.domain.TradeRecordKey">
+		select
+		<include refid="Base_Column_List" />
+		from trade_match_result
+		where buy_inner_order_no =#{transcationNo}
+	</select>
+
+	<select id="getTradeBySellInnerOrderNo" resultMap="BaseResultMap"
+		parameterType="com.gop.domain.TradeRecordKey">
+		select
+		<include refid="Base_Column_List" />
+		from trade_match_result
+		where sell_inner_order_no =#{transcationNo}
+	</select>
+	<select id="getMatchResult" resultMap="BaseResultMap"
+		parameterType="com.gop.domain.TradeRecordKey">
+		select
+		<include refid="Base_Column_List" />
+		from trade_match_result
+
+	</select>
+
+	<select id="queryOrders" resultMap="BaseResultMap">
+		<choose>
+			<when test="brokerId != null">
+				select
+				<include refid="Base_Column_List" />
+				from trade_match_result
+				<where>
+					<if test="brokerId != null">
+						( sell_broker_id = #{brokerId} or buy_broker_id =
+						#{brokerId} )
+					</if>
+					<if test="symbol != null">
+						and symbol = #{symbol}
+					</if>
+					<if test="buyTid != null">
+						and buy_inner_order_no = #{buyTid}
+					</if>
+					<if test="buyUid != null">
+						and buy_uid = #{buyUid}
+					</if>
+					<if test="sellTid != null">
+						and sell_inner_order_no = #{sellTid}
+					</if>
+					<if test="sellUid != null">
+						and sell_uid = #{sellUid}
+					</if>
+				</where>
+			</when>
+			<otherwise>
+				select
+				<include refid="Base_Column_List" />
+				from trade_match_result
+				<where>
+					<if test="symbol != null">
+						symbol = #{symbol}
+					</if>
+					<if test="buyTid != null">
+						and buy_inner_order_no = #{buyTid}
+					</if>
+					<if test="buyUid != null">
+						and buy_uid = #{buyUid}
+					</if>
+					<if test="sellTid != null">
+						and sell_inner_order_no = #{sellTid}
+					</if>
+					<if test="sellUid != null">
+						and sell_uid = #{sellUid}
+					</if>
+				</where>
+			</otherwise>
+		</choose>
+
+	</select>
+
+	<select id="countTradeMatchResult" resultMap="countResultMap">
+			select COUNT(1) as 'total', SUM(buy_fee) as 'buy_fee',SUM(sell_fee) as 'sell_fee',SUM(number) as 'number', SUM(number * price) as 'amount'
+			from trade_match_result
+				<where>
+					<if test="brokerId != null">
+						( sell_broker_id = #{brokerId} or buy_broker_id =
+						#{brokerId} )
+					</if>
+					<if test="symbol != null">
+						and symbol = #{symbol}
+					</if>
+					<if test="tid != null">
+						and ( buy_inner_order_no = #{tid} or sell_inner_order_no = #{tid} )
+					</if>
+					<if test="uid != null">
+						and ( buy_uid = #{uid} or sell_uid = #{uid} )
+					</if>
+					<if test="beginTime != null">
+						and create_time <![CDATA[>]]> #{beginTime}
+					</if>
+					<if test="endTime != null">
+						and create_time <![CDATA[<]]> #{endTime}
+					</if>
+				</where>
+	</select>
+
+	<select id="queryTradeOrders" resultMap="BaseResultMap">
+				select
+				<include refid="Base_Column_List" />
+				from trade_match_result
+				<where>
+					<if test="brokerId != null">
+					( sell_broker_id = #{brokerId} or buy_broker_id =
+						#{brokerId} )
+					</if>
+					<if test="symbol != null">
+						and symbol = #{symbol}
+					</if>
+					<if test="tid != null">
+						and ( buy_inner_order_no = #{tid} or sell_inner_order_no = #{tid} )
+					</if>
+					<if test="uid != null">
+						and ( buy_uid = #{uid} or sell_uid = #{uid} )
+					</if>
+					<if test="beginTime != null">
+						and create_time <![CDATA[>]]> #{beginTime}
+					</if>
+					<if test="endTime != null">
+						and create_time <![CDATA[<]]> #{endTime}
+					</if>
+					and id >= (select id from trade_match_result order by id limit #{offset},1)
+				</where>
+		ORDER BY create_time desc limit #{pageSize}
+	</select>
+	<select id="getBuyFee" resultMap="tradeStatisticeMap">
+		select
+		<include refid="buy_Column_List" />
+		from trade_match_result
+		<where>
+			<if test="assetCode != null">
+				and symbol like concat('%_',#{assetCode})
+			</if>
+			<if test="startDate != null">
+				and create_time <![CDATA[>]]> #{startDate}
+			</if>
+			<if test="endDate != null">
+				and create_time <![CDATA[<]]> #{endDate}
+			</if>
+		</where>
+	</select>
+
+	<select id="getSellFee" resultMap="tradeStatisticeMap">
+		select
+		<include refid="sell_Column_List" />
+		from trade_match_result
+		<where>
+			<if test="assetCode != null">
+				and symbol like concat(#{assetCode},'_%')
+			</if>
+			<if test="startDate != null">
+				and create_time <![CDATA[>]]> #{startDate}
+			</if>
+			<if test="endDate != null">
+				and create_time <![CDATA[<]]> #{endDate}
+			</if>
+		</where>
+	</select>
+
+	<select id="getTradeAmount" resultMap="tradeStatisticeMap">
+		select
+		<include refid="trade_Column_List" />
+		from trade_match_result
+		where buy_uid = #{uid} or sell_uid = #{uid}
+		group by symbol
+	</select>
+
+	<select id="getNumberBySymbol" resultMap="tradeStatisticeMap">
+		select
+		<include refid="trade_Column_List" />
+		from trade_match_result
+		where create_time <![CDATA[>]]> date_add(NOW(), interval -1 day)
+		group by symbol
+	</select>
+</mapper>

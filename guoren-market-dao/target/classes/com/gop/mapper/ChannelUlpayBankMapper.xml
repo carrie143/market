@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ChannelUlpayBankMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.ChannelUlpayBank" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="bank_name" property="bankName" jdbcType="CHAR" />
+    <result column="pay_type" property="payType" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, bank_name, pay_type, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from channel_ulpay_bank
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from channel_ulpay_bank
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.ChannelUlpayBank" >
+    insert into channel_ulpay_bank (id, bank_name, pay_type, 
+      remark)
+    values (#{id,jdbcType=CHAR}, #{bankName,jdbcType=CHAR}, #{payType,jdbcType=CHAR}, 
+      #{remark,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ChannelUlpayBank" >
+    insert into channel_ulpay_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=CHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ChannelUlpayBank" >
+    update channel_ulpay_bank
+    <set >
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=CHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ChannelUlpayBank" >
+    update channel_ulpay_bank
+    set bank_name = #{bankName,jdbcType=CHAR},
+      pay_type = #{payType,jdbcType=CHAR},
+      remark = #{remark,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  
+  
+  <!-- 自定义方法 getBankByName -->
+  <select id="getBankByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from channel_ulpay_bank
+    where bank_name = #{bankName,jdbcType=CHAR}
+    limit 1
+  </select>
+</mapper>

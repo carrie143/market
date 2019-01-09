@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ChannelAlipayOrderDepositMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.ChannelAlipayOrderDeposit" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
+    <result column="recorded_date" property="recordedDate" jdbcType="TIMESTAMP" />
+    <result column="transaction_no" property="transactionNo" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="business_no" property="businessNo" jdbcType="VARCHAR" />
+    <result column="transfer_type" property="transferType" jdbcType="VARCHAR" />
+    <result column="income" property="income" jdbcType="VARCHAR" />
+    <result column="expenditure" property="expenditure" jdbcType="VARCHAR" />
+    <result column="account_balance" property="accountBalance" jdbcType="VARCHAR" />
+    <result column="service_charge" property="serviceCharge" jdbcType="VARCHAR" />
+    <result column="payment_channels" property="paymentChannels" jdbcType="VARCHAR" />
+    <result column="contract_product" property="contractProduct" jdbcType="VARCHAR" />
+    <result column="reciprocal_account" property="reciprocalAccount" jdbcType="VARCHAR" />
+    <result column="reciprocal_name" property="reciprocalName" jdbcType="VARCHAR" />
+    <result column="bank_order" property="bankOrder" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, account_no, recorded_date, transaction_no, order_no, business_no, transfer_type, 
+    income, expenditure, account_balance, service_charge, payment_channels, contract_product, 
+    reciprocal_account, reciprocal_name, bank_order, product_name, remark, create_date, 
+    file_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from channel_alipay_order_deposit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from channel_alipay_order_deposit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.ChannelAlipayOrderDeposit" >
+    insert into channel_alipay_order_deposit (id, account_no, recorded_date, 
+      transaction_no, order_no, business_no, 
+      transfer_type, income, expenditure, 
+      account_balance, service_charge, payment_channels, 
+      contract_product, reciprocal_account, reciprocal_name, 
+      bank_order, product_name, remark, 
+      create_date, file_name)
+    values (#{id,jdbcType=INTEGER}, #{accountNo,jdbcType=VARCHAR}, #{recordedDate,jdbcType=TIMESTAMP}, 
+      #{transactionNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{businessNo,jdbcType=VARCHAR}, 
+      #{transferType,jdbcType=VARCHAR}, #{income,jdbcType=VARCHAR}, #{expenditure,jdbcType=VARCHAR}, 
+      #{accountBalance,jdbcType=VARCHAR}, #{serviceCharge,jdbcType=VARCHAR}, #{paymentChannels,jdbcType=VARCHAR}, 
+      #{contractProduct,jdbcType=VARCHAR}, #{reciprocalAccount,jdbcType=VARCHAR}, #{reciprocalName,jdbcType=VARCHAR}, 
+      #{bankOrder,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{fileName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ChannelAlipayOrderDeposit" >
+    insert into channel_alipay_order_deposit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="accountNo != null" >
+        account_no,
+      </if>
+      <if test="recordedDate != null" >
+        recorded_date,
+      </if>
+      <if test="transactionNo != null" >
+        transaction_no,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="businessNo != null" >
+        business_no,
+      </if>
+      <if test="transferType != null" >
+        transfer_type,
+      </if>
+      <if test="income != null" >
+        income,
+      </if>
+      <if test="expenditure != null" >
+        expenditure,
+      </if>
+      <if test="accountBalance != null" >
+        account_balance,
+      </if>
+      <if test="serviceCharge != null" >
+        service_charge,
+      </if>
+      <if test="paymentChannels != null" >
+        payment_channels,
+      </if>
+      <if test="contractProduct != null" >
+        contract_product,
+      </if>
+      <if test="reciprocalAccount != null" >
+        reciprocal_account,
+      </if>
+      <if test="reciprocalName != null" >
+        reciprocal_name,
+      </if>
+      <if test="bankOrder != null" >
+        bank_order,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recordedDate != null" >
+        #{recordedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transactionNo != null" >
+        #{transactionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessNo != null" >
+        #{businessNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transferType != null" >
+        #{transferType,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="expenditure != null" >
+        #{expenditure,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBalance != null" >
+        #{accountBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceCharge != null" >
+        #{serviceCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentChannels != null" >
+        #{paymentChannels,jdbcType=VARCHAR},
+      </if>
+      <if test="contractProduct != null" >
+        #{contractProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="reciprocalAccount != null" >
+        #{reciprocalAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="reciprocalName != null" >
+        #{reciprocalName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOrder != null" >
+        #{bankOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ChannelAlipayOrderDeposit" >
+    update channel_alipay_order_deposit
+    <set >
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="recordedDate != null" >
+        recorded_date = #{recordedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transactionNo != null" >
+        transaction_no = #{transactionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessNo != null" >
+        business_no = #{businessNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transferType != null" >
+        transfer_type = #{transferType,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        income = #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="expenditure != null" >
+        expenditure = #{expenditure,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBalance != null" >
+        account_balance = #{accountBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceCharge != null" >
+        service_charge = #{serviceCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentChannels != null" >
+        payment_channels = #{paymentChannels,jdbcType=VARCHAR},
+      </if>
+      <if test="contractProduct != null" >
+        contract_product = #{contractProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="reciprocalAccount != null" >
+        reciprocal_account = #{reciprocalAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="reciprocalName != null" >
+        reciprocal_name = #{reciprocalName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOrder != null" >
+        bank_order = #{bankOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ChannelAlipayOrderDeposit" >
+    update channel_alipay_order_deposit
+    set account_no = #{accountNo,jdbcType=VARCHAR},
+      recorded_date = #{recordedDate,jdbcType=TIMESTAMP},
+      transaction_no = #{transactionNo,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      business_no = #{businessNo,jdbcType=VARCHAR},
+      transfer_type = #{transferType,jdbcType=VARCHAR},
+      income = #{income,jdbcType=VARCHAR},
+      expenditure = #{expenditure,jdbcType=VARCHAR},
+      account_balance = #{accountBalance,jdbcType=VARCHAR},
+      service_charge = #{serviceCharge,jdbcType=VARCHAR},
+      payment_channels = #{paymentChannels,jdbcType=VARCHAR},
+      contract_product = #{contractProduct,jdbcType=VARCHAR},
+      reciprocal_account = #{reciprocalAccount,jdbcType=VARCHAR},
+      reciprocal_name = #{reciprocalName,jdbcType=VARCHAR},
+      bank_order = #{bankOrder,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      file_name = #{fileName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

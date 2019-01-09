@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.TokenOrderMapper">
+	<resultMap id="BaseResultMap" type="com.gop.domain.TokenOrder">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="token_intention_id" property="tokenIntentionId"
+			jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="INTEGER" />
+		<result column="asset_name" property="assetName" jdbcType="VARCHAR" />
+		<result column="num" property="num" jdbcType="DECIMAL" />
+		<result column="buy_uid" property="buyUid" jdbcType="INTEGER" />
+		<result column="sell_uid" property="sellUid" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="CHAR" />
+		<result column="password" property="password" jdbcType="CHAR" />
+		<result column="buy_order_request_no" property="buyOrderRequestNo"
+			jdbcType="VARCHAR" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="sell_fee" property="sellFee" jdbcType="DECIMAL" />
+		<result column="sell_order_request_no" property="sellOrderRequestNo"
+			jdbcType="VARCHAR" />
+
+		<result column="bund_time" property="bundTime" jdbcType="TIMESTAMP" />
+		<result column="pay" property="pay" jdbcType="DECIMAL" />
+		<result column="from_address" property="fromAddress" jdbcType="VARCHAR" />
+		<result column="to_address" property="toAddress" jdbcType="VARCHAR" />
+		<result column="trade_asset" property="tradeAsset" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap type="com.gop.mapper.dto.OrderRankOfSellDto"
+		id="sellDtoResultMap">
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="sumSell" property="sumSell" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap type="com.gop.mapper.dto.OrderRankOfCoinsNumDto"
+		id="coinsNumResultMap">
+		<result column="coinName" property="coinName" jdbcType="VARCHAR" />
+		<result column="completeOrderNum" property="completeOrderNum"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap type="com.gop.mapper.dto.OrderRankOfLastBoundDto"
+		id="lastBoundResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="coinName" property="coinName" jdbcType="VARCHAR" />
+		<result column="num" property="num" jdbcType="DECIMAL" />
+		<result column="state" property="state" jdbcType="CHAR" />
+		<result column="boundTime" property="boundTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, token_intention_id, order_no, price, asset_name, num,
+		buy_uid,
+		sell_uid, state,
+		password, buy_order_request_no, money,
+		create_date, update_date, sell_fee,
+		sell_order_request_no,
+		bund_time,
+		pay, from_address,to_address,trade_asset
+	</sql>
+
+	<select id="getTokenOrderIntentionByAssetName">
+		select
+		<include refid="Base_Column_List" />
+		from token_order
+		<if test="null!=#{assetName}">
+			where asset_name like #{asset_name}
+		</if>
+	</select>
+
+	<update id="blindUid">
+		update token_order set buy_uid=#{buyUid} ,
+		bund_time=#{bundDate} where
+		id=#{orderId} and buy_uid=0
+
+	</update>
+
+	<select id="getOrderForSellByPage" resultMap="BaseResultMap">
+		<choose>
+			<when test="tokenOrderStatuss !=null and tokenOrderStatuss.size > 0">
+				<foreach collection="tokenOrderStatuss" index="index"
+					separator="union all" item="state">
+					select
+					<include refid="Base_Column_List" />
+					from token_order
+					where sell_uid = #{sellUid,jdbcType=INTEGER} and
+					state=#{state}
+				</foreach>
+			</when>
+			<otherwise>
+				select
+				<include refid="Base_Column_List" />
+				from token_order
+				where sell_uid = #{sellUid,jdbcType=INTEGER}
+			</otherwise>
+		</choose>
+
+
+	</select>
+	<update id="updateTokenOrderStatus">
+		update token_order set state=#{tokenOrderStateTo}
+		where id=#{orderId} and
+		state=#{tokenOrderStateFrom}
+	</update>
+	<select id="getOrderForBuyByPage" resultMap="BaseResultMap">
+		<choose>
+			<when test="tokenOrderStatuss !=null and tokenOrderStatuss.size > 0">
+				<foreach collection="tokenOrderStatuss" index="index"
+					separator="union all" item="state">
+					select
+					<include refid="Base_Column_List" />
+					from token_order
+					where buy_uid = #{buyUid,jdbcType=INTEGER} and
+					state=#{state}
+				</foreach>
+			</when>
+			<otherwise>
+				select
+				<include refid="Base_Column_List" />
+				from token_order
+				where buy_uid = #{buyUid,jdbcType=INTEGER}
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from token_order
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		token_order
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insertSelective" parameterType="com.gop.domain.TokenOrder"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into token_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="tokenIntentionId != null">
+				token_intention_id,
+			</if>
+			<if test="orderNo != null">
+				order_no,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="assetName != null">
+				asset_name,
+			</if>
+			<if test="num != null">
+				num,
+			</if>
+			<if test="buyUid != null">
+				buy_uid,
+			</if>
+			<if test="sellUid != null">
+				sell_uid,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="buyOrderRequestNo != null">
+				buy_order_request_no,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="updateDate != null">
+				update_date,
+			</if>
+			<if test="sellFee != null">
+				sell_fee,
+			</if>
+			<if test="sellOrderRequestNo != null">
+				sell_order_request_no,
+			</if>
+			<if test="bundTime != null">
+				bund_time,
+			</if>
+			<if test="pay != null">
+				pay,
+			</if>
+			<if test="fromAddress != null">
+				from_address,
+			</if>
+			<if test="toAddress != null">
+				to_address,
+			</if>
+			<if test="tradeAsset !=null">
+				trade_asset
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="tokenIntentionId != null">
+				#{tokenIntentionId,jdbcType=INTEGER},
+			</if>
+			<if test="orderNo != null">
+				#{orderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=INTEGER},
+			</if>
+			<if test="assetName != null">
+				#{assetName,jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				#{num,jdbcType=DECIMAL},
+			</if>
+			<if test="buyUid != null">
+				#{buyUid,jdbcType=INTEGER},
+			</if>
+			<if test="sellUid != null">
+				#{sellUid,jdbcType=INTEGER},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=CHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=CHAR},
+			</if>
+			<if test="buyOrderRequestNo != null">
+				#{buyOrderRequestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sellFee != null">
+				#{sellFee,jdbcType=DECIMAL},
+			</if>
+			<if test="sellOrderRequestNo != null">
+				#{sellOrderRequestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bundTime != null">
+				#{bundTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="pay != null">
+				#{pay,jdbcType=DECIMAL},
+			</if>
+			<if test="fromAddress != null">
+				#{fromAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="toAddress != null">
+				#{toAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeAsset !=null">
+				#{tradeAsset,jdbcType=VARCHAR},
+			</if>
+
+		</trim>
+	</insert>
+	<select id="countSuccessTokenOrder" resultType="int">
+		select count(1)
+		from token_order where
+		sell_uid=#{uid} and state ='COMPLETE'
+	</select>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.TokenOrder">
+		update token_order
+		<set>
+			<if test="tokenIntentionId != null">
+				token_intention_id =
+				#{tokenIntentionId,jdbcType=INTEGER},
+			</if>
+			<if test="orderNo != null">
+				order_no = #{orderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=INTEGER},
+			</if>
+			<if test="assetName != null">
+				asset_name = #{assetName,jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				num = #{num,jdbcType=DECIMAL},
+			</if>
+			<if test="buyUid != null">
+				buy_uid = #{buyUid,jdbcType=INTEGER},
+			</if>
+			<if test="sellUid != null">
+				sell_uid = #{sellUid,jdbcType=INTEGER},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=CHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=CHAR},
+			</if>
+			<if test="buyOrderRequestNo != null">
+				buy_order_request_no =
+				#{buyOrderRequestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sellFee != null">
+				sell_fee = #{sellFee,jdbcType=DECIMAL},
+			</if>
+			<if test="sellOrderRequestNo != null">
+				sell_order_request_no =
+				#{sellOrderRequestNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bundTime != null">
+				bund_time = #{bundTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="pay != null">
+				pay = #{pay,jdbcType=DECIMAL},
+			</if>
+			<if test="fromAddress != null">
+				from_address = #{fromAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="toAddress != null">
+				to_address = #{toAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeAsset !=null">
+				trade_asset= #{tradeAsset,jdbcType=VARCHAR},
+			</if>
+
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateByPrimaryKey" parameterType="com.gop.domain.TokenOrder">
+		update token_order
+		set token_intention_id = #{tokenIntentionId,jdbcType=INTEGER},
+		order_no = #{orderNo,jdbcType=VARCHAR},
+		price =
+		#{price,jdbcType=INTEGER},
+		asset_name = #{assetName,jdbcType=VARCHAR},
+		num = #{num,jdbcType=DECIMAL},
+		buy_uid = #{buyUid,jdbcType=INTEGER},
+		sell_uid = #{sellUid,jdbcType=INTEGER},
+		state = #{state,jdbcType=CHAR},
+		password = #{password,jdbcType=CHAR},
+		buy_order_request_no =
+		#{buyOrderRequestNo,jdbcType=VARCHAR},
+		money =
+		#{money,jdbcType=DECIMAL},
+		create_date =
+		#{createDate,jdbcType=TIMESTAMP},
+		update_date =
+		#{updateDate,jdbcType=TIMESTAMP},
+		sell_fee =
+		#{sellFee,jdbcType=DECIMAL},
+		sell_order_request_no =
+		#{sellOrderRequestNo,jdbcType=VARCHAR},
+		bund_time =
+		#{bundTime,jdbcType=TIMESTAMP},
+		pay = #{pay,jdbcType=DECIMAL},
+		address =
+		#{address,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getRankOfSell" resultMap="sellDtoResultMap">
+		SELECT
+		sell.uid as
+		uid,sum(sell.sumState) as sumSell
+		FROM
+		((select buy_uid as
+		uid,count(state) as sumState,state
+		from token_order
+		where state = 4
+		group by buy_uid
+		ORDER BY count(state) DESC)
+		UNION ALL
+		(select sell_uid
+		as uid,count(state) as sumState,state
+		from token_order
+		where state = 4
+		group by sell_uid
+		ORDER BY count(state) DESC
+		) ) as sell
+		GROUP BY
+		sell.uid
+		limit 0,10
+	</select>
+	<select id="getRankOfCoinsTradeNum" resultMap="coinsNumResultMap">
+		select asset_name as
+		coinName,count(state) completeOrderNum
+		from token_order
+		where state=4
+		GROUP
+		BY asset_name
+		ORDER BY count(state) DESC
+		limit 0,10
+	</select>
+	<select id="getRankOfLastBound" resultMap="lastBoundResultMap">
+		select id, sell_uid as
+		uid ,asset_name as coinName,num,state,update_date as boundTime
+		from
+		token_order
+		where state = 4
+		
+	</select>
+</mapper>

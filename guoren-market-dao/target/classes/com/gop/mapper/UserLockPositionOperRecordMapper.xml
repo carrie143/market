@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.UserLockPositionOperRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.UserLockPositionOperRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, asset_code, amount, status, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_lock_position_oper_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.gop.domain.UserLockPositionOperRecord" >
+    insert into user_lock_position_oper_record (id, uid, asset_code, 
+      amount, status, 
+      create_date, update_date)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{assetCode,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{status,jdbcType=CHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.UserLockPositionOperRecord" >
+    insert into user_lock_position_oper_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="assetCode != null" >
+        asset_code,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.UserLockPositionOperRecord" >
+    update user_lock_position_oper_record
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        asset_code = #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.UserLockPositionOperRecord" >
+    update user_lock_position_oper_record
+    set uid = #{uid,jdbcType=INTEGER},
+      asset_code = #{assetCode,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from user_lock_position_oper_record
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="addUserLockPositionOperRecord" parameterType="com.gop.domain.UserLockPositionOperRecord" useGeneratedKeys="true" keyProperty="id">
+    insert into user_lock_position_oper_record (uid, asset_code, 
+      amount, status)
+    values (#{uid,jdbcType=INTEGER}, #{assetCode,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{status,jdbcType=CHAR})
+  </insert>
+
+  <select id="getLastMonthRewardList" resultMap="BaseResultMap" parameterType="com.gop.domain.UserLockPositionOperRecord">
+    select
+    <include refid="Base_Column_List" />
+    from user_lock_position_oper_record
+    where (asset_code = #{assetCode,jdbcType=VARCHAR} and create_date <![CDATA[<]]> #{createDate,jdbcType=TIMESTAMP}
+    and update_date <![CDATA[>]]>  #{updateDate,jdbcType=TIMESTAMP}
+    and status = 'UNLOCK' and amount > 0)
+    or (asset_code = #{assetCode,jdbcType=VARCHAR} and create_date <![CDATA[<]]> #{createDate,jdbcType=TIMESTAMP} and status = 'LOCK' and amount > 0)
+  </select>
+
+  <select id="getAllAmount" resultType="java.math.BigDecimal" parameterType="com.gop.domain.UserLockPositionOperRecord">
+    SELECT ifnull(sum(amount),0)
+    from user_lock_position_oper_record
+    where update_date <![CDATA[<=]]>  #{updateDate,jdbcType=TIMESTAMP}
+    AND status = #{status,jdbcType=CHAR}
+    AND asset_code = #{assetCode,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateLockPositionOperRecordStatusByUidAndAssetCode">
+    update user_lock_position_oper_record
+    set status = #{endStatus,jdbcType=CHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+    and asset_code = #{assetCode,jdbcType=VARCHAR}
+    and status = #{beginStatus,jdbcType=CHAR}
+  </update>
+
+</mapper>

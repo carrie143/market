@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gop.mapper.ForkLockPositionPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.gop.domain.ForkLockPositionPlan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="lock_asset_code" property="lockAssetCode" jdbcType="VARCHAR" />
+    <result column="target_asset_code" property="targetAssetCode" jdbcType="VARCHAR" />
+    <result column="min_lock_num" property="minLockNum" jdbcType="DECIMAL" />
+    <result column="max_lock_num" property="maxLockNum" jdbcType="DECIMAL" />
+    <result column="exchange_rate" property="exchangeRate" jdbcType="DECIMAL" />
+    <result column="begin_date" property="beginDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="unlock_date" property="unlockDate" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, lock_asset_code, target_asset_code, min_lock_num, max_lock_num, exchange_rate, 
+    begin_date, end_date, unlock_date, status, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fork_lock_position_plan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fork_lock_position_plan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gop.domain.ForkLockPositionPlan" >
+    insert into fork_lock_position_plan (id, lock_asset_code, target_asset_code, 
+      min_lock_num, max_lock_num, exchange_rate, 
+      begin_date, end_date, unlock_date, 
+      status, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{lockAssetCode,jdbcType=VARCHAR}, #{targetAssetCode,jdbcType=VARCHAR}, 
+      #{minLockNum,jdbcType=DECIMAL}, #{maxLockNum,jdbcType=DECIMAL}, #{exchangeRate,jdbcType=DECIMAL}, 
+      #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{unlockDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gop.domain.ForkLockPositionPlan" >
+    insert into fork_lock_position_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lockAssetCode != null" >
+        lock_asset_code,
+      </if>
+      <if test="targetAssetCode != null" >
+        target_asset_code,
+      </if>
+      <if test="minLockNum != null" >
+        min_lock_num,
+      </if>
+      <if test="maxLockNum != null" >
+        max_lock_num,
+      </if>
+      <if test="exchangeRate != null" >
+        exchange_rate,
+      </if>
+      <if test="beginDate != null" >
+        begin_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="unlockDate != null" >
+        unlock_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lockAssetCode != null" >
+        #{lockAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetAssetCode != null" >
+        #{targetAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="minLockNum != null" >
+        #{minLockNum,jdbcType=DECIMAL},
+      </if>
+      <if test="maxLockNum != null" >
+        #{maxLockNum,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeRate != null" >
+        #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unlockDate != null" >
+        #{unlockDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gop.domain.ForkLockPositionPlan" >
+    update fork_lock_position_plan
+    <set >
+      <if test="lockAssetCode != null" >
+        lock_asset_code = #{lockAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetAssetCode != null" >
+        target_asset_code = #{targetAssetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="minLockNum != null" >
+        min_lock_num = #{minLockNum,jdbcType=DECIMAL},
+      </if>
+      <if test="maxLockNum != null" >
+        max_lock_num = #{maxLockNum,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeRate != null" >
+        exchange_rate = #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="beginDate != null" >
+        begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unlockDate != null" >
+        unlock_date = #{unlockDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gop.domain.ForkLockPositionPlan" >
+    update fork_lock_position_plan
+    set lock_asset_code = #{lockAssetCode,jdbcType=VARCHAR},
+      target_asset_code = #{targetAssetCode,jdbcType=VARCHAR},
+      min_lock_num = #{minLockNum,jdbcType=DECIMAL},
+      max_lock_num = #{maxLockNum,jdbcType=DECIMAL},
+      exchange_rate = #{exchangeRate,jdbcType=DECIMAL},
+      begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      unlock_date = #{unlockDate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
