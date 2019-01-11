@@ -33,7 +33,8 @@ public class AuthContext {
 	private static final String DOWNLOAD = "download";
 	private static final String SIGN = "sign";
 	private static final String ACCESSKEY = "accessKey";
-
+	private static final String TELPHONE = "telphone";
+	private static final String EMAIL = "email";
 	private static final String LOGIN = "loginsession";
 
 	NativeWebRequest webRequest;
@@ -64,7 +65,13 @@ public class AuthContext {
 	public String getDownload(){
 		return properties.getProperty(DOWNLOAD);
 	}
-
+	
+	public String getTelPhone(){
+		return properties.getProperty(TELPHONE);
+	}
+	public String getEmail(){
+		return properties.getProperty(EMAIL);
+	}
 	public String getUri(){return webRequest.getNativeRequest(HttpServletRequest.class).getRequestURI();}
 
 	public String getField(String field) {

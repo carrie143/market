@@ -7,7 +7,14 @@ package com.gop.code.consts;
  *
  */
 public class UserCodeConst {
-
+	//已绑定邮箱
+	public static final String EXIT_EMAIL = "104134";
+	
+	public static final String MESSAGE_SEND_FAILED = "104133";
+	//已绑定手机号
+	public static final String EXIT_TELPHONE = "104132";
+	// 数据库更新失败
+	public static final String UPDATE_FAILED = "104131";
 	// 已注册
 	public static final String HAS_REGISTER = "104100";
 	// 未注册

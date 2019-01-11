@@ -74,7 +74,7 @@ public class ServiceCodeController {
 
 		User user = null;
 
-		if (authContext.getLoginSession() != null) {
+		if (authContext.getLoginSession() != null) {//已登录
 			user = userFacade.getUser(authContext.getLoginSession().getUserId());
 			if (PhoneVerify.validMobileNumber(sendAccount)) {
 				if (!Strings.isNullOrEmpty(user.getMobile())) {
@@ -85,7 +85,7 @@ public class ServiceCodeController {
 				}
 			}
 			code = checkCodeService.SaveUserSendCode(authContext.getLoginSession().getUserId(), sendAccount);
-		} else {
+		} else {//未登录
 			code = checkCodeService.SaveUserSendCode(sendAccount);
 		}
 
@@ -113,7 +113,6 @@ public class ServiceCodeController {
 				throw new AppException(UserCodeConst.EMAIL_FORMAT_ERROR);
 			}
 			try {
-
 				VerifyCodeDto verifyCodeDto = new VerifyCodeDto();
 				verifyCodeDto.setEmailText(code);
 				verifyCodeDto.setTemplateName("sms.ftl");

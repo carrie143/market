@@ -28,18 +28,21 @@ public class CheckCodeServiceImpl implements CheckCodeService {
 		/*
 		 * 发送间隔60s
 		 */
-		Boolean createCodeEnable = identifyingCodeService.checkSendCode(userName);
+		Boolean createCodeEnable = identifyingCodeService.checkSendCode(userName);//判断缓存中是否有code
 		if (createCodeEnable) {
 			throw new AppException(IdentifyingCodeConst.IDENTIFYING_CODE_SENDED);
 		}
 		String codeAccount = identifyingCodeService.getCode(userName);
 		String code = null;
-		if (Strings.isNullOrEmpty(codeAccount)) {
+		if (Strings.isNullOrEmpty(codeAccount)) {//如果缓存中没有code
 			code = RandomStringUtils.randomNumeric(6);
 		} else {
 			code = Splitter.on(":").splitToList(codeAccount).get(0);
 		}
 		String value = Joiner.on(":").join(code, userName);
+		System.out.println(code);
+		System.out.println(value);
+		System.out.println(userName);
 		identifyingCodeService.saveCode(value, userName, 900, 60);
 		return code;
 	}

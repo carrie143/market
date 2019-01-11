@@ -44,6 +44,7 @@ import com.gop.domain.UserLoginLog;
 import com.gop.domain.UserPreRegistrationPool;
 import com.gop.domain.enums.InviteActivityConfigStatus;
 import com.gop.exception.AppException;
+import com.gop.mapper.UserMapper;
 import com.gop.sms.dto.VerifyCodeDto;
 import com.gop.sms.service.MessageGenerator;
 import com.gop.user.dto.CheckLoginLockedDto;
@@ -90,7 +91,9 @@ public class UserController {
   @Value("${email.urlDomain}")
   private String urlDomain;
 
-
+  @Autowired
+  private UserMapper userMapper;
+  
   private long expireTime = 15;
 
   private final String randomCodePrix = "RandomCode";
@@ -124,8 +127,60 @@ public class UserController {
 	@Autowired
 	@Qualifier("IdentifyingCodeServiceImpl")
   private IdentifyingCodeService identifyingCodeService;
-  @RequestMapping(value="/sendServiceCode",method=RequestMethod.GET)
-	public  String getServiceCode(@RequestParam("telPhone") String telPhone) {
+	//邮箱绑定手机号
+	@RequestMapping(value="/bindTelphone",method=RequestMethod.GET)
+	@Strategys(strategys = @Strategy(authStrategy = "exe({{'checkPhoneCodeStrategy'}})"))
+	public String bindTelphone(@AuthForHeader AuthContext authContext,@RequestParam("telPhone") String telPhone) {
+	    String userAccount = authContext.getUserAccount();
+	    User user = null;
+	    if (Strings.isNullOrEmpty(userAccount)) {
+	        user = userService.getUserByUid(authContext.getLoginSession().getUserId());
+	      } else {
+	        user = userService.getUserByEmail(userAccount);
+	      }
+	    if(!Strings.isNullOrEmpty(user.getMobile())) {//已绑定手机号码
+	    	throw new AppException(UserCodeConst.EXIT_TELPHONE);
+	    }
+	    boolean isRegistered = userService.isPhoneRegister(telPhone);
+	    if(isRegistered) {//手机号已被注册
+	    	throw new AppException(UserCodeConst.HAS_REGISTER);
+	    }
+	    user.setMobile(telPhone);
+	    int i= userMapper.updateByPrimaryKeySelective(user);
+		if(i==1) {
+			return "绑定成功";
+		}else {
+			throw new AppException(UserCodeConst.UPDATE_FAILED);
+		}
+	 }
+	//手机号绑定邮箱
+	@RequestMapping(value="/bindEmail",method=RequestMethod.GET)
+	@Strategys(strategys = @Strategy(authStrategy = "exe({{'checkEmailCodeStrategy'}})"))
+	public String bindEmail(@AuthForHeader AuthContext authContext,@RequestParam("email") String email) {
+	    String userAccount = authContext.getUserAccount();
+	    User user = null;
+	    if (Strings.isNullOrEmpty(userAccount)) {
+	        user = userService.getUserByUid(authContext.getLoginSession().getUserId());
+	      } else {
+	        user = userService.getUserByEmail(userAccount);
+	      }
+	    if(!Strings.isNullOrEmpty(user.getEmail())) {//已绑定邮箱
+	    	throw new AppException(UserCodeConst.EXIT_EMAIL);
+	    }
+	    boolean isRegistered = userService.isMailRegister(email);
+	    if(isRegistered) {//邮箱已被注册
+	    	throw new AppException(UserCodeConst.HAS_REGISTER);
+	    }
+	    user.setEmail(email);
+	    int i= userMapper.updateByPrimaryKeySelective(user);
+		if(i==1) {
+			return "绑定成功";
+		}else {
+			throw new AppException(UserCodeConst.UPDATE_FAILED);
+		}
+	 }
+	@RequestMapping(value="/sendServiceCode",method=RequestMethod.GET)
+	public  String sendServiceCode(@RequestParam("telPhone") String telPhone) {
 	  try {
 		    MessageUtil messageUtil=new MessageUtil();
 		    String serviceCode=messageUtil.getRandom();
@@ -138,14 +193,16 @@ public class UserController {
 			{
 				if( arrstr[1].equals("0"))
 				{
-					System.out.println("提交成功，返回值："+arrstr[1]);
+//					System.out.println("提交成功，返回值："+arrstr[1]);
 					//将验证码存入redis
-					String key = Joiner.on(":").join(telPhone, "code");
-			        Boolean flag=identifyingCodeService.saveCode(serviceCode, key, 900, 60);
+//					String key = Joiner.on(":").join(telPhone, "code");
+			        Boolean flag=identifyingCodeService.saveCode(serviceCode, telPhone, 900, 60);
+//			        System.out.println(flag);
 				}
 				else
 				{
 					System.out.println("提交失败，错误码：" + arrstr[1]);
+					throw new AppException(UserCodeConst.MESSAGE_SEND_FAILED);
 				}
 			}
 			else
@@ -163,7 +220,7 @@ public class UserController {
  	public String saveServiceCode(@RequestParam("key") String key,@RequestParam("value") String value) {
 	  ValueOperations<String, String> ops = redisTemplate.opsForValue();
 	  String queryKey = Joiner.on(":").join(key, "code");
-      ops.set(queryKey, value, 300, TimeUnit.SECONDS);//5分钟过期
+      ops.set(queryKey, value, 900, TimeUnit.SECONDS);//5分钟过期
       log.info("存储到reids的key:{},value:{}", queryKey, value);
       return key;
  	}
@@ -173,6 +230,7 @@ public class UserController {
   public JSONObject phoneRegister(@AuthForHeader AuthContext authContext,
       @RequestBody UserDto userDto) {
     String userAccount = authContext.getUserAccount();
+
     if (Strings.isNullOrEmpty(userAccount)) {
       log.info("无效的用户账户地址");
       throw new AppException(CommonCodeConst.FIELD_ERROR);
@@ -258,7 +316,6 @@ public class UserController {
     if (isRegistered) {
       throw new AppException(UserCodeConst.HAS_REGISTER);
     } else {
-
       throw new AppException(UserCodeConst.NO_REGISTER);
 
     }
@@ -613,7 +670,7 @@ public class UserController {
     User user = null;
 
     String userAccount = authContext.getUserAccount();
-    System.out.print(userAccount);
+
     user = userService.getUserByPhone(userAccount);
     // update user表 锁定记录清空
     User userNew = new User();
