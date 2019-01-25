@@ -385,7 +385,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserByAccount(String account) {
 		if (environment.getSystemEnvironMent().equals(EnvironmentEnum.CHINA)) {
-			return getUserByPhone(account);
+			return getUserByPhone(account);//手机号码
 		} else {
 			return getUserByEmail(account);
 		}

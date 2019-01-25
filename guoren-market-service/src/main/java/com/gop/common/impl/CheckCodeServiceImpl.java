@@ -40,9 +40,9 @@ public class CheckCodeServiceImpl implements CheckCodeService {
 			code = Splitter.on(":").splitToList(codeAccount).get(0);
 		}
 		String value = Joiner.on(":").join(code, userName);
-		System.out.println(code);
-		System.out.println(value);
-		System.out.println(userName);
+//		System.out.println(code);
+//		System.out.println(value);
+//		System.out.println(userName);
 		identifyingCodeService.saveCode(value, userName, 900, 60);
 		return code;
 	}

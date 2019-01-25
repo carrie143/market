@@ -15,7 +15,6 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 public class GuorenManagerWebSpringbootApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(GuorenManagerWebSpringbootApplication.class, args);
 	}
 }

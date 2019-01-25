@@ -16,14 +16,14 @@ import com.gop.web.base.auth.strategy.AuthStrategy;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 校验servicecode（手机验证码或者境外邮箱验证码）
+ * 校验servicecode（手机验证码或者境外邮箱验证码）编码了header
  * 
  * @author liuze
  *
  */
-@Service("checkServiceCodeStrategy")
+@Service("checkServiceCodeStrategyDecode")
 @Slf4j
-public class CheckServiceCodeStrategy implements AuthStrategy {
+public class CheckServiceCodeStrategyDecode implements AuthStrategy {
 
 	@Autowired
 	private UserFacade userfacade;
@@ -31,9 +31,11 @@ public class CheckServiceCodeStrategy implements AuthStrategy {
 	private CheckCodeService checkCodeService;
 
 	@Override
-	public void pre(AuthContext authContext) {
+	public void pre(AuthContext authContext) {	
+//		authContext = java.net.URLDecoder.decode(authContext,"UTF-8");
 		String userAccount = authContext.getUserAccount();
 		System.out.println("####AuthContext参数");
+	    System.out.println(userAccount);
 	    System.out.println(authContext.getServiceCode());
 	    System.out.println("####");
 		boolean checkFlag = false;
@@ -43,10 +45,10 @@ public class CheckServiceCodeStrategy implements AuthStrategy {
 			if (!checkFlag) {
 				throw new AppException(IdentifyingCodeConst.IDENTIFYING_CODE_EEROR);
 			}
+
 			authContext.setUserAccount(checkCodeService.getUserAccount(authContext.getLoginSession().getUserId()));
 		} else {
 			checkFlag = checkCodeService.checkUserCode(authContext.getUserAccount(), authContext.getServiceCode());
-			System.out.println(checkFlag);
 			if (!checkFlag) {
 				throw new AppException(IdentifyingCodeConst.IDENTIFYING_CODE_EEROR);
 			}

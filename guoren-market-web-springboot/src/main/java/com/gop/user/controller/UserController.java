@@ -1,5 +1,6 @@
 package com.gop.user.controller;
 
+import java.io.Console;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
@@ -127,6 +128,13 @@ public class UserController {
 	@Autowired
 	@Qualifier("IdentifyingCodeServiceImpl")
   private IdentifyingCodeService identifyingCodeService;
+	
+	@RequestMapping(value="/getUserInfo",method=RequestMethod.GET)	
+	public User getUserInfo(@AuthForHeader AuthContext authContext) {
+		String userAccount = authContext.getUserAccount();
+		User user = userService.getUserByEmail(userAccount);
+		return user;
+	}
 	//邮箱绑定手机号
 	@RequestMapping(value="/bindTelphone",method=RequestMethod.GET)
 	@Strategys(strategys = @Strategy(authStrategy = "exe({{'checkPhoneCodeStrategy'}})"))
@@ -153,6 +161,7 @@ public class UserController {
 			throw new AppException(UserCodeConst.UPDATE_FAILED);
 		}
 	 }
+
 	//手机号绑定邮箱
 	@RequestMapping(value="/bindEmail",method=RequestMethod.GET)
 	@Strategys(strategys = @Strategy(authStrategy = "exe({{'checkEmailCodeStrategy'}})"))
@@ -212,7 +221,7 @@ public class UserController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "hello";
+		return "发送成功";
 	}
   //存储手机号码和验证码到redis中，
   //或者调用identifyingCodeServiceImpl.saveCode(value,key,900,60)
@@ -224,13 +233,13 @@ public class UserController {
       log.info("存储到reids的key:{},value:{}", queryKey, value);
       return key;
  	}
-  // 注册
+  // 手机注册
   @RequestMapping(value = "/phone-register", method = RequestMethod.POST)
   @Strategys(strategys = @Strategy(authStrategy = "exe({{'checkServiceCodeStrategy'}})"))
   public JSONObject phoneRegister(@AuthForHeader AuthContext authContext,
       @RequestBody UserDto userDto) {
     String userAccount = authContext.getUserAccount();
-
+    System.out.println(userAccount);
     if (Strings.isNullOrEmpty(userAccount)) {
       log.info("无效的用户账户地址");
       throw new AppException(CommonCodeConst.FIELD_ERROR);
@@ -241,7 +250,7 @@ public class UserController {
       throw new AppException(CommonCodeConst.FIELD_ERROR);
     }
 
-    String loginPassword = userDto.getLoginPassword();
+    String loginPassword = userDto.getLoginPassword();   
     String payPassword = userDto.getPayPassword();
     Integer invitId = userDto.getInvitId();
     String nickname = userDto.getNickname();
@@ -251,21 +260,21 @@ public class UserController {
       throw new AppException(CommonCodeConst.FIELD_ERROR);
     }
     if (loginPassword.contains(" ")) {
-      log.info("{}:paypassword为null", userAccount);
+      log.info("{}:loginPassword为null", userAccount);
       throw new AppException(CommonCodeConst.FIELD_ERROR);
     }
-    if (payPassword.contains(" ")) {
-      log.info("{}:paypassword为null", userAccount);
-      throw new AppException(CommonCodeConst.FIELD_ERROR);
-    }
-    if (StringUtils.isEmpty(payPassword)) {
-      log.info("{}:paypassword为null", userAccount);
-      throw new AppException(CommonCodeConst.FIELD_ERROR);
-    }
+//    if (payPassword.contains(" ")) {
+//      log.info("{}:paypassword为null", userAccount);
+//      throw new AppException(CommonCodeConst.FIELD_ERROR);
+//    }
+//    if (StringUtils.isEmpty(payPassword)) {
+//      log.info("{}:paypassword为null", userAccount);
+//      throw new AppException(CommonCodeConst.FIELD_ERROR);
+//    }
 
     // 校验登录密码及支付密码
     loginPassword = ConstantUtil.charConvert(loginPassword);
-    payPassword = ConstantUtil.charConvert(payPassword);
+//    payPassword = ConstantUtil.charConvert(payPassword);
 
     if (loginPassword.length() < 6 || loginPassword.length() > 20) {
       throw new AppException(UserCodeConst.LOGIN_PASSWORD_VALID_ERROR);
@@ -275,13 +284,13 @@ public class UserController {
       throw new AppException(UserCodeConst.LOGIN_PASSWORD_VALID_ERROR);
     }
 
-    if (payPassword.length() < 8 || payPassword.length() > 20) {
-      throw new AppException(UserCodeConst.PAY_PASSWORD_VALID_ERROR);
-    }
-
-    if (!PasswordUtil.checkPasswordFormat(payPassword)) {
-      throw new AppException(UserCodeConst.PAY_PASSWORD_VALID_ERROR);
-    }
+//    if (payPassword.length() < 8 || payPassword.length() > 20) {
+//      throw new AppException(UserCodeConst.PAY_PASSWORD_VALID_ERROR);
+//    }
+//
+//    if (!PasswordUtil.checkPasswordFormat(payPassword)) {
+//      throw new AppException(UserCodeConst.PAY_PASSWORD_VALID_ERROR);
+//    }
 
     if (!PhoneVerify.validMobileNumber(userAccount)) {
       throw new AppException(UserCodeConst.PHONE_FORMAT_ERROR);
@@ -293,7 +302,7 @@ public class UserController {
     }
 
     User user = userFacade
-        .createUser(null, userAccount, loginPassword, payPassword, invitId, nickname, 0);
+        .createUser(null, userAccount, loginPassword, payPassword,invitId, nickname, 0);
 
     Integer uid = user.getUid();
 
@@ -326,7 +335,6 @@ public class UserController {
   @RequestMapping(value = "/email-register", method = RequestMethod.POST)
   public JSONObject emailRegister(@AuthForHeader AuthContext authContext,
       @Valid @RequestBody UserDto userDto) {
-
     String userAccount = authContext.getUserAccount();
 
     // 校验userDto参数
@@ -731,23 +739,19 @@ public class UserController {
 	public String hello() {
 		return "hello";
 	}
-  @Strategys(strategys = {
-      @Strategy(authStrategy = "exe({{'checkServiceCodeStrategy'},{'checkLoginStrategy','checkLoginPasswordStrategy','checkGoogleCodeStrategy'}})"),})
+  @Strategys(strategys = {//'checkLoginPasswordStrategy' ,'checkGoogleCodeStrategy'
+      @Strategy(authStrategy = "exe({{'checkServiceCodeStrategy'}})"),})
   @RequestMapping(value = "/login-password", method = RequestMethod.POST)
   public String changeloginPassword(@AuthForHeader AuthContext authContext,
       @RequestBody UserDto userDto) {
-
     String newPwd = userDto.getLoginPassword();
-
     User user = null;
     String account = authContext.getUserAccount();
-
     if (Strings.isNullOrEmpty(account)) {//已登陆用户修改密码,不传account-no，从session中获取id
       user = userService.getUserByUid(authContext.getLoginSession().getUserId());
     } else {//未登陆用户忘记密码，传account-no
       user = userService.getUserByEmail(account);//根据邮箱或手机号查询用户共用方法
     }
-
     if (user == null) {
       throw new AppException(UserCodeConst.NO_REGISTER);
     }
